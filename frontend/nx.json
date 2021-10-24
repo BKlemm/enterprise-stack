@@ -1,0 +1,98 @@
+{
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "frontend",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "website": {
+      "tags": ["scope:website"]
+    },
+    "website-e2e": {
+      "tags": [],
+      "implicitDependencies": ["website"]
+    },
+    "administration": {
+      "tags": ["scope:administration"]
+    },
+    "administration-e2e": {
+      "tags": [],
+      "implicitDependencies": ["administration"]
+    },
+    "shared-theme": {
+      "tags": []
+    },
+    "mobile": {
+      "tags": ["scope:mobile"]
+    },
+    "mobile-e2e": {
+      "tags": [],
+      "implicitDependencies": ["mobile"]
+    },
+    "website-shared-services": {
+      "tags": ["scope:website"]
+    },
+    "shared-core": {
+      "tags": ["scope:shared"]
+    },
+    "shared-ui": {
+      "tags": ["scope:shared"]
+    },
+    "website-shared-ui": {
+      "tags": ["scope:website"]
+    },
+    "administration-shared-ui": {
+      "tags": ["scope:administration", "type:ui"]
+    },
+    "administration-shared-util": {
+      "tags": ["scope:administration", "type:util"]
+    },
+    "website-authenticate-feature-login": {
+      "tags": ["scope:website", "type:feature"]
+    },
+    "website-authenticate-feature-register": {
+      "tags": ["scope:website", "type:feature"]
+    },
+    "administration-carpark-feature-create-carpark": {
+      "tags": ["scope:administration", "type:feature"]
+    },
+    "administration-carpark-data-access": {
+      "tags": ["scope:administration", "type:data-access"]
+    },
+    "administration-carpark-ui": {
+      "tags": ["scope:administration", "type:ui"]
+    },
+    "administration-carpark-feature-browse-carpark": {
+      "tags": ["scope:administration", "type:feature"]
+    },
+    "administration-carpark-feature-shell": {
+      "tags": ["scope:administration", "type:feature"]
+    },
+    "website-shared-data-access": {
+      "tags": ["scope:website", "type:data-access"]
+    },
+    "website-authenticate-data-access": {
+      "tags": ["scope:website", "type:data-access"]
+    },
+    "website-authenticate-feature-shell": {
+      "tags": ["scope:website", "type:feature"]
+    },
+    "shared-data-access": {
+      "tags": ["scope:shared", "type:data-access"]
+    }
+  }
+}

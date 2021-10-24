@@ -1,0 +1,34 @@
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 fixed-left" id="sidenav-main">
+  <div class="sidenav-header">
+    <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute right-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+    <a class="navbar-brand m-0 text-white" routerLink="/{{menu.DASHBOARD}}">
+      <!--<img src="../../assets/img/logo-ct.png" class="navbar-brand-img h-100 w-15" alt="...">-->
+      <span class="ms-1 font-weight-bold">Avonsoft</span>
+    </a>
+  </div>
+  <hr class="horizontal dark mt-0">
+  <div class="collapse navbar-collapse  w-auto" id="sidenav-collapse-main">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/{{menu.DASHBOARD}}" routerLinkActive="active">
+          <div class="icon icon-xs shadow text-white text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-tachometer-alt"></i>
+          </div>
+          <span class="nav-link-text ms-1" i18n>Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-white text-xs font-weight-bolder opacity-6" i18n>Administration</h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/{{menu.CARPARK}}" routerLinkActive="active">
+          <div class="icon icon-xs shadow text-white text-center d-flex align-items-center justify-content-center">
+            <i class="fa fa-car"></i>
+          </div>
+          <span class="nav-link-text ms-1" i18n>Carparks</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+

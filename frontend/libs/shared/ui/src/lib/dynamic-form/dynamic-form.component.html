@@ -1,0 +1,23 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div *ngFor="let element of formTemplate" class="row">
+    <div [ngSwitch]="element.type">
+      <div *ngSwitchCase="'text'" class="form-floating mb-3">
+        <input type="text" class="form-control" id="{{element.id}}" name="{{element.id}}" placeholder="{{element.placeholder}}" formControlName="{{element.id}}"/>
+        <label for="{{element.id}}">{{element.placeholder}}</label>
+      </div>
+      <div *ngSwitchCase="'number'" class="form-floating mb-3">
+        <input type="number" class="form-control" id="{{element.id}}" name="{{element.id}}" placeholder="{{element.placeholder}}" formControlName="{{element.id}}"/>
+        <label for="{{element.id}}">{{element.placeholder}}</label>
+      </div>
+      <div *ngSwitchCase="'select'" class="form-floating mb-3">
+        <select formControlName="{{element.id}}" class="form-control">
+          <option *ngFor="let opt of element.options">
+            {{opt}}
+          </option>
+        </select>
+        <label for="{{element.id}}">{{element.placeholder}}</label>
+      </div>
+    </div>
+  </div>
+  <input type="submit" class="btn btn-primary" value="save"/>
+</form>

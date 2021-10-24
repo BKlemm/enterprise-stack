@@ -1,0 +1,11 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["libs/website/availability/data-access/tsconfig.*?.json"]
+      }
+    }
+  ]
+}

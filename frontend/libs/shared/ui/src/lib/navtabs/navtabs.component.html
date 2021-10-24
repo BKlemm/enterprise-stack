@@ -1,0 +1,15 @@
+<ul class="nav nav-tabs sticky-top">
+  <li class="nav-item" *ngFor="let tab of tabs">
+    <a class="nav-link" routerLink="{{tab.link}}" routerLinkActive="active">{{tab.title}}</a>
+  </li>
+</ul>
+<div class="card">
+  <div class="card-header d-flex flex-row">
+    <i class="fa fa-2x fa-plus-circle text-primary me-2" *ngIf="createLink" routerLink="{{createLink}}"></i>
+    <h5 class="card-title d-flex flex-column">{{title}}</h5>
+  </div>
+  <div class="card-body">
+    <ng-content></ng-content>
+  </div>
+  <div class="card-footer"></div>
+</div>

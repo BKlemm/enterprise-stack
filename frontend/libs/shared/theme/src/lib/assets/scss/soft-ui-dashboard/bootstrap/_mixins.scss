@@ -1,0 +1,41 @@
+// Toggles
+//
+// Used in conjunction with global variables to enable certain theme features.
+
+// Vendor
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/vendor/rfs";
+
+// Deprecate
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/deprecate";
+
+// Helpers
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/breakpoints";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/image";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/resize";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/visually-hidden";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/reset-text";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/text-truncate";
+
+// Utilities
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/utilities";
+
+// Components
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/alert";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/buttons";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/caret";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/pagination";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/lists";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/list-group";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/forms";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/table-variants";
+
+// Skins
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/border-radius";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/box-shadow";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/gradients";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/transition";
+
+// Layout
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/clearfix";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/container";
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard/bootstrap/mixins/grid";

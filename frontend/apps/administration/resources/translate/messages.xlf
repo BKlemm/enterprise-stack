@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="575b8404b3ddbc8349ea807c5073008539b550c9" datatype="html">
+        <source>Parkplatz als aktiv setzen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/carpark/ui/src/lib/carpark-form/carpark-form.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2c32bd91e2abfe6f7cbfa49c2e71814f751294f0" datatype="html">
+        <source>Parkplatz Name<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-danger&quot;&gt;"/>*<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/carpark/ui/src/lib/carpark-form/carpark-form.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d781f154803988079d03ce78f14e3d11498a3ce9" datatype="html">
+        <source>IATA Code<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-danger&quot;&gt;"/>*<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/carpark/ui/src/lib/carpark-form/carpark-form.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="04d2b2a6521e20c16ef20da7b9d488a79a717b9c" datatype="html">
+        <source>Support Telefon<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-danger&quot;&gt;"/>*<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/carpark/ui/src/lib/carpark-form/carpark-form.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="18eed3e19e486c3e3365f9fdd08d4e6d6b86ec25" datatype="html">
+        <source>Support Email<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;text-danger&quot;&gt;"/>*<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/carpark/ui/src/lib/carpark-form/carpark-form.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0c7c603ff8f1f0aadb1ca56406400983c37e9bd8" datatype="html">
+        <source>Parkplatz Beschreibung</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/carpark/ui/src/lib/carpark-form/carpark-form.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d95840b42ca39e22b1458fe893c244e4f2c173f5" datatype="html">
+        <source>Latitude</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/carpark/ui/src/lib/carpark-form/carpark-form.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="76fef7c7446cd96cd65b7b0f3e0e527955f9ef34" datatype="html">
+        <source>Longitude</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/carpark/ui/src/lib/carpark-form/carpark-form.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b6d81404a2dbf47a5a3199a90157419e2aafdd87" datatype="html">
+        <source>Suchen...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/nav-header/nav-header.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6c80e465ddb54ece7d4a349bce19e786060ae780" datatype="html">
+        <source>Ausloggen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/nav-header/nav-header.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f65253954b66e929a8b4d5ecaf61f9129f8cec64" datatype="html">
+        <source>Dashboard</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="860d41ba2c64ff076c5017e88dda961a24a30afd" datatype="html">
+        <source>Reservierungen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2a484c773aad5b183236588e78df99b6a65a7089" datatype="html">
+        <source>Marketing</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3254af9acb61fe6a3c6577be47bbe5c382890ce1" datatype="html">
+        <source>Einstellungen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b7648e7aced164498aa843b5c4e8f2f1c36a7919" datatype="html">
+        <source>Administration</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6d959fae4228df77f1275f47dfe80e251966dca0" datatype="html">
+        <source>Parkplätze</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0e16e0b3fac1f7ec486a84084549d44446baf97e" datatype="html">
+        <source>Nutzer Verwaltung</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="47ad43a2423a346b2684bf3127648e8c74e2f3ce" datatype="html">
+        <source>Tariffe</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3c53c7af1479866d93ac2ba6299c31057647eeeb" datatype="html">
+        <source>Bonusprogramm</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/administration/shared/ui/src/lib/components/sidebar-menu/sidebar-menu.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f570cf118b1c755d48fd79031d9dfdc441ee4847" datatype="html">
+        <source>Strasse</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/address-form/address-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/partials/address-form-partial/address-form-partial.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5924dd2a46c5026af417a64a5f62f88394be797b" datatype="html">
+        <source>Hausnummer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/address-form/address-form.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/partials/address-form-partial/address-form-partial.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="83c46e54953ab83717c47ac8b114336b07fc28aa" datatype="html">
+        <source>Stadt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/address-form/address-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/partials/address-form-partial/address-form-partial.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a19b2066ee5125ad7da789939c2d40c2695e9b66" datatype="html">
+        <source>Postleitzahl</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/address-form/address-form.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/partials/address-form-partial/address-form-partial.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="983e80499aab81bf2f11e1c415bb18c2908e0810" datatype="html">
+        <source>Willkommen zurück</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a495667a5bde0d0599b4f7d30dc76d29cf0cec2c" datatype="html">
+        <source>Geben Sie ihre E-Mail und ihr Passwort ein, um sich einzuloggen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6d3b88a3ae6ff3d987f86395605397ec736dee9c" datatype="html">
+        <source>E-Mail</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2070ebb54f893c60114f49f46d7e1a6f27b66610" datatype="html">
+        <source>Passwort</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9029b37884c717af4b9652a20394a08fd964cc6d" datatype="html">
+        <source>Angemeldet bleiben</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="df0f8a49440c7127bd20461526dd1b39f2011e20" datatype="html">
+        <source>Anmelden</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1b2233a6bc3807a32229b24af7cca1319d55e83e" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{language.label}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c536247d71822c272f8e9155f831e0efb5aa0d31" datatype="html">
+        <source>Startseite</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d65c346de6a686cd4da98467a92f16ac171177d4" datatype="html">
+        <source>Parkplatz Buchen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="49a5b177e641f7174246bdba7aa5b1dbea75c304" datatype="html">
+        <source>Vorteile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b5629d298ff1a69b8db19a4ba2995c76b52da604" datatype="html">
+        <source>Support</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f1d36091b76c42744ebb833cd5e6217f85e26396" datatype="html">
+        <source>Ratgeber</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9adf7f973ff81475f3622c2a38a1e69a7dd433af" datatype="html">
+        <source>Registrieren</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,18 @@
+<web-default-layout>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4" style="color: darkslategray;" i18n>Avonsoft CQRS, DDD, Spring Boot, Angular, Cassandra or MariaDB Skeleton</h1>
+        <p class="lead" i18n>Simple Example with an select box to get the available carparks from the endpoint</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <ng-select class="d-block w-100" id="carpark">
+            <ng-option value="" i18n>Carparks</ng-option>
+            <ng-option *ngFor="let carpark of carParks" [value]="carpark.carParkId">{{carpark.name}}</ng-option>
+          </ng-select>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+</web-default-layout>

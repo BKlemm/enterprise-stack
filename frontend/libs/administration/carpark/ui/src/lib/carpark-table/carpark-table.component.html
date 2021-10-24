@@ -1,0 +1,52 @@
+
+
+<input matInput #input>
+
+
+<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+
+<table mat-table class="table align-items-center mb-0" [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear>
+
+  <!-- ID Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell class="ps-4 text-xs font-weight-bold" *matCellDef="let row"> <a class="text-muted" routerLink="{{row.carParkId}}"><i class="fa fa-edit"></i> {{row.name}}</a></td>
+  </ng-container>
+
+  <!-- Progress Column -->
+  <ng-container matColumnDef="iata">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> IATA Code </th>
+    <td mat-cell class="ps-4 text-xs font-weight-bold" *matCellDef="let row"> {{row.iataCode}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Beschreibung </th>
+    <td mat-cell class="ps-4 text-xs font-weight-bold" *matCellDef="let row"> {{row.description}} </td>
+  </ng-container>
+
+  <!-- Color Column -->
+  <ng-container matColumnDef="tax">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> MwSt. </th>
+    <td mat-cell class="ps-4 text-xs font-weight-bold" *matCellDef="let row"> {{row.tax}} </td>
+  </ng-container>
+
+  <!-- State Column -->
+  <ng-container matColumnDef="state">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+    <td mat-cell class="ps-4 text-xs font-weight-bold" *matCellDef="let row"><span [ngClass]="row.state === 'ACTIVE' ? 'bg-gradient-success' : 'bg-gradient-danger' " class="badge badge-sm"> {{row.state}}</span> </td>
+  </ng-container>
+
+  <tr mat-header-row class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7" *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <!-- Row shown when there is no matching data. -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">Keine Daten verfügbar</td>
+  </tr>
+</table>
+
+<mat-paginator class="mt-2" [length]="totalSize" (page)="handlePage($event)" [pageIndex]="currentPage" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+

@@ -1,0 +1,30 @@
+<!--<input matInput placeholder="{{filterPlaceholder}}" #input>-->
+
+<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+
+<table mat-table class="table align-items-center mb-0" [dataSource]="dataSource" matSort matSortActive="{{activeSort}}" matSortDirection="{{sortDirection}}" matSortDisableClear>
+
+  <!-- ID Column -->
+  <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.header}} </th>
+    <td mat-cell class="ps-4 text-xs font-weight-bold" *matCellDef="let row">
+      <a routerLink="{{column.link}}/{{row[column.linkRef]}}">
+        <span *ngIf="column.dep">{{row[column.dep][column.columnDef]}}</span>
+        <span *ngIf="!column.dep">{{row[column.columnDef]}}</span>
+      </a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7" *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <!-- Row shown when there is no matching data. -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">Keine Daten verfügbar...</td>
+  </tr>
+</table>
+<mat-paginator class="mt-2" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+

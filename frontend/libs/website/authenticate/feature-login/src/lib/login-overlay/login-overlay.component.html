@@ -1,0 +1,20 @@
+<div class="layout m-4" @myInsertRemoveTrigger *ngIf="isLogin">
+  <div class="layout-container">
+    <div class="content">
+      <div class="columns">
+        <div class="col-lay">
+          <div class="cards">
+            <div class="card">
+              <div class="card-header">
+                <button class="btn"><i class="fa fa-arrow-left fa-2x text-primary" (click)="closeLogin()"></i></button>
+              </div>
+              <div class="card-body">
+                <fe-login-form></fe-login-form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

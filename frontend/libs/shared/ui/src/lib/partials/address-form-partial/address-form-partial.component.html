@@ -1,0 +1,28 @@
+<div class="row mb-3">
+  <div class="col-sm-8">
+    <div class="form-floating">
+      <input type="text"  id="street" name="street" [(ngModel)]="address.street" minlength="2" maxlength="45" placeholder="Strasse" required class="form-control"/>
+      <label for="street" i18n>Strasse</label>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-floating">
+      <input type="text"  id="nr" name="number" [(ngModel)]="address.number" placeholder="Nr." required class="form-control"/>
+      <label for="nr" i18n>Hausnummer</label>
+    </div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col-sm-8">
+    <div class="form-floating">
+      <input type="text"  id="city" name="city" [(ngModel)]="address.city" placeholder="Stadt" minlength="2" maxlength="45" required class="form-control"/>
+      <label for="city" i18n>Stadt</label>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="form-floating">
+      <input type="text"  id="zip" name="zip" [(ngModel)]="address.zip" minlength="2" maxlength="5" placeholder="Postleitzahl" required class="form-control"/>
+      <label for="zip" i18n>Postleitzahl</label>
+    </div>
+  </div>
+</div>

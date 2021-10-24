@@ -1,0 +1,21 @@
+<div class="layout m-4" @myInsertRemoveTrigger *ngIf="isRegister">
+  <div class="layout-container">
+    <div class="content">
+      <div class="columns">
+        <div class="col-lay">
+          <div class="cards">
+            <div class="card">
+              <div class="card-header">
+                <button class="btn"><i class="fa fa-arrow-left fa-2x text-primary" (click)="closeRegister()"></i></button>
+              </div>
+              <div class="card-body">
+                <fe-register-form></fe-register-form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

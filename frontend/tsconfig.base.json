@@ -1,0 +1,93 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@website/*": ["apps/website/src/app/*"],
+      "@theme/*": ["libs/shared/theme/src/lib/assets/*"],
+      "@frontend/core": ["libs/core/src/index.ts"],
+      "@frontend/theme": ["libs/shared/theme/src/index.ts"],
+      "@frontend/website/shared/services": [
+        "libs/website/shared/services/src/index.ts"
+      ],
+      "@frontend/shared/core": ["libs/shared/core/src/index.ts"],
+      "@frontend/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@frontend/website/shared/ui": ["libs/website/shared/ui/src/index.ts"],
+      "@frontend/website/booking/domain": [
+        "libs/website/booking/domain/src/index.ts"
+      ],
+      "@frontend/website/availability/domain": [
+        "libs/website/availability/domain/src/index.ts"
+      ],
+      "@frontend/administration/shared/ui": [
+        "libs/administration/shared/ui/src/index.ts"
+      ],
+      "@frontend/administration/shared/util": [
+        "libs/administration/shared/util/src/index.ts"
+      ],
+      "@frontend/website/authenticate/feature-login": [
+        "libs/website/authenticate/feature-login/src/index.ts"
+      ],
+      "@frontend/website/authenticate/feature-register": [
+        "libs/website/authenticate/feature-register/src/index.ts"
+      ],
+      "@frontend/administration/carpark/feature-create-carpark": [
+        "libs/administration/carpark/feature-create-carpark/src/index.ts"
+      ],
+      "@frontend/administration/carpark/data-access": [
+        "libs/administration/carpark/data-access/src/index.ts"
+      ],
+      "@frontend/administration/carpark/ui": [
+        "libs/administration/carpark/ui/src/index.ts"
+      ],
+      "@frontend/administration/carpark/feature-browse-carpark": [
+        "libs/administration/carpark/feature-browse-carpark/src/index.ts"
+      ],
+      "@frontend/administration/carpark/feature-edit-carpark": [
+        "libs/administration/carpark/feature-edit-carpark/src/index.ts"
+      ],
+      "@frontend/administration/carpark/feature-shell": [
+        "libs/administration/carpark/feature-shell/src/index.ts"
+      ],
+      "@frontend/website/shared/domain": [
+        "libs/website/shared/domain/src/index.ts"
+      ],
+      "@frontend/website/shared/data-access": [
+        "libs/website/shared/data-access/src/index.ts"
+      ],
+      "@frontend/website/booking/data-access": [
+        "libs/website/booking/data-access/src/index.ts"
+      ],
+      "@frontend/website/availability/data-access": [
+        "libs/website/availability/data-access/src/index.ts"
+      ],
+      "@frontend/website/authenticate/data-access": [
+        "libs/website/authenticate/data-access/src/index.ts"
+      ],
+      "@frontend/website/booking/feature-shell": [
+        "libs/website/booking/feature-shell/src/index.ts"
+      ],
+      "@frontend/website/availability/feature-shell": [
+        "libs/website/availability/feature-shell/src/index.ts"
+      ],
+      "@frontend/website/authenticate/feature-shell": [
+        "libs/website/authenticate/feature-shell/src/index.ts"
+      ],
+      "@frontend/shared/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@frontend/website/booking/ui": ["libs/website/booking/ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

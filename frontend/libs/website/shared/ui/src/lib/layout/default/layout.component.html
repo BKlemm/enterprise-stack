@@ -1,0 +1,36 @@
+<div class="d-flex flex-wrap sticky-top align-items-center justify-content-center justify-content-lg-start p-3 px-md-4 mb-3 bg-white no-print border-bottom shadow-sm">
+  <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Avonsoft"><use xlink:href="#avonsoft"></use></svg>
+  </a>
+
+  <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+    <li class="nav-item">
+      <div class="btn-group my-2" dropdown>
+        <a id="button-basic" dropdownToggle type="button" class="dropdown-toggle mx-4"><i class="fa fa-globe"></i> <span class="caret"></span></a>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li role="menuitem" *ngFor="let language of languages"><a class="dropdown-item" href="/{{language.code}}" i18n>{{language.label}}</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item"><a class="nav-link active" routerLink="/" aria-current="page" i18n>Startseite</a></li>
+  </ul>
+
+  <div class="text-end">
+    <button type="button" class="btn btn-primary me-2" (click)="toogleLogin()" i18n>Anmelden</button>
+    <button type="button" class="btn btn-info" (click)="toogleRegister()" i18n>Registrieren</button>
+  </div>
+</div>
+
+
+<main class="flex-shrink-0">
+  <fe-login-overlay (isLoginOpen)="toogleLogin()" [isLogin]="isLogin" *ngIf="!isRegister"></fe-login-overlay>
+  <fe-register-overlay (isRegisterOpen)="toogleRegister()" [isRegister]="isRegister" *ngIf="!isLogin"></fe-register-overlay>
+  <div class="container mt-6" *ngIf="!isLogin && !isRegister">
+    <ng-content></ng-content>
+  </div>
+</main>
+<fe-footer *ngIf="!isLogin && !isRegister"></fe-footer>
+
+
+
+

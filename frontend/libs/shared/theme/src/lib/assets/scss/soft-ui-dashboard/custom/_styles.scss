@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../../fonts/Open_Sans/OpenSans-Regular.ttf");
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: #666;
+  font-size: 14px;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 40px;
+}
+
+h3, h4, h5 {
+  color: $sidenav-color-2;
+}
+
+.oblique-image {
+  background-image: url("../../../img/curved-images/curved6.jpg");
+}
+
+.btn-success {
+  background-color: #a5c86e;
+  border-color: #a5c859;
+}
+
+.text-green {
+  color: #a5c86e;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-switch .form-check-input {
+  border: none;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

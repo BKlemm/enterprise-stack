@@ -1,0 +1,4 @@
+GET http://localhost:8098/api/v1/example/UUID
+Accept: application/json
+
+###

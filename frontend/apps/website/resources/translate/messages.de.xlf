@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="715917550040c77baf1a10c41c83f3e604d1b45e" datatype="html">
+        <source>Avonsoft CQRS, DDD, Spring Boot, Angular, Cassandra or MariaDB Skeleton</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/website/src/app/home/home.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f570cf118b1c755d48fd79031d9dfdc441ee4847" datatype="html">
+        <source>Strasse</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/address-form/address-form.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/partials/address-form-partial/address-form-partial.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5924dd2a46c5026af417a64a5f62f88394be797b" datatype="html">
+        <source>Hausnummer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/address-form/address-form.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/partials/address-form-partial/address-form-partial.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="83c46e54953ab83717c47ac8b114336b07fc28aa" datatype="html">
+        <source>Stadt</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/address-form/address-form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/partials/address-form-partial/address-form-partial.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a19b2066ee5125ad7da789939c2d40c2695e9b66" datatype="html">
+        <source>Postleitzahl</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/address-form/address-form.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/shared/ui/src/lib/partials/address-form-partial/address-form-partial.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="983e80499aab81bf2f11e1c415bb18c2908e0810" datatype="html">
+        <source>Willkommen zurück</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a495667a5bde0d0599b4f7d30dc76d29cf0cec2c" datatype="html">
+        <source>Geben Sie ihre E-Mail und ihr Passwort ein, um sich einzuloggen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6d3b88a3ae6ff3d987f86395605397ec736dee9c" datatype="html">
+        <source>E-Mail</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2070ebb54f893c60114f49f46d7e1a6f27b66610" datatype="html">
+        <source>Passwort</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9029b37884c717af4b9652a20394a08fd964cc6d" datatype="html">
+        <source>Angemeldet bleiben</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="df0f8a49440c7127bd20461526dd1b39f2011e20" datatype="html">
+        <source>Anmelden</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/authenticate/feature-login/src/lib/login/login.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1b2233a6bc3807a32229b24af7cca1319d55e83e" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{language.label}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c536247d71822c272f8e9155f831e0efb5aa0d31" datatype="html">
+        <source>Startseite</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d65c346de6a686cd4da98467a92f16ac171177d4" datatype="html">
+        <source>Parkplatz Buchen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="49a5b177e641f7174246bdba7aa5b1dbea75c304" datatype="html">
+        <source>Vorteile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b5629d298ff1a69b8db19a4ba2995c76b52da604" datatype="html">
+        <source>Support</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f1d36091b76c42744ebb833cd5e6217f85e26396" datatype="html">
+        <source>Ratgeber</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9adf7f973ff81475f3622c2a38a1e69a7dd433af" datatype="html">
+        <source>Registrieren</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">libs/website/shared/ui/src/lib/layout/default/layout.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

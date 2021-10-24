@@ -1,0 +1,13 @@
+<adm-default-layout>
+  <ui-navtabs [title]="title" [createLink]="false" [tabs]="tabs">
+    <div class="row" *ngIf="carpark; else loading">
+      <div class="col-md-8">
+        <adm-carpark-form (submit)="updateCarpark()" [carpark]="carpark" [buttonLabel]="'Standort bearbeiten'"></adm-carpark-form>
+      </div>
+      <div class="col-md-4">
+        <lot-list></lot-list>
+      </div>
+    </div>
+    <ng-template #loading>Initialisiere Daten...</ng-template>
+  </ui-navtabs>
+</adm-default-layout>

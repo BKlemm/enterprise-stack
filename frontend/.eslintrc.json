@@ -1,0 +1,72 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "scope:website",
+                "onlyDependOnLibWithTags": [
+                  "scope:website",
+                  "scope:shared",
+                  "scope:website-shared-ui"
+                ]
+              },
+              {
+                "sourceTag": "scope:customer",
+                "onlyDependOnLibWithTags": [
+                  "scope:customer",
+                  "scope:shared"
+                ]
+              },
+              {
+                "sourceTag": "scope:administration",
+                "onlyDependOnLibWithTags": [
+                  "scope:administration",
+                  "scope:shared"
+                ]
+              },
+              {
+                "sourceTag": "type:administration-user-ui",
+                "onlyDependOnLibWithTags": [
+                  "type:administration-user-data-access"
+                ]
+              },
+              {
+                "sourceTag": "type:util",
+                "onlyDependOnLibWithTags": [
+                  "type:util"
+                ]
+              },
+              {
+                "sourceTag": "type:ui",
+                "onlyDependOnLibWithTags": [
+                  "type:ui",
+                  "type:data-access"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    }
+  ]
+}

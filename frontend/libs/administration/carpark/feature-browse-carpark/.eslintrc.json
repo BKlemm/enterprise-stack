@@ -1,0 +1,15 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "libs/administration/carpark/feature-show-carparks/tsconfig.*?.json"
+        ]
+      }
+    }
+  ]
+}

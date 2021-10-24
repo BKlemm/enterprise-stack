@@ -1,0 +1,29 @@
+@import "libs/shared/theme/src/lib/assets/scss/soft-ui-dashboard";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+body {
+  font-weight: 400;
+  color: #666;
+  font-size: 14px;
+}
+h3, h4, h5 {
+  color: #5064aa;
+}
+
+
+.btn-success {
+  background-color: #a5c86e;
+  border-color: #a5c859;
+}
+
+.text-green {
+  color: #a5c86e;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
