@@ -1,24 +1,26 @@
-# Avonsoft
+# Full Modern Enterprise Stack
 
-This is a full stack development skeleton.
+This is a full stack development skeleton to build modern professional enterprise applications.
 
 ## Getting Started
 
-Step 0: Clone Repository
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Step 1: Install OpenJDK on your System, if not exists
+**Step 0:** Clone Repository
 
-Step 2: Start Docker Environment
+**Step 1:** Install OpenJDK on your System, if not exists
+
+**Step 2:** Start Docker Environment
 ```
 docker compose up -d
 ```
-
-Step 3: Install and Build Application
+|
+**Step 3:** Install and Build Application
 ```
 ./mvnw package
 ```
 
-* Installing npm
+* Installing node and npm
 * Executing npm install
 * Executing npm run build
 * Installing all maven dependencies
@@ -28,25 +30,40 @@ Step 3: Install and Build Application
 * Building jar file
 * Creating docker api image
 
-Step 4: Start Backend API with hot reloading
+**Step 4:** Start Backend API with hot reloading
+
+Terminal 1:
 ```
 cd api && ./mvnw spring-boot:run
 ```
 
-Step 5: Start Frontend in dev mode
+**Step 5:** Start Frontend in dev mode
+
+Terminal 2:
 ```
 cd frontend && npm run serve
 ```
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-## Prerequisites
-
-What things you need to install the software and how to install them.
-
+ATTENTION: hot reloading will so not work, if you want hot reloading ->
 ```
-Examples
+cd frontend && npm run start:website
 ```
+
+**Step 6 (optional):** Start Admin Server
+
+Terminal 3:
+```
+cd admin ./mvnw spring-boot:start
+```
+
+## Enterprise Stack
+
+What the hell goes on here :-)
+
+* Auditing any changes (envers)
+* Eventsourcing of your aggregates (does we need auditing anymore?) - (Axon)
+* Frontend Domain Driven Boundaries (encapsulate with shell pattern) - (nx)
+* JWT Token authorization, with an iam database structure
 
 ## How to use
 
@@ -60,6 +77,19 @@ Examples
 * Rest Docs: http://localhost:8098/swagger-ui/#/
 * Axon Dashboard: http://localhost:8024
 * Jobrunr Dashboard: http://localhost:8000/dashboard
+* Admin Spring Boot Server: http://localhost:8080
+
+## How to do's
+
+#### Activate Cassandra
+
+Comment out the configuration annotation of both persistence configs and uncomment
+the configuration annotation of the cassandra config and restart the application
+
+**ATTENTION:** The search criteria actually not supported by OGM, so if you switch to cassandra
+you have to deactivate the SeedEventListener and you cannot use the ex. findByCarParkId in the
+repository interface. The hibernate developers are currently developing hibernate 6.0, after
+release, they want to continue with the OGM
 
 ## Deployment
 
@@ -68,3 +98,15 @@ Add additional notes about how to deploy this on a production system.
 ## Resources
 
 Add links to external resources for this project, such as CI server, bug tracker, etc.
+
+## Thanks to
+
+* **Spring Boot Framework** ...completely unreachable
+* **Axon Framework** ...nice work, the best cqrs framework and interpretation of CQRS analogous to M.Fowler
+* **Angular** ...SOLID, you will make enterprise, you don't have a alternative
+* **Nrwl** ...thumb up
+* **Hibernate** ...no words, awesome...with the ogm this orm play in another level
+* **Java Community** ... all the JSRs, to create a programming language, that's for business development unreachable
+* **All other** ...they have published tutorials like (Baeldung) and given the right answers on Stackoverflow
+
+...Thank you very much

@@ -1,5 +1,6 @@
 package com.avondock.app;
 
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 import static com.avondock.app.configuration.properties.BasePackages.*;
 
-
+@EnableAdminServer
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class}, proxyBeanMethods = false)
 @ComponentScan(basePackages = {APP_PACKAGE, CORE_PACKAGE})
 public class AvondockApplication {

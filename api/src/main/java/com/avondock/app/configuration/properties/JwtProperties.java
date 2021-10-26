@@ -1,4 +1,4 @@
-package com.avondock.app.configuration;
+package com.avondock.app.configuration.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

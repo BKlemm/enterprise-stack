@@ -1,27 +1,19 @@
 package com.avondock.app.configuration;
 
 import com.avondock.app.configuration.properties.CustomHibernateJpaProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.AbstractEnvironment;
-import org.springframework.core.env.Environment;
-import org.springframework.core.env.StandardEnvironment;
 import org.springframework.data.envers.repository.support.EnversRevisionRepositoryFactoryBean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
-
-import java.util.Map;
 
 import static com.avondock.app.configuration.properties.BasePackages.*;
 
@@ -67,19 +59,12 @@ public class PersistenceAvondockAutoConfig {
     @Primary
     @Bean
     public DataSource customDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-        dataSource.setUrl(System.getenv().get("SPRING_DATASOURCE_1"));
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
-        return dataSource;
-        /**
         return DataSourceBuilder
                 .create()
                 .url(System.getenv().get("SPRING_DATASOURCE_1"))
                 .username("root")
                 .password("")
                 .driverClassName("org.mariadb.jdbc.Driver")
-                .build();*/
+                .build();
     }
 }

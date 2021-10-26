@@ -166,6 +166,12 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+
 		<!-- Hot reloading of any changes -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -197,6 +203,28 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<!-- OGM with cassandra -->
+		<dependency>
+			<groupId>org.hibernate.ogm</groupId>
+			<artifactId>hibernate-ogm-core</artifactId>
+			<version>5.4.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.ogm</groupId>
+			<artifactId>hibernate-ogm-cassandra</artifactId>
+			<version>5.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>5.10.11.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.3.23.Final</version>
 		</dependency>
 
 		<!-- Lombok ...keep your class clean from unnecessary stuff -->
