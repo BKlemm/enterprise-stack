@@ -1,7 +1,10 @@
 # Full Modern Enterprise Stack
 
-This is a full stack development skeleton to build modern professional enterprise applications. In this case all configurations are for develop mode (local).
+This is a full stack development skeleton to build modern professional enterprise applications. In this state all configurations are for develop mode (local).
 **Don't use that configurations on production mode!**
+
+# Currently broken at commit 451aa7a6f4f3bc6b6bb5b92a1682f937d257d8b1
+Get running System with commit 445be09fd23f6d6ee713281bb2fd1db786e05cf6
 
 ## Getting Started
 
@@ -98,6 +101,27 @@ What the hell goes on here :-)
 * Axon Dashboard: http://localhost:8024
 * Jobrunr Dashboard: http://localhost:8000/dashboard
 * Admin Spring Boot Server: http://localhost:8080
+
+
+## Trouble Shooting
+
+If one of the steps in .mvnw package failed, you can execute this steps separately
+
+### Install Api dependencies
+```
+./mvnw install
+```
+
+### Create Api Docker image
+```
+cd api && ./mvnw compile jib:dockerBuild
+```
+
+### Install Frontend
+```
+cd frontend && npm i
+```
+
 
 ## How to do's
 
