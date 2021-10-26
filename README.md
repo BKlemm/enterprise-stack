@@ -1,20 +1,22 @@
 # Full Modern Enterprise Stack
 
-This is a full stack development skeleton to build modern professional enterprise applications.
+This is a full stack development skeleton to build modern professional enterprise applications. In this case all configurations are for develop mode (local).
+**Don't use that configurations on production mode!**
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project (clone repository) up and running on your local machine for development and testing purposes.
 
-**Step 0:** Clone Repository
 
 **Step 1:** Install OpenJDK on your System, if not exists
 
 **Step 2:** Start Docker Environment
+
+Hint: Database has to be available for the next step (no 3)
 ```
 docker compose up -d
 ```
-|
+
 **Step 3:** Install and Build Application
 ```
 ./mvnw package
@@ -37,7 +39,7 @@ Terminal 1:
 cd api && ./mvnw spring-boot:run
 ```
 
-**Step 5:** Start Frontend in dev mode
+**Step 5:** Start Frontend
 
 Terminal 2:
 ```
@@ -45,6 +47,8 @@ cd frontend && npm run serve
 ```
 
 ATTENTION: hot reloading will so not work, if you want hot reloading ->
+
+Example website: (rest of available commands you will find in the package.json)
 ```
 cd frontend && npm run start:website
 ```
@@ -64,6 +68,11 @@ What the hell goes on here :-)
 * Eventsourcing of your aggregates (does we need auditing anymore?) - (Axon)
 * Frontend Domain Driven Boundaries (encapsulate with shell pattern) - (nx)
 * JWT Token authorization, with an iam database structure
+* Switching relation databases to no-sql without change any code
+
+### Tipps and Tricks
+
+* Don't use Mapping files for your models, first of all spring boot, will per default not read such files and it's in java not recommended, because of the jpa and their abstraction. If you want somehow else a persistence mapping file, you have to override this behaviour by your self...or you can also switch to php :-) 
 
 ## How to use
 
@@ -109,4 +118,4 @@ Add links to external resources for this project, such as CI server, bug tracker
 * **Java Community** ... all the JSRs, to create a programming language, that's for business development unreachable
 * **All other** ...they have published tutorials like (Baeldung) and given the right answers on Stackoverflow
 
-...Thank you very much
+...Thank you very much!
