@@ -166,6 +166,7 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- client to connect to the admin server for metrics and health stuff -->
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
@@ -303,6 +304,7 @@
 
 	<build>
 		<plugins>
+			<!-- from root path executed mvn commands will work -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -327,6 +329,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Build your api as docker image -->
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>

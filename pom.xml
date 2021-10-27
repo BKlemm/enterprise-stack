@@ -30,6 +30,7 @@
 
     <build>
         <plugins>
+            <!-- needed to execute mvn commands from the root path -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

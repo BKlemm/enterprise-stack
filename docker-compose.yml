@@ -39,6 +39,8 @@ services:
   #  ports:
   #    - '8098:8098'
   #  environment:
+  #  Example how you can override application.properties from a docker environment
+  #    spring.mail.host: "smpt.example.com"
   #    SPRING_DATASOURCE_1: "jdbc:mariadb://db:3306/avondock?createDatabaseIfNotExist=true"
   #    SPRING_DATASOURCE_2: "jdbc:mariadb://db:3306/system?createDatabaseIfNotExist=true"
 
