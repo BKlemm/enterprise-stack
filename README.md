@@ -36,6 +36,10 @@ docker compose up -d
 
 **Step 4:** Start Admin Server (has to run firstly, otherwise your application client could not connect to)
 
+Don't be irritated if you get error messages from the client (api), the Admin Server check the health of your 
+complete api and how you have that configured. For example, if you don't have changed anything the Mail Test will failed,
+because you have to set the smtp host, username and password in the application.properties by your self
+
 Terminal 1:
 ```
 cd admin && ./mvnw package
