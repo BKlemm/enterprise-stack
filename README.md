@@ -38,7 +38,11 @@ docker compose up -d
 
 Terminal 1:
 ```
-cd admin && ./mvnw spring-boot:start
+cd admin && ./mvnw package
+```
+then
+```
+./mvnw spring-boot:start
 ```
 
 **Step 5:** Start Backend API with hot reloading
@@ -119,6 +123,10 @@ cd api && ./mvnw compile jib:dockerBuild
 cd frontend && npm i
 ```
 
+### Install Admin Server
+```
+cd admin && ./mvnw install
+```
 
 ## How to do's
 
