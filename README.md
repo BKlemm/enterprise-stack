@@ -3,9 +3,6 @@
 This is a full stack development skeleton to build modern professional enterprise applications. In this state all configurations are for develop mode (local).
 **Don't use that configurations on production mode!**
 
-# Currently broken at commit 451aa7a6f4f3bc6b6bb5b92a1682f937d257d8b1
-Get running System with commit 445be09fd23f6d6ee713281bb2fd1db786e05cf6
-
 ## Getting Started
 
 These instructions will get you a copy of the project (clone repository) up and running on your local machine for development and testing purposes.
@@ -15,7 +12,7 @@ These instructions will get you a copy of the project (clone repository) up and 
 
 **Step 2:** Start Docker Environment
 
-Hint: Database has to be available for the next step (no 3)
+Hint: Database and Axon has to be available for the next step (no 3)
 ```
 docker compose up -d
 ```
@@ -37,16 +34,23 @@ docker compose up -d
 * Building jar file
 * Creating docker api image
 
-**Step 4:** Start Backend API with hot reloading
+**Step 4:** Start Admin Server (has to run firstly, otherwise your application client could not connect to)
 
 Terminal 1:
+```
+cd admin && ./mvnw spring-boot:start
+```
+
+**Step 5:** Start Backend API with hot reloading
+
+Terminal 2:
 ```
 cd api && ./mvnw spring-boot:run
 ```
 
-**Step 5:** Start Frontend
+**Step 6:** Start Frontend
 
-Terminal 2:
+Terminal 3:
 ```
 cd frontend && npm run serve
 ```
@@ -56,13 +60,6 @@ ATTENTION: hot reloading will so not work, if you want hot reloading, you have t
 Example website: (rest of available commands you will find in the package.json)
 ```
 cd frontend && npm run start:website
-```
-
-**Step 6 (optional):** Start Admin Server
-
-Terminal 3:
-```
-cd admin ./mvnw spring-boot:start
 ```
 
 ## Enterprise Stack
