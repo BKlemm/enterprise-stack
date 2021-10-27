@@ -215,6 +215,12 @@
 			<groupId>org.hibernate.ogm</groupId>
 			<artifactId>hibernate-ogm-cassandra</artifactId>
 			<version>5.1.0.Final</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -404,6 +410,16 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Helper to find dependencies conflicts
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4.1</version>
+				<configuration>
+					<rules><dependencyConvergence/></rules>
+				</configuration>
+			</plugin>-->
 		</plugins>
 	</build>
 
