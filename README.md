@@ -41,10 +41,7 @@ complete api and how you have that configured. For example, if you don't have ch
 because you have to set the smtp host, username and password in the application.properties by your self
 
 Terminal 1:
-```
-cd admin && ./mvnw package
-```
-then
+This will start the admin server in background!
 ```
 ./mvnw spring-boot:start
 ```
