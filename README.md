@@ -31,7 +31,7 @@ docker compose up -d
 * Creating two database schemas (avondock,system)
 * Seeding Database
 * Running Test environment
-* Building jar file
+* Building snapshot jar files for admin,api and frontend
 * Creating docker api image
 
 **Step 4:** Start Admin Server (has to run firstly, otherwise your application client could not connect to)
