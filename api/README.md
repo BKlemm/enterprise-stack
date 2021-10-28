@@ -4,19 +4,19 @@
 
 Uncomment the section for that at application.properties
 
-Uncomment the @Profile("command") annotation in the Aggregate
+Uncomment the @Profile("command") annotation in the Aggregate and start ->
 
 ```
 ./mvnw spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=command
 ```
 
-Uncomment the @Profile("query") annotation in the Projection class
+Uncomment the @Profile("query") annotation in the Projection class and start ->
 
 ```
 ./mvnw spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=query
 ```
 
-Uncomment the @Profile("rest") annotation in both gateways
+Uncomment the @Profile("rest") annotation in both gateways and start ->
 
 ```
 ./mvnw spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=rest
