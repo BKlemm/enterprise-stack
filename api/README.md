@@ -2,6 +2,7 @@
 
 #### Activate Profiles (for Axon Instances)
 
+Uncomment the section for that at application.properties
 
 Uncomment the @Profile("command") annotation in the Aggregate
 
@@ -24,12 +25,14 @@ Uncomment the @Profile("rest") annotation in both gateways
 This will start 3 own instances the command way on port 8099 the query context on port 8097
 and the rest endpoints has to keep the port 8098, for frontend communications
 
-On localhost:8024/#overview you will set now this:
+Open localhost:8024/#overview you will set now this:
 
 ![Axon with 3 profiles](docs/axon.png)
 
 #### Testing manual your Restendpoints
 
-Open http://localhost:8098/swagger-ui/#/car-park-query-endpoint/listCarParksUsingGET
+Open for ex. http://localhost:8098/swagger-ui/#/car-park-query-endpoint/listCarParksUsingGET
+
+Check out 'Try out' and execute
 
 ![Swagger Rest UI Testing](docs/swagger.png)
