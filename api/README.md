@@ -25,11 +25,11 @@ Uncomment the @Profile("rest") annotation in both gateways and start ->
 This will start 3 own instances the command way on port 8099 the query context on port 8097
 and the rest endpoints has to keep the port 8098, for frontend communications
 
-Open localhost:8024/#overview you will set now this:
+Open localhost:8024/#overview you will see now this:
 
 ![Axon with 3 profiles](docs/axon.png)
 
-#### Testing manual your Restendpoints
+#### Testing manual your Rest endpoints
 
 Open for ex. http://localhost:8098/swagger-ui/#/car-park-query-endpoint/listCarParksUsingGET
 
