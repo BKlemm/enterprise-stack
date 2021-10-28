@@ -2,6 +2,7 @@ package com.avondock.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +13,8 @@ import static com.avondock.app.configuration.properties.BasePackages.*;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class}, proxyBeanMethods = false)
 @ComponentScan(basePackages = {APP_PACKAGE, CORE_PACKAGE})
+// Needed to separated profiled axon instances get work
+@EntityScan(basePackages = {SYSTEM_PACKAGE, SERVICE_PACKAGE})
 public class AvondockApplication {
 
     @Bean
