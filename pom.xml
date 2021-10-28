@@ -25,6 +25,7 @@
 
     <modules>
         <module>frontend</module>
+        <module>admin</module>
         <module>api</module>
     </modules>
 
