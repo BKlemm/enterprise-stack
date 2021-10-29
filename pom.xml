@@ -21,6 +21,8 @@
     <properties>
         <main.basedir>${project.basedir}</main.basedir>
         <frontend-maven-plugin.version>1.10.3</frontend-maven-plugin.version>
+        <spring-boot.version>2.5.5</spring-boot.version>
+        <java.version>11</java.version>
     </properties>
 
     <modules>

@@ -13,9 +13,10 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<java.version>11</java.version>
 		<spring-boot-admin.version>2.3.0</spring-boot-admin.version>
-		<kotlin.version>1.4.32</kotlin.version>
+		<kotlin.version>1.5.31</kotlin.version>
+		<jackson-module.version>2.11.3</jackson-module.version>
+		<axon-framework.version>4.5.4</axon-framework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -26,17 +27,17 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-jsonSchema</artifactId>
-			<version>2.9.6</version>
+			<version>${jackson-module.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-kotlin</artifactId>
-			<version>2.12.0</version>
+			<version>${jackson-module.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.11.4</version>
+			<version>${jackson-module.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.modelmapper</groupId>
@@ -48,7 +49,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
-			<version>2.3.4.RELEASE</version>
+			<version>${spring-boot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -85,7 +86,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<version>2.5.0</version>
+			<version>${spring-boot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
@@ -185,12 +186,12 @@
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-starter</artifactId>
-			<version>4.4.3</version>
+			<version>${axon-framework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-messaging</artifactId>
-			<version>4.4.3</version>
+			<version>${axon-framework.version}</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -198,7 +199,7 @@
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
 			<artifactId>mariadb-java-client</artifactId>
-			<version>1.5.7</version>
+			<version>2.7.3</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -217,6 +218,7 @@
 			<artifactId>hibernate-ogm-cassandra</artifactId>
 			<version>5.1.0.Final</version>
 			<exclusions>
+				<!-- has to be excluded, because of dependency problem with the axon framework -->
 				<exclusion>
 					<artifactId>guava</artifactId>
 					<groupId>com.google.guava</groupId>
