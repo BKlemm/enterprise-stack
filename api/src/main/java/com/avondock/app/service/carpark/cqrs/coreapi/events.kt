@@ -1,4 +1,4 @@
-package com.avondock.app.service.carpark.cqrs.coreapi;
+package com.avondock.app.service.carpark.cqrs.coreapi
 
 import org.axonframework.serialization.Revision
 import java.math.BigDecimal
@@ -39,3 +39,15 @@ data class CarParkChanged(
     override val description: String?,
     val state: String
 ) : AbstractCarParkEvent(carParkId, address, name, iataCode, supportEmail, supportPhone, tax, description)
+
+// This Events are only examples they belongs normally to another context/service
+data class Example2Event(
+    override val carParkId: CarParkId,
+): CarParkEvent(carParkId)
+
+data class ExampleEvent(
+    val paymentId: String,
+)
+data class Example3Event(
+    val invoiceId: String,
+)
