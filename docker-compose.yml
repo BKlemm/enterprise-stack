@@ -41,19 +41,21 @@ services:
       - ./axon/config/nginx/nginx.conf:/etc/nginx/nginx.conf
 
 
-  # uncomment running api production, after you have executed ./mvnw package
-  #avondock:
-  #  image: avondock:0.0.1-SNAPSHOT
-  #  container_name: avondock
-  #  depends_on:
-  #    - db
-  #  ports:
-  #    - '8098:8098'
-  #  environment:
+  # start api production, after you have executed ./mvnw package
+  avondock:
+    profiles:
+      - "cli-only"
+    image: avondock:0.0.1-SNAPSHOT
+    container_name: avondock
+    depends_on:
+      - db
+    ports:
+      - '8098:8098'
+    environment:
   # Example how you can override application.properties from a docker environment
-  #    spring.mail.host: "smpt.example.com"
-  #    SPRING_DATASOURCE_1: "jdbc:mariadb://db:3306/avondock?createDatabaseIfNotExist=true"
-  #    SPRING_DATASOURCE_2: "jdbc:mariadb://db:3306/system?createDatabaseIfNotExist=true"
+  #   spring.mail.host: "smtp.example.com"
+      SPRING_DATASOURCE_1: "jdbc:mariadb://db:3306/avondock?createDatabaseIfNotExist=true"
+      SPRING_DATASOURCE_2: "jdbc:mariadb://db:3306/system?createDatabaseIfNotExist=true"
 
   cassandra:
     image: cassandra:3.11.11
