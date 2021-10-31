@@ -45,6 +45,7 @@
                         <name>${project.parent.artifactId}</name>
                     </image>
                     <fork>true</fork>
+                    <jmxPort>9002</jmxPort>
                     <skip>false</skip>
                     <excludes>
                         <exclude>
