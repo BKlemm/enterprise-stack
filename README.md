@@ -34,6 +34,14 @@ docker compose up -d
 * Building snapshot jar files for admin,api and frontend
 * Creating docker api image
 
+**Step 3.1:** Start the whole enterprise stack
+```
+./mvnw spring-boot:start
+```
+
+**Step 4,5,6** is not necessary anymore, but keep attention, this is not for development -> no hot reloading will work.
+For **development stack** you have to execute Step 4,5 and 6
+
 **Step 4:** Start Admin Server (has to run firstly, otherwise your application client could not connect to)
 
 Don't be irritated if you get error messages from the client (api), the Admin Server check the health of your 
