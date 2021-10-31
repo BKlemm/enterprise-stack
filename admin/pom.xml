@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.avondock.services</groupId>
+        <groupId>com.avondock</groupId>
         <version>0.0.1-SNAPSHOT</version>
         <artifactId>avondock</artifactId>
     </parent>
@@ -42,7 +42,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>${project.artifactId}</name>
+                        <name>${project.parent.artifactId}</name>
                     </image>
                     <fork>true</fork>
                     <skip>false</skip>

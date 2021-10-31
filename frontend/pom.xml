@@ -5,15 +5,10 @@
   <artifactId>frontend</artifactId>
 
   <parent>
-    <groupId>com.avondock.services</groupId>
+    <groupId>com.avondock</groupId>
     <version>0.0.1-SNAPSHOT</version>
     <artifactId>avondock</artifactId>
   </parent>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  </properties>
 
   <build>
     <plugins>
@@ -29,7 +24,7 @@
               <goal>install-node-and-npm</goal>
             </goals>
             <configuration>
-              <nodeVersion>v12.18.2</nodeVersion>
+              <nodeVersion>${node.version}</nodeVersion>
             </configuration>
           </execution>
           <!-- Install all project dependencies -->
@@ -47,12 +42,12 @@
           </execution>
           <!-- Build and minify static files -->
           <execution>
-            <id>npm run build</id>
+            <id>npm run affected:build</id>
             <goals>
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>run build</arguments>
+              <arguments>run affected:build</arguments>
             </configuration>
           </execution>
         </executions>

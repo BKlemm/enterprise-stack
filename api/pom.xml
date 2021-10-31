@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.avondock.services</groupId>
+		<groupId>com.avondock</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 		<artifactId>avondock</artifactId>
 	</parent>
@@ -13,12 +13,9 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<spring-boot-admin.version>2.3.0</spring-boot-admin.version>
 		<kotlin.version>1.5.31</kotlin.version>
 		<jackson-module.version>2.11.3</jackson-module.version>
 		<axon-framework.version>4.5.4</axon-framework.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<dependencies>
@@ -312,7 +309,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>${project.artifactId}</name>
+						<name>${project.parent.artifactId}</name>
 					</image>
 					<fork>true</fork>
 					<skip>false</skip>
@@ -338,7 +335,7 @@
 				<version>2.5.0</version>
 				<configuration>
 					<to>
-						<image>avondock:latest</image>
+						<image>${project.parent.artifactId}:${project.version}</image>
 					</to>
 					<from>
 						<image>adoptopenjdk/openjdk11:jdk-11.0.7_10-alpine-slim</image>

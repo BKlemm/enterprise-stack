@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.avondock.services</groupId>
+    <groupId>com.avondock</groupId>
     <artifactId>avondock</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -23,6 +23,9 @@
         <frontend-maven-plugin.version>1.10.3</frontend-maven-plugin.version>
         <spring-boot.version>2.5.5</spring-boot.version>
         <java.version>11</java.version>
+        <node.version>v12.18.2</node.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <modules>
