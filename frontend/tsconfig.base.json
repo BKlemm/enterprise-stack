@@ -25,9 +25,6 @@
       "@frontend/shared/core": ["libs/shared/core/src/index.ts"],
       "@frontend/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@frontend/website/shared/ui": ["libs/website/shared/ui/src/index.ts"],
-      "@frontend/website/booking/domain": [
-        "libs/website/booking/domain/src/index.ts"
-      ],
       "@frontend/website/availability/domain": [
         "libs/website/availability/domain/src/index.ts"
       ],
@@ -67,17 +64,11 @@
       "@frontend/website/shared/data-access": [
         "libs/website/shared/data-access/src/index.ts"
       ],
-      "@frontend/website/booking/data-access": [
-        "libs/website/booking/data-access/src/index.ts"
-      ],
       "@frontend/website/availability/data-access": [
         "libs/website/availability/data-access/src/index.ts"
       ],
       "@frontend/website/authenticate/data-access": [
         "libs/website/authenticate/data-access/src/index.ts"
-      ],
-      "@frontend/website/booking/feature-shell": [
-        "libs/website/booking/feature-shell/src/index.ts"
       ],
       "@frontend/website/availability/feature-shell": [
         "libs/website/availability/feature-shell/src/index.ts"
@@ -85,8 +76,7 @@
       "@frontend/website/authenticate/feature-shell": [
         "libs/website/authenticate/feature-shell/src/index.ts"
       ],
-      "@frontend/shared/data-access": ["libs/shared/data-access/src/index.ts"],
-      "@frontend/website/booking/ui": ["libs/website/booking/ui/src/index.ts"]
+      "@frontend/shared/data-access": ["libs/shared/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
