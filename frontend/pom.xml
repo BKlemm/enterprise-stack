@@ -3,6 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>frontend</artifactId>
+  <packaging>pom</packaging>
 
   <parent>
     <groupId>com.avondock</groupId>
@@ -42,12 +43,12 @@
           </execution>
           <!-- Build and minify static files -->
           <execution>
-            <id>npm run affected:build</id>
+            <id>npm run build</id>
             <goals>
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>run affected:build</arguments>
+              <arguments>run build</arguments>
             </configuration>
           </execution>
         </executions>
