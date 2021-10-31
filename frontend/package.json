@@ -12,7 +12,7 @@
     "start:mobile": "nx serve -- mobile --port=4202",
     "translate:website": "ng extract-i18n website --output-path apps/website/resources/translate",
     "translate:administration": "ng extract-i18n administration --output-path apps/administration/resources/translate",
-    "build": "ng build",
+    "build": "ng build website && ng build administration && ng build mobile",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
