@@ -44,6 +44,11 @@
       "name": "spring.mail.templates.path",
       "type": "java.lang.String",
       "description": "Description for spring.mail.templates.path."
+    },
+    {
+      "name": "spring.application.base-package",
+      "type": "java.lang.String",
+      "description": "Description for spring.application.base-package."
     }
   ]
 }
