@@ -52,7 +52,7 @@
           "options": {
             "i18nMissingTranslation": "ignore",
             "localize": ["de", "en"],
-            "outputPath": "dist/apps/website",
+            "outputPath": "../api/src/main/resources/public/apps/website",
             "index": "apps/website/src/index.html",
             "main": "apps/website/src/main.ts",
             "polyfills": "apps/website/src/polyfills.ts",
@@ -185,7 +185,7 @@
           "options": {
             "i18nMissingTranslation": "ignore",
             "localize": ["de", "en"],
-            "outputPath": "dist/apps/administration",
+            "outputPath": "../api/src/main/resources/public/apps/administration",
             "index": "apps/administration/src/index.html",
             "main": "apps/administration/src/main.ts",
             "polyfills": "apps/administration/src/polyfills.ts",
@@ -333,7 +333,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/mobile",
+            "outputPath": "../api/src/main/resources/public/apps/mobile",
             "index": "apps/mobile/src/index.html",
             "main": "apps/mobile/src/main.ts",
             "polyfills": "apps/mobile/src/polyfills.ts",
