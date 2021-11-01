@@ -2,8 +2,9 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 import {CarparkService} from "../infrastructure";
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import {catchError, finalize, map} from "rxjs/operators";
-import {Carpark, CarparkImpl} from "../domain";
+import {catchError, finalize} from "rxjs/operators";
+import {Carpark} from "../domain";
+import {ChangeCarpark} from "./dtos";
 
 @Injectable()
 export class CarparksFacade implements DataSource<Carpark>{
@@ -50,6 +51,19 @@ export class CarparksFacade implements DataSource<Carpark>{
 
   loadActiveCarparks() {
     return this.carParkService.list()
+  }
+
+  create(carpark: Carpark) {
+    this.carParkService.create(carpark).subscribe(carpark => {
+      //this.carparkSubject.next([carpark])
+    })
+  }
+
+  update(carpark: ChangeCarpark) {
+    console.log(carpark)
+    this.carParkService.update(carpark.carParkId, carpark).subscribe(carpark => {
+
+    })
   }
 }
 

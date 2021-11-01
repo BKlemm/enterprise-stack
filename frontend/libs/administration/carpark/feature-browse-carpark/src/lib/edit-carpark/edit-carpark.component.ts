@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {TABMENU} from "../tab.menu";
-import {Carpark, CarparkService, CarparksFacade} from "@frontend/administration/carpark/data-access";
+import {Carpark, CarparksFacade, ChangeCarpark} from "@frontend/administration/carpark/data-access";
 import {ActivatedRoute} from "@angular/router";
 import {BaseComponent, ObjectMapper} from "@frontend/shared/core";
 
@@ -12,6 +12,7 @@ import {BaseComponent, ObjectMapper} from "@frontend/shared/core";
 export class EditCarparkComponent extends BaseComponent implements OnInit {
 
   tabs = TABMENU
+  //TODO: localize
   title = 'Parkplatz bearbeiten'
 
   carpark: Carpark
@@ -40,8 +41,8 @@ export class EditCarparkComponent extends BaseComponent implements OnInit {
   }
 
   submit() {
-    //const dto = ObjectMapper.transpose(this.carpark, ChangeCarpark)
-    //this.carParkFacade.update(dto)
+    const dto = ObjectMapper.transpose(this.carpark, ChangeCarpark)
+    this.carParkFacade.update(dto)
   }
 
 }
