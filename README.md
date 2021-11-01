@@ -160,7 +160,6 @@ Add links to external resources for this project, such as CI server, bug tracker
 ## What's missing
 
 * Architecture Design Overview (specially communication between front -and backend)
-* Example to avoid several requests (Use the rxjs technology)
 * Extend Frontend Boundaries (access behaviour)
 * Transfer website and mobile apps complete to the shell pattern (like administration app)
 * Generate your bounded context for backend and api, with an electron app per click and generate (commercial use only)
