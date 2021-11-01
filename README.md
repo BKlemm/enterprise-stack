@@ -115,7 +115,8 @@ What the hell goes on here :-)
 ## Frontend (rxjs)
 
 Start admin frontend -> open Browser console you will see one GET request http://localhost:8098/api/v1/carparks?filter=&sort=asc&page=0&size=10 <br>
-Now click on a carpark, what's happened? Go with Browser back or use the Breadcumb. What's happened? Click again on a carpark ...angular without a store, very cool!
+Now click on a carpark, what's happened? Go with Browser back or use the Breadcumb. What's happened? Click again on another carpark, click on Dashboard and go back,
+what's happened?...angular without a store and one single request.
 
 ## Trouble Shooting
 
