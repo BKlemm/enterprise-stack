@@ -7,18 +7,13 @@ import { CreateCarparkComponent } from './create-carpark/create-carpark.componen
 import { EditCarparkComponent } from './edit-carpark/edit-carpark.component';
 import {AdministrationSharedUiModule} from "@frontend/administration/shared/ui";
 import {SharedUiModule} from "@frontend/shared/ui";
-import {CarparkService} from "@frontend/administration/carpark/data-access";
+import {CarparkService, CarparksFacade} from "@frontend/administration/carpark/data-access";
 import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: BrowseCarparkComponent},
   {path: 'create', pathMatch: 'full', component: CreateCarparkComponent},
-  {
-    path: ':id',
-    children: [
-      {path: '', component: EditCarparkComponent},
-    ]
-  },
+  {path: ':id', component: EditCarparkComponent},
 ]
 
 @NgModule({
@@ -35,6 +30,6 @@ const routes: Routes = [
     CreateCarparkComponent,
     EditCarparkComponent
   ],
-  providers: [CarparkService]
+  providers: [CarparksFacade, CarparkService]
 })
 export class ADMFeatureBrowseCarparkModule {}

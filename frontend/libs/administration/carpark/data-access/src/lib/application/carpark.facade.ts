@@ -15,6 +15,7 @@ export class CarparksFacade implements DataSource<Carpark>{
   public readonly carparks$ = this.carParkSubject.asObservable()
   public readonly loading$ = this.loadingSubject.asObservable()
   public readonly counter$ = this.counterSubject.asObservable()
+  public counter = 0;
 
   constructor(private carParkService: CarparkService) {}
 
@@ -23,7 +24,7 @@ export class CarparksFacade implements DataSource<Carpark>{
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    this.carParkSubject.complete()
+    //this.carParkSubject.complete()
     this.loadingSubject.complete()
     this.counterSubject.complete()
   }
@@ -37,22 +38,18 @@ export class CarparksFacade implements DataSource<Carpark>{
       )
       .subscribe((carparks: Carpark[]) => {
         this.carParkSubject.next(carparks)
-
+        this.counter = carparks.length
       })
+  }
+
+  loadById(id: string) {
+    this.carParkService.get(id).subscribe((carpark:Carpark) => {
+      this.carParkSubject.next([carpark])
+    })
   }
 
   loadActiveCarparks() {
     return this.carParkService.list()
-  }
-
-  getRoutedCarpark(id: string): Carpark {
-    let response: Carpark
-    this.carparks$
-      .pipe(map(carparks => carparks.filter((carpark: CarparkImpl) => carpark.carParkId === id)))
-      .subscribe(carpark => {
-        response = carpark.pop()
-      })
-    return response
   }
 }
 
