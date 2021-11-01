@@ -105,11 +105,6 @@ What the hell goes on here :-)
 * Admin App: http://localhost:4201
 * Mobile App: http://localhost:4202
 
-#### Frontend Prod (served by spring boot)
-* Website App: http://localhost:8098/apps/website/de/index.html
-* Admin App: http://localhost:8098/apps/administration/de/index.html
-* Mobile App: http://localhost:8098/apps/mobile/index.html
-
 #### Backend
 * API Server: http://localhost:8098
 * Rest Docs: http://localhost:8098/swagger-ui/#/
