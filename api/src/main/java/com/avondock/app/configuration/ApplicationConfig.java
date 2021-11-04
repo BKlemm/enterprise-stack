@@ -3,6 +3,7 @@ package com.avondock.app.configuration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.jsonSchema.JsonSchemaGenerator;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.security.AnyTypePermission;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import org.axonframework.config.EventProcessingConfigurer;
 import org.axonframework.serialization.Serializer;
@@ -21,11 +22,13 @@ public class ApplicationConfig {
     XStream xStream(){
         XStream xstream = new XStream();
         // clear out existing permissions and set own ones
-        xstream.addPermission(NoTypePermission.NONE);
+        //xstream.addPermission(NoTypePermission.NONE);
+        xstream.addPermission(AnyTypePermission.ANY);
         // allow any type from the same package
         xstream.allowTypesByWildcard(new String[] {
                 ROOT_PACKAGE + ".**",
                 "org.axonframework.**",
+                "org.springframework.**",
                 "java.**",
                 "com.thoughtworks.xstream.**"
         });

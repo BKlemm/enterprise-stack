@@ -10,8 +10,8 @@ abstract class CarParkResultQuery:RepresentationModel<ListCarParksResult>()
 
 @Value class GetCarPark(val id: String) : Query
 
-@Value class ListCarParks() : Query
-@Value class ListAllCarParks(val filter: String, val sort: String, val page: Int, val size: Int) :
+@Value class ListAllCarParks() : Query
+@Value class ListCarParks(val filter: String, val sort: String, val page: Int, val size: Int) :
     Query
 @Value class ListCarParksExtend() :
     Query

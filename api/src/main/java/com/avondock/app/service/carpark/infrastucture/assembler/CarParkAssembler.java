@@ -43,7 +43,7 @@ public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarPar
     public CollectionModel<CarParkResponse> toCollectionModel(@NotNull Iterable<? extends CarParkView> entities) {
         CollectionModel<CarParkResponse> models = super.toCollectionModel(entities);
 
-        models.add(linkTo(methodOn(CarParkQueryEndpoint.class).listAllCarParks()).withSelfRel());
+        models.add(linkTo(methodOn(CarParkQueryEndpoint.class).listCarParks("","asc",1,20)).withSelfRel());
 
         return models;
     }
