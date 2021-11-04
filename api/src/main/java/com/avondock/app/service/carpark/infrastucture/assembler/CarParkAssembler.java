@@ -9,6 +9,9 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
@@ -30,6 +33,7 @@ public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarPar
         model.setName(entity.getName());
         model.setDescription(entity.getDescription());
         model.setIataCode(entity.getIataCode());
+        model.setAddress(entity.getAddress());
         model.setTax(entity.getTax());
         model.setState(entity.getState());
         model.add(selfLink);
@@ -39,11 +43,23 @@ public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarPar
     }
 
     @NotNull
+    public List<CarParkResponse> toListModel(@NotNull Iterable<? extends CarParkView> entities) {
+        List<CarParkResponse> models = new ArrayList<>();
+
+        for (CarParkView entity: entities) {
+            models.add(toModel(entity));
+        }
+
+        return models;
+    }
+
+
+    @NotNull
     @Override
     public CollectionModel<CarParkResponse> toCollectionModel(@NotNull Iterable<? extends CarParkView> entities) {
         CollectionModel<CarParkResponse> models = super.toCollectionModel(entities);
 
-        models.add(linkTo(methodOn(CarParkQueryEndpoint.class).listCarParks("","asc",1,20)).withSelfRel());
+        models.add(linkTo(methodOn(CarParkQueryEndpoint.class).listAllCarParks()).withSelfRel());
 
         return models;
     }

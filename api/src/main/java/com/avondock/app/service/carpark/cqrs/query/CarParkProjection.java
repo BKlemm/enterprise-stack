@@ -10,11 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -81,18 +81,18 @@ public class CarParkProjection {
     }
 
     @QueryHandler
-    public CollectionModel<CarParkResponse> handle(ListAllCarParks query) {
+    public List<CarParkResponse> handle(ListAllCarParks query) {
 
         Iterable<CarParkView> carParks = carParkService.carparksByState(CarParkStatus.ACTIVE);
-        return assembler.toCollectionModel(carParks);
+        return assembler.toListModel(carParks);
     }
 
     @QueryHandler
-    public CollectionModel<CarParkResponse> handle(ListCarParks query) {
+    public List<CarParkResponse> handle(ListCarParks query) {
         Sort sort = query.getSort().equals("asc") ? Sort.by("name").ascending() : Sort.by("name").descending();
         PageRequest request = PageRequest.of(query.getPage(), query.getSize(), sort);
         Iterable<CarParkView> carParks = carParkService.carparks(request);
-        return assembler.toCollectionModel(carParks);
+        return assembler.toListModel(carParks);
     }
 
     @QueryHandler

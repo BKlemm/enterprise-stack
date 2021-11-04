@@ -1,5 +1,6 @@
 package com.avondock.app.service.carpark.cqrs.query.response;
 
+import com.avondock.app.service.carpark.cqrs.coreapi.CarParkAddress;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.*;
@@ -19,10 +20,11 @@ import java.math.BigDecimal;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarParkResponse extends RepresentationModel<CarParkResponse> implements Serializable {
 
-    private String carParkId;
-    private String name;
-    private String description;
-    private String     iataCode;
-    private BigDecimal tax;
-    private String     state;
+    private String         carParkId;
+    private String         name;
+    private String         description;
+    private String         iataCode;
+    private BigDecimal     tax;
+    private String         state;
+    private CarParkAddress address;
 }
