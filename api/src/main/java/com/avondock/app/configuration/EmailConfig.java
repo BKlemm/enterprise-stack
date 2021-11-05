@@ -13,7 +13,7 @@ import static com.avondock.app.configuration.properties.BasePackages.CORE_PACKAG
 import static com.avondock.app.configuration.properties.BasePackages.ROOT_PACKAGE;
 
 @ComponentScan(basePackages = {CORE_PACKAGE + ".common.mail"})
-@PropertySource(value={"classpath:application.properties"})
+@PropertySource(value={"classpath:application-mail.properties"})
 public class EmailConfig {
 
     @Value("${spring.mail.host}")

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@PropertySource(value={"classpath:application.properties"})
+@PropertySource(value={"classpath:application-mail.properties"})
 public class MailProperties {
 
     @Value("${spring.mail.username}")
