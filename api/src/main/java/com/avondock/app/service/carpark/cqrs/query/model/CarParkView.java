@@ -10,7 +10,6 @@ import org.hibernate.envers.Audited;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -18,8 +17,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @Audited
+@NoArgsConstructor
 public class CarParkView implements Serializable {
 
     @EmbeddedId
@@ -39,8 +38,6 @@ public class CarParkView implements Serializable {
     String state;
     BigDecimal tax;
 
-    LocalDate created;
-
     public CarParkView(
             CarParkId id, String iataCode, String name, String description,
             CarParkAddress address, String supportEmail, String supportPhone,
@@ -55,7 +52,6 @@ public class CarParkView implements Serializable {
         this.supportPhone = supportPhone;
         this.tax = tax;
         this.state = state.toString();
-        this.created = LocalDate.now();
     }
 
     @Override

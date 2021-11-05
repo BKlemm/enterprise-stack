@@ -7,6 +7,7 @@ import com.avondock.app.service.carpark.cqrs.query.response.CarParkResponse;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.infrastucture.service.CarParkService;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
