@@ -22,6 +22,7 @@
         <main.basedir>${project.basedir}</main.basedir>
         <frontend-maven-plugin.version>1.10.3</frontend-maven-plugin.version>
         <spring-boot.version>2.5.5</spring-boot.version>
+        <spring-boot-admin.version>2.4.1</spring-boot-admin.version>
         <java.version>11</java.version>
         <node.version>v12.18.2</node.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
