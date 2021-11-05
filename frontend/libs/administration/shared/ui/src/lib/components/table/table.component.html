@@ -1,6 +1,6 @@
 <!--<input matInput placeholder="{{filterPlaceholder}}" #input>-->
 
-<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+<div class="spinner-container" *ngIf="dataSource.loading$ | async" xmlns="http://www.w3.org/1999/html">
   <mat-spinner></mat-spinner>
 </div>
 
@@ -11,8 +11,11 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.header}} </th>
     <td mat-cell class="ps-4 text-xs font-weight-bold" *matCellDef="let row">
       <a routerLink="{{column.link}}/{{row[column.linkRef]}}">
-        <span *ngIf="column.dep">{{row[column.dep][column.columnDef]}}</span>
-        <span *ngIf="!column.dep">{{row[column.columnDef]}}</span>
+        <span *ngIf="column.dep; else elseBlock">{{row[column.dep][column.columnDef]}}</span>
+        <ng-template #elseBlock>
+          <span *ngIf="column.condition; else elseConditional" [ngClass]="column.condition">{{row[column.columnDef]}}</span>
+          <ng-template #elseConditional>{{row[column.columnDef]}}</ng-template>
+        </ng-template>
       </a>
     </td>
   </ng-container>

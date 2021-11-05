@@ -4,6 +4,7 @@ interface Column {
   columnDef: string,
   dep?: string,
   header: string,
+  condition?: string,
   link?: string,
   linkRef?: string
 }
