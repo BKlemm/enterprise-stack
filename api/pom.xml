@@ -16,6 +16,7 @@
 		<kotlin.version>1.5.31</kotlin.version>
 		<jackson-module.version>2.11.3</jackson-module.version>
 		<axon-framework.version>4.5.4</axon-framework.version>
+		<hibernate.version>5.3.23.FINAL</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -94,10 +95,16 @@
 
 		<!-- Auditing -->
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<!-- uncomment if you want use the spring-data-envers see BaseEntity -->
+		<!--<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-envers</artifactId>
 			<version>2.5.0</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- Rest Endpoint docs generation -->
 		<dependency>
@@ -168,7 +175,7 @@
 		<dependency>
 			<groupId>de.codecentric</groupId>
 			<artifactId>spring-boot-admin-starter-client</artifactId>
-			<version>2.4.1</version>
+			<version>${spring-boot-admin.version}</version>
 		</dependency>
 
 		<!-- Hot reloading of any changes -->
@@ -208,14 +215,16 @@
 		<dependency>
 			<groupId>org.hibernate.ogm</groupId>
 			<artifactId>hibernate-ogm-core</artifactId>
+			<optional>true</optional>
 			<version>5.4.1.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.ogm</groupId>
 			<artifactId>hibernate-ogm-cassandra</artifactId>
+			<optional>true</optional>
 			<version>5.1.0.Final</version>
 			<exclusions>
-				<!-- has to be excluded, because of dependency problem with the axon framework -->
+				<!-- has to be excluded, because of dependency problem with the axon framework if you remove optional -->
 				<exclusion>
 					<artifactId>guava</artifactId>
 					<groupId>com.google.guava</groupId>
@@ -230,7 +239,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.3.23.Final</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<!-- Lombok ...keep your class clean from unnecessary stuff -->
@@ -252,11 +261,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 
 		<!-- Test and Seed dependencies -->
         <dependency>
@@ -270,6 +274,11 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- uncomment if you will use super fast graalvm, but keep attention to combine with axon, better use quarkus or spring-boot only -->
         <!--<dependency>
@@ -411,6 +420,12 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<!-- Generate a git.properties file to publish infos about the state of git source -->
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
 			</plugin>
 
 			<!-- Helper to find dependencies conflicts
