@@ -4,14 +4,13 @@ import com.avondock.app.service.carpark.cqrs.coreapi.*;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
-import org.axonframework.modelling.command.AggregateMember;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.context.annotation.Profile;
 
 import java.math.BigDecimal;
-import java.util.SortedSet;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
