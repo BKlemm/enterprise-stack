@@ -1,28 +1,29 @@
 package com.avondock.core.shared.domain.contracts;
 
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 @MappedSuperclass
-abstract public class BaseEntity {
+@EntityListeners({AuditingEntityListener.class})
+abstract public class BaseEntity<U> {
 
+    @CreatedDate
     protected LocalDateTime created;
-    protected LocalDateTime updated;
+    @LastModifiedDate
+    protected LocalDateTime lastModified;
     protected LocalDateTime deleted;
 
-    @PrePersist
-    protected void onCreated() {
-        created = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected  void onUpdated() {
-        updated = LocalDateTime.now();
-    }
+    @CreatedBy
+    protected U createdBy;
+    @LastModifiedBy
+    protected U lastModifiedBy;
 
     @PreRemove
     protected void onRemove() {
