@@ -61,7 +61,6 @@ public class PersistenceSystemAutoConfig {
         return transactionManager;
     }
 
-    @Bean
     public DataSource customDataSource() {
         return DataSourceBuilder
                 .create()
@@ -73,7 +72,6 @@ public class PersistenceSystemAutoConfig {
     }
 
     @Bean
-    @ConditionProfileIsMain
     public JobScheduler configureJobrunr(ApplicationContext context) {
         return JobRunr.configure()
                 .useJobActivator(context::getBean)

@@ -51,8 +51,6 @@ public class PersistenceAvondockAutoConfig {
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
-    @Bean
     public DataSource customDataSource() {
         return DataSourceBuilder
                 .create()
