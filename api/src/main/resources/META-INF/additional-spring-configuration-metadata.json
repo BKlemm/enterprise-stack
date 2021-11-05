@@ -49,6 +49,26 @@
       "name": "spring.application.base-package",
       "type": "java.lang.String",
       "description": "Description for spring.application.base-package."
+    },
+    {
+      "name": "spring.boot.admin.url",
+      "type": "java.lang.String",
+      "description": "Description for spring.boot.admin.url."
+    },
+    {
+      "name": "spring.boot.admin.api-path",
+      "type": "java.lang.String",
+      "description": "Description for spring.boot.admin.api-path."
+    },
+    {
+      "name": "spring.boot.admin.client.metadata.user.name",
+      "type": "java.lang.String",
+      "description": "Description for spring.boot.admin.client.metadata.user.name."
+    },
+    {
+      "name": "spring.boot.admin.client.metadata.user.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.boot.admin.client.metadata.user.password."
     }
   ]
 }
