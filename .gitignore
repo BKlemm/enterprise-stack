@@ -53,3 +53,4 @@ data/*
 
 ### Api ###
 api/src/main/resources/public
+api/src/main/resources/application-mail.properties
