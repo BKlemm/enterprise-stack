@@ -191,6 +191,7 @@
             "polyfills": "apps/administration/src/polyfills.ts",
             "tsConfig": "apps/administration/tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": ["core-js", "raf"],
             "assets": [
               "apps/administration/src/favicon.ico",
               "apps/administration/src/assets"
