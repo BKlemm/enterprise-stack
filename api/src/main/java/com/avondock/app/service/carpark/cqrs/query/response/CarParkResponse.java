@@ -24,6 +24,8 @@ public class CarParkResponse extends RepresentationModel<CarParkResponse> implem
     private String         name;
     private String         description;
     private String         iataCode;
+    private String         supportEmail;
+    private String         supportPhone;
     private BigDecimal     tax;
     private String         state;
     private CarParkAddress address;

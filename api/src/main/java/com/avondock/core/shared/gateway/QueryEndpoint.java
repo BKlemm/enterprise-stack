@@ -13,7 +13,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Predicate;
 
-@RequestMapping("/api/v1")
 public class QueryEndpoint {
 
     protected final QueryGateway   queryGateway;

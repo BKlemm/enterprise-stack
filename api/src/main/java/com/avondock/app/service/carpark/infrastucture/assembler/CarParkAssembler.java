@@ -3,6 +3,7 @@ package com.avondock.app.service.carpark.infrastucture.assembler;
 import com.avondock.app.service.carpark.cqrs.query.response.CarParkResponse;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.gateway.CarParkQueryEndpoint;
+import com.avondock.core.common.Assembler;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
@@ -15,7 +16,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
-public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarParkView, CarParkResponse> {
+public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarParkView, CarParkResponse> implements Assembler {
 
     public CarParkAssembler() {
         super(CarParkQueryEndpoint.class, CarParkResponse.class);
@@ -26,14 +27,16 @@ public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarPar
     public CarParkResponse toModel(@NotNull CarParkView entity) {
         CarParkResponse model = instantiateModel(entity);
 
-        Link selfLink = linkTo(CarParkQueryEndpoint.class).slash(entity.getCarParkId().getCarParkId()).withSelfRel();
-        Link tariffLink = linkTo(CarParkQueryEndpoint.class).slash(entity.getCarParkId().getCarParkId()).slash("tariffs").withRel("tariffs");
+        Link selfLink = linkTo(CarParkQueryEndpoint.class).slash(entity.getCarParkId().getIdentity()).withSelfRel();
+        Link tariffLink = linkTo(CarParkQueryEndpoint.class).slash(entity.getCarParkId().getIdentity()).slash("tariffs").withRel("tariffs");
 
-        model.setCarParkId(entity.getCarParkId().getCarParkId());
+        model.setCarParkId(entity.getCarParkId().getIdentity());
         model.setName(entity.getName());
         model.setDescription(entity.getDescription());
         model.setIataCode(entity.getIataCode());
         model.setAddress(entity.getAddress());
+        model.setSupportEmail(entity.getSupportEmail());
+        model.setSupportPhone(entity.getSupportPhone());
         model.setTax(entity.getTax());
         model.setState(entity.getState());
         model.add(selfLink);

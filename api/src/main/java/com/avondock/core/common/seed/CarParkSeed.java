@@ -41,7 +41,7 @@ public class CarParkSeed {
     }
 
     private void seedCarPark(String uuid, String location) {
-        String            sql = "SELECT * FROM car_park WHERE car_park_id = '" + uuid + "'";
+        String            sql = "SELECT * FROM car_park WHERE identity = '" + uuid + "'";
         List<CarParkView> rs  = jdbcTemplate.query(sql, (resultSet, rowNum) -> null);
         if (rs.size() <= 0) {
             carParkViewRepository.save(createCarPark(uuid, location));

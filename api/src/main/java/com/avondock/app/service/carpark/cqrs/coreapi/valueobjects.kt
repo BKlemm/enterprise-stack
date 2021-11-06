@@ -1,12 +1,13 @@
 package com.avondock.app.service.carpark.cqrs.coreapi;
 
+import com.avondock.core.shared.domain.contracts.Identity
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonValue
 import lombok.NoArgsConstructor
 import lombok.Value
+import org.hibernate.annotations.Immutable
 import java.io.Serializable
 import java.util.*
-import javax.persistence.Column
 import javax.persistence.Embeddable
 
 enum class CarParkStatus { ACTIVE, INACTIVE, FULL }
@@ -29,7 +30,7 @@ data class CarParkAddress(
 @Embeddable
 @NoArgsConstructor
 data class CarParkId @JsonCreator(mode = JsonCreator.Mode.DELEGATING) constructor(
-    @get:JsonValue val carParkId: String = UUID.randomUUID().toString()
+    @get:JsonValue val identity: String = UUID.randomUUID().toString()
 ): Serializable
 
 
