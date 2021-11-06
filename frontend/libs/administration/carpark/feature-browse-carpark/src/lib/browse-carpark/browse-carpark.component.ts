@@ -3,10 +3,12 @@ import {TABMENU} from "../tab.menu";
 import {CarparksFacade} from "@frontend/administration/carpark/data-access";
 import {BaseTableComponent} from "@frontend/shared/core";
 
+
 interface Column {
   columnDef: string,
   dep?: string
   header: string,
+  condition?: string,
   link?: string,
   linkRef?: string
 }
@@ -19,16 +21,7 @@ interface Column {
 export class BrowseCarparkComponent extends BaseTableComponent implements OnInit {
 
   tabs = TABMENU
-  title = 'Carparks Übersicht'
-
-  displayedColumns: string[] = ['name', 'iataCode', 'description', 'tax', 'state'];
-  columns: Column[] = [
-    {columnDef: this.displayedColumns[0], header: 'Name', link: '/carpark', linkRef: 'carParkId'},
-    {columnDef: this.displayedColumns[1], header: 'IATA Code'},
-    {columnDef: this.displayedColumns[2], header: 'Beschreibung'},
-    {columnDef: this.displayedColumns[3], header: 'MwSt.'},
-    {columnDef: this.displayedColumns[4], header: 'Status'}
-  ]
+  title = `Carparks Übersicht`
 
   constructor(private carparkFacade: CarparksFacade) {super()}
 

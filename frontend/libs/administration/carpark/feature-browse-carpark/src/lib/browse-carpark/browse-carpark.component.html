@@ -1,12 +1,5 @@
 <adm-default-layout>
   <ui-navtabs [title]="title" [tabs]="tabs">
-    <adm-ui-table
-      [displayedColumns]="displayedColumns"
-      [dataSource]="dataSource"
-      [activeSort]="'name'"
-      [sortDirection]="'asc'"
-      [filterPlaceholder]="'Suche Carpark'"
-      [columns]="columns"
-    ></adm-ui-table>
+    <adm-carpark-table></adm-carpark-table>
   </ui-navtabs>
 </adm-default-layout>

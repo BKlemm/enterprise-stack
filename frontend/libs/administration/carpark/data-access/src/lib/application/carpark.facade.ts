@@ -60,7 +60,6 @@ export class CarparksFacade implements DataSource<Carpark>{
   }
 
   update(carpark: ChangeCarpark) {
-    console.log(carpark)
     this.carParkService.update(carpark.carParkId, carpark).subscribe(carpark => {
 
     })
