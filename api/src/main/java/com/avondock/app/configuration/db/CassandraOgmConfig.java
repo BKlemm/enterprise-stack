@@ -1,9 +1,8 @@
-package com.avondock.app.configuration;
+package com.avondock.app.configuration.db;
 
 
 import org.hibernate.ogm.jpa.HibernateOgmPersistence;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;

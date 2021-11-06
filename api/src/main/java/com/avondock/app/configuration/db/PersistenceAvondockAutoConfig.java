@@ -1,4 +1,4 @@
-package com.avondock.app.configuration;
+package com.avondock.app.configuration.db;
 
 import com.avondock.app.configuration.properties.CustomHibernateJpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
