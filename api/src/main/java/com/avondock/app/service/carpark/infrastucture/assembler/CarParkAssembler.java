@@ -3,7 +3,6 @@ package com.avondock.app.service.carpark.infrastucture.assembler;
 import com.avondock.app.service.carpark.cqrs.query.response.CarParkResponse;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.gateway.CarParkQueryEndpoint;
-import com.avondock.core.common.Assembler;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
@@ -16,7 +15,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
-public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarParkView, CarParkResponse> implements Assembler {
+public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarParkView, CarParkResponse> {
 
     public CarParkAssembler() {
         super(CarParkQueryEndpoint.class, CarParkResponse.class);

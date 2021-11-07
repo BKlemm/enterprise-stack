@@ -1,6 +1,7 @@
 package com.avondock.app.service.carpark.cqrs.query.response;
 
 import com.avondock.app.service.carpark.cqrs.coreapi.CarParkAddress;
+import com.avondock.app.service.carpark.cqrs.coreapi.CarParkStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.*;
@@ -27,6 +28,6 @@ public class CarParkResponse extends RepresentationModel<CarParkResponse> implem
     private String         supportEmail;
     private String         supportPhone;
     private BigDecimal     tax;
-    private String         state;
+    private CarParkStatus  state;
     private CarParkAddress address;
 }

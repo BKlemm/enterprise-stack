@@ -1,5 +1,5 @@
 package com.avondock.core.shared.gateway.contracts;
 
-public interface Command {
-
+public interface Command<T> {
+    T getIdentity();
 }

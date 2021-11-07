@@ -33,8 +33,8 @@ public class CarParkAggregate {
     String supportPhone;
 
     CarParkAddress address;
+    CarParkStatus state;
 
-    String     state;
     BigDecimal tax;
 
     @CommandHandler
@@ -48,12 +48,13 @@ public class CarParkAggregate {
                 command.getSupportEmail(),
                 command.getSupportPhone(),
                 command.getTax(),
-                command.getDescription()
+                command.getDescription(),
+                command.getState()
         ));
     }
 
     @CommandHandler
-    public CarParkAggregate(ChangeCarPark c) {
+    public void handle(ChangeCarPark c) {
         log.debug("CHANGING {}", c);
         apply(new CarParkChanged(
                 c.getCarParkId(),
@@ -79,7 +80,6 @@ public class CarParkAggregate {
     public void on(CarParkChanged e) {
         log.debug("APPLYING {}", e);
         this.createCarpark(e);
-        this.state = e.getState();
     }
 
     private void createCarpark(AbstractCarParkEvent e) {
@@ -91,6 +91,7 @@ public class CarParkAggregate {
         this.supportEmail = e.getSupportEmail();
         this.supportPhone = e.getSupportPhone();
         this.tax = e.getTax();
+        this.state = e.getState();
     }
 
 }

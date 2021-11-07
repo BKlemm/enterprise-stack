@@ -1,6 +1,5 @@
 package com.avondock.core.shared.gateway;
 
-import com.avondock.core.common.Assembler;
 import com.avondock.core.shared.gateway.contracts.Command;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.hateoas.RepresentationModel;
@@ -14,25 +13,23 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 abstract public class CommandEndpoint {
 
     protected final CommandGateway commandGateway;
-    protected final Assembler    assembler;
 
-    public <T> CommandEndpoint(CommandGateway commandGateway, Assembler assembler) {
+    public <T> CommandEndpoint(CommandGateway commandGateway) {
         this.commandGateway = commandGateway;
-        this.assembler = assembler;
     }
 
-    protected CompletableFuture<ResponseEntity<?>> send(Command command) {
+    protected <T> CompletableFuture<ResponseEntity<?>> send(Command<T> command) {
         return commandGateway.send(command).thenApply(ResponseEntity::ok);
     }
 
-    protected <T> ResponseEntity<?> sendCreate(Command command, String identity, RepresentationModel<?> model) {
-        commandGateway.sendAndWait(command);
-        return createdResponse(model, identity);
+    protected <T> ResponseEntity<?> sendCreate(Command<T> command, RepresentationModel<?> model) {
+        Object identity = commandGateway.sendAndWait(command);
+        return createdResponse(model, identity.toString());
     }
 
-    protected <T> ResponseEntity<?> sendUpdate(Command command, String identity, RepresentationModel<?> model) {
+    protected <T> ResponseEntity<?> sendUpdate(Command<T> command, RepresentationModel<?> model) {
         commandGateway.sendAndWait(command);
-        return acceptedResponse(model, identity);
+        return acceptedResponse(model, command.getIdentity().toString());
     }
 
     protected <T> ResponseEntity<?> acceptedResponse(RepresentationModel<?> model, String identity) {

@@ -57,7 +57,7 @@ public class CarParkProjection {
                 e.getSupportEmail(),
                 e.getSupportPhone(),
                 e.getTax(),
-                CarParkStatus.INACTIVE
+                e.getState()
         );
 
         carParkService.save(carpark);

@@ -1,11 +1,10 @@
 package com.avondock.app.service.carpark.cqrs.coreapi;
 
-import com.avondock.core.shared.domain.contracts.Identity
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonValue
 import lombok.NoArgsConstructor
 import lombok.Value
-import org.hibernate.annotations.Immutable
+import org.hibernate.Hibernate
 import java.io.Serializable
 import java.util.*
 import javax.persistence.Embeddable
@@ -26,11 +25,25 @@ data class CarParkAddress(
     val longitude: String = ""
 )
 
-@Value
 @Embeddable
 @NoArgsConstructor
-data class CarParkId @JsonCreator(mode = JsonCreator.Mode.DELEGATING) constructor(
+class CarParkId @JsonCreator(mode = JsonCreator.Mode.DELEGATING) constructor(
     @get:JsonValue val identity: String = UUID.randomUUID().toString()
-): Serializable
+): Serializable {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
+        other as CarParkId
+
+        return identity != null && identity == other.identity
+    }
+
+    override fun hashCode(): Int = Objects.hash(identity);
+
+    @Override
+    override fun toString(): String {
+        return identity
+    }
+}
 
 

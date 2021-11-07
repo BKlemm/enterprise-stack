@@ -13,7 +13,8 @@ abstract class AbstractCarParkEvent(
     open val supportEmail: String,
     open val supportPhone: String,
     open val tax: BigDecimal,
-    open val description: String?
+    open val description: String?,
+    open val state: CarParkStatus
 ): CarParkEvent(carParkId)
 
 @Revision("1") //that's your event revision, if some parts changed on future, you have to upcast your event
@@ -25,8 +26,9 @@ data class CarParkAdded(
     override val supportEmail: String,
     override val supportPhone: String,
     override val tax: BigDecimal,
-    override val description: String?
-) : AbstractCarParkEvent(carParkId, address, name, iataCode, supportEmail, supportPhone, tax, description)
+    override val description: String?,
+    override val state: CarParkStatus
+) : AbstractCarParkEvent(carParkId, address, name, iataCode, supportEmail, supportPhone, tax, description, state)
 
 data class CarParkChanged(
     override val carParkId: CarParkId,
@@ -37,8 +39,8 @@ data class CarParkChanged(
     override val supportPhone: String,
     override val tax: BigDecimal,
     override val description: String?,
-    val state: String
-) : AbstractCarParkEvent(carParkId, address, name, iataCode, supportEmail, supportPhone, tax, description)
+    override val state: CarParkStatus
+) : AbstractCarParkEvent(carParkId, address, name, iataCode, supportEmail, supportPhone, tax, description, state)
 
 // This Events are only examples they belongs normally to another context/service
 data class Example2Event(
