@@ -1,5 +1,4 @@
-import {DataTransferObject} from "@frontend/shared/core";
-import {Address, AddressImpl} from "@frontend/website/shared/data-access";
+import {Address} from "@frontend/website/shared/data-access";
 
 interface BaseCarparkInterface {
   iataCode: string
@@ -12,36 +11,13 @@ interface BaseCarparkInterface {
   tax: number
 }
 
-abstract class BaseCarpark implements BaseCarparkInterface {
-  protected constructor(
-    public iataCode: string = '',
-    public description: string  = '',
-    public name:  string  = '',
-    public state: string  = '',
-    public supportEmail: string = '',
-    public supportPhone: string = '',
-    public address: AddressImpl = new AddressImpl(),
-    public tax: number = 19
-  ) {}
-}
-
 export interface Carpark extends BaseCarparkInterface {
   carParkId: string
 }
 
-export class CarparkDTO extends BaseCarpark implements DataTransferObject {
-  constructor() {super()}
+export enum CarParkStatus {
+  INACTIVE = "INACTIVE",
+  ACTIVE = "ACTIVE",
 }
 
-export class CarparkImpl extends BaseCarpark implements Carpark {
-
-  constructor(
-    public carParkId: string = '',
-  ) {super()}
-}
-
-export interface CarparkListResponse {
-  content: Carpark[],
-  totalElements: number
-}
 

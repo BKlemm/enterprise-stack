@@ -3,16 +3,6 @@ import {TABMENU} from "../tab.menu";
 import {CarparksFacade} from "@frontend/administration/carpark/data-access";
 import {BaseTableComponent} from "@frontend/shared/core";
 
-
-interface Column {
-  columnDef: string,
-  dep?: string
-  header: string,
-  condition?: string,
-  link?: string,
-  linkRef?: string
-}
-
 @Component({
   selector: 'feature-browse-carpark',
   templateUrl: './browse-carpark.component.html',
