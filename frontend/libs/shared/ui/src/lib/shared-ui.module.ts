@@ -24,6 +24,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {SharedCoreModule} from "@frontend/shared/core";
 import { AddressFormPartialComponent } from './partials/address-form-partial/address-form-partial.component';
+import {ToastComponent} from "./material/toast.component";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import { AddressFormPartialComponent } from './partials/address-form-partial/add
     MatSortModule,
     MatIconModule,
     MatFormFieldModule,
+    MatSnackBarModule,
     MatPaginatorModule,
     SharedCoreModule
   ],
@@ -55,7 +58,8 @@ import { AddressFormPartialComponent } from './partials/address-form-partial/add
       DynamicFormComponent,
       DashCardComponent,
       TableComponent,
-      AddressFormPartialComponent
+      AddressFormPartialComponent,
+      ToastComponent
     ],
     exports: [
       BreadcrumbComponent,
@@ -73,6 +77,7 @@ import { AddressFormPartialComponent } from './partials/address-form-partial/add
       DashCardComponent,
       TableComponent,
       AddressFormPartialComponent,
+      ToastComponent
     ]
 })
 export class SharedUiModule {}
