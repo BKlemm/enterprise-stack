@@ -1,14 +1,15 @@
 package com.avondock.app.service.carpark.infrastucture.factory;
 
+import com.avondock.app.service.carpark.cqrs.command.factory.CarParkCommandFactory;
 import com.avondock.app.service.carpark.cqrs.coreapi.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 
-public class CarParkCommandFactory {
+public class CarParkCommandFactoryImpl implements CarParkCommandFactory {
 
-    public static AbstractCarParkCommand create(AbstractCarParkDTO request, Class<?> command, CarParkId id) {
+    public AbstractCarParkCommand create(AbstractCarParkDTO request, Class<?> command, CarParkId id) {
         Constructor<?> ctor;
         try {
             ctor = command.getDeclaredConstructor(CarParkId.class, String.class, String.class, String.class,
