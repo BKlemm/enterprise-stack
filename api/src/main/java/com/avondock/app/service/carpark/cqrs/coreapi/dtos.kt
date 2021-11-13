@@ -49,7 +49,7 @@ data class AddCarParkDTO(
 class ChangeCarParkDTO(
     @field:Pattern(regexp = PatternUtil.UUID, message = "UUID Format error")
     @JsonProperty("carParkId", required = true)
-    val id: CarParkId,
+    val id: String,
     override val iataCode: String,
     override val name: String,
     override val description: String?,
