@@ -60,7 +60,7 @@ public class CarParkProjection {
                 e.getState()
         );
 
-        carParkService.save(carpark);
+        carParkService.addCarPark(carpark);
     }
 
     @EventHandler
@@ -77,7 +77,7 @@ public class CarParkProjection {
         carpark.setTax(e.getTax());
         carpark.setState(e.getState());
 
-        carParkService.save(carpark);
+        carParkService.addCarPark(carpark);
 
     }
 
