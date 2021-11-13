@@ -1,4 +1,4 @@
-<form>
+<form #carparkForm="ngForm">
   <h5>Konfiguration:</h5>
   <hr>
   <div class="row">
@@ -29,8 +29,11 @@
   <div class="row">
     <div class="col-md-8">
       <div class="form-floating mb-3">
-        <input class="form-control" id="name" [(ngModel)]="carpark.name" placeholder="name@example.de" type="text" name="name" required/>
+        <input class="form-control" id="name" [(ngModel)]="carpark.name" placeholder="name@example.de" type="text" name="name" #name="ngModel" required/>
         <label for="name" i18n>Parkplatz Name<span class="text-danger">*</span></label>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+          <small class="text-danger px-3" i18n>Name is required</small>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
@@ -72,5 +75,5 @@
     </div>
   </div>
 
-  <button class="btn {{buttonColor}}" (click)="onSubmit()" type="button" name="{{buttonName}}">{{buttonLabel}}</button>
+  <button class="btn {{buttonColor}}" [disabled]="carparkForm.form.invalid" (click)="onSubmit()" type="button" name="{{buttonName}}">{{buttonLabel}}</button>
 </form>
