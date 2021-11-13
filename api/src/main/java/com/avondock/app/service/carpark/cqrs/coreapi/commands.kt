@@ -2,7 +2,6 @@ package com.avondock.app.service.carpark.cqrs.coreapi;
 
 import com.avondock.core.shared.gateway.contracts.Command
 import org.axonframework.modelling.command.TargetAggregateIdentifier
-import org.springframework.hateoas.RepresentationModel
 import java.math.BigDecimal
 
 abstract class CarParkCommand(@TargetAggregateIdentifier open val carParkId: CarParkId):
@@ -19,7 +18,6 @@ abstract class AbstractCarParkCommand(
     open val tax: BigDecimal,
     open val state: CarParkStatus
 ): CarParkCommand(carParkId)
-
 
 class AddCarPark(
     override val carParkId: CarParkId,
