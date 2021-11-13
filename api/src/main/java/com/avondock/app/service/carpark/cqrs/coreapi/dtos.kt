@@ -1,9 +1,12 @@
 package com.avondock.app.service.carpark.cqrs.coreapi
 
+import com.avondock.core.common.util.PatternUtil
+import com.avondock.core.common.util.validation.EnumNamePattern
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.hateoas.RepresentationModel
 import org.springframework.validation.annotation.Validated
 import java.math.BigDecimal
+import javax.validation.Valid
 import javax.validation.constraints.*
 
 abstract class AbstractCarParkDTO(
@@ -16,8 +19,8 @@ abstract class AbstractCarParkDTO(
     @JsonProperty("description")
     open val description: String?,
     @JsonProperty("description", required = true)
+    @field:Valid
     open val address: CarParkAddressDTO,
-    @field:NotBlank
     @field:Email(message = "Support Email should be valid")
     @JsonProperty("supportEmail")
     open val supportEmail: String,
@@ -25,8 +28,10 @@ abstract class AbstractCarParkDTO(
     @JsonProperty("supportPhone")
     open val supportPhone: String,
     @JsonProperty("tax", required = true)
+    @field:Digits(fraction = 0, integer = 2)
     open val tax: BigDecimal,
     @JsonProperty("state", required = true)
+    @field:EnumNamePattern(regexp = "ACTIVE|INACTIVE|FULL")
     open val state: CarParkStatus
 ): RepresentationModel<AbstractCarParkDTO>()
 
@@ -43,6 +48,7 @@ data class AddCarParkDTO(
 ): AbstractCarParkDTO(iataCode, name, description, address, supportEmail, supportPhone, tax, state)
 
 class ChangeCarParkDTO(
+    @field:Pattern(regexp = PatternUtil.UUID, message = "UUID Format error")
     @JsonProperty("carParkId", required = true)
     val id: CarParkId,
     override val iataCode: String,
@@ -57,12 +63,14 @@ class ChangeCarParkDTO(
 
 
 class CarParkAddressDTO (
-    val street: String,
-    val number: String,
-    val city: String,
-    val zip: String,
-    val country: String,
+    @field:Size(min = 3, max = 90) val street: String,
+    @field:Size(min = 3, max = 90) val number: String,
+    @field:Size(min = 2, max = 90) val city: String,
+    @field:Size(min = 4, max = 8) val zip: String,
+    @field:Size(min = 3, max = 90) val country: String,
     val region: String?,
+    @field:Pattern(regexp = PatternUtil.GPS_COORDINATES, message = "Must be a valid gps value")
     val latitude: String,
+    @field:Pattern(regexp = PatternUtil.GPS_COORDINATES, message = "Must be a valid gps value")
     val longitude: String
 )
