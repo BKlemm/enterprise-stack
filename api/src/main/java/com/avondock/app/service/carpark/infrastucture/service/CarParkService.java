@@ -20,7 +20,7 @@ public class CarParkService {
         this.repository = repository;
     }
 
-    public void save(CarParkView carParkView) {
+    public void addCarPark(CarParkView carParkView) {
         repository.save(carParkView);
     }
 
