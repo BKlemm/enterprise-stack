@@ -16,9 +16,8 @@ export class BrowseCarparkComponent extends BaseTableComponent implements OnInit
   constructor(private carparkFacade: CarparksFacade) {super()}
 
   ngOnInit(): void {
-    this.dataSource = this.carparkFacade;
     if (this.carparkFacade.counter === 0) {
-      this.dataSource.load()
+      this.carparkFacade.load()
     }
   }
 
