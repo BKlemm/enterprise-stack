@@ -4,7 +4,6 @@ import com.avondock.core.common.util.PatternUtil
 import com.avondock.core.common.util.validation.EnumNamePattern
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.hateoas.RepresentationModel
-import org.springframework.validation.annotation.Validated
 import java.math.BigDecimal
 import javax.validation.Valid
 import javax.validation.constraints.*
@@ -64,13 +63,13 @@ class ChangeCarParkDTO(
 
 class CarParkAddressDTO (
     @field:Size(min = 3, max = 90) val street: String,
-    @field:Size(min = 3, max = 90) val number: String,
+    @field:Size(min = 1, max = 10) val number: String,
     @field:Size(min = 2, max = 90) val city: String,
     @field:Size(min = 4, max = 8) val zip: String,
     @field:Size(min = 3, max = 90) val country: String,
     val region: String?,
-    @field:Pattern(regexp = PatternUtil.GPS_COORDINATES, message = "Must be a valid gps value")
+    @field:Pattern(regexp = PatternUtil.LATITUDE, message = "Must be a valid gps value")
     val latitude: String,
-    @field:Pattern(regexp = PatternUtil.GPS_COORDINATES, message = "Must be a valid gps value")
+    @field:Pattern(regexp = PatternUtil.LONGITUDE, message = "Must be a valid gps value")
     val longitude: String
 )
