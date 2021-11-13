@@ -18,11 +18,10 @@ export class ChangeCarpark {
 
 export class AddCarpark {
   constructor(
-    public carParkId: string = '',
     public iataCode: string = '',
     public description: string  = '',
     public name:  string  = '',
-    public state: string  = CarParkStatus.INACTIVE,
+    public state: string  = '',
     public supportEmail: string = '',
     public supportPhone: string = '',
     public address: AddressImpl = new AddressImpl(),

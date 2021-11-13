@@ -3,11 +3,13 @@ import {TABMENU} from "../tab.menu";
 import {Carpark, CarparksFacade, ChangeCarpark} from "@frontend/administration/carpark/data-access";
 import {ActivatedRoute} from "@angular/router";
 import {BaseComponent, ObjectMapper} from "@frontend/shared/core";
+import {ToastComponent} from "../../../../../../shared/ui/src/lib/material/toast.component";
 
 @Component({
   selector: 'frontend-edit-carpark',
   templateUrl: './edit-carpark.component.html',
-  styleUrls: ['./edit-carpark.component.scss']
+  styleUrls: ['./edit-carpark.component.scss'],
+  providers: [ToastComponent]
 })
 export class EditCarparkComponent extends BaseComponent implements OnInit {
 
@@ -20,7 +22,8 @@ export class EditCarparkComponent extends BaseComponent implements OnInit {
 
   constructor(
     private carParkFacade: CarparksFacade,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toast: ToastComponent
   ) {super()}
 
   ngOnInit(): void {
@@ -42,7 +45,9 @@ export class EditCarparkComponent extends BaseComponent implements OnInit {
 
   submit() {
     const dto = ObjectMapper.transpose(this.carpark, ChangeCarpark)
-    this.carParkFacade.update(dto)
+    this.carParkFacade.changeCarpark(dto).subscribe((carpark:Carpark) => {
+      this.toast.show("Carpark bearbeitet")
+    })
   }
 
 }

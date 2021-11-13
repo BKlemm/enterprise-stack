@@ -4,7 +4,7 @@ import {CarparkService} from "../infrastructure";
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {catchError, finalize} from "rxjs/operators";
 import {Carpark} from "../domain";
-import {ChangeCarpark} from "./dtos";
+import {AddCarpark, ChangeCarpark} from "./dtos";
 
 @Injectable()
 export class CarparksFacade implements DataSource<Carpark>{
@@ -53,16 +53,12 @@ export class CarparksFacade implements DataSource<Carpark>{
     return this.carParkService.list()
   }
 
-  create(carpark: Carpark) {
-    this.carParkService.create(carpark).subscribe(carpark => {
-      //this.carparkSubject.next([carpark])
-    })
+  addCarpark(carpark: AddCarpark): Observable<Carpark> {
+    return this.carParkService.createSingle(carpark);
   }
 
-  update(carpark: ChangeCarpark) {
-    this.carParkService.update(carpark.carParkId, carpark).subscribe(carpark => {
-
-    })
+  changeCarpark(carpark: ChangeCarpark): Observable<Carpark> {
+    return this.carParkService.update(carpark.carParkId, carpark)
   }
 }
 
