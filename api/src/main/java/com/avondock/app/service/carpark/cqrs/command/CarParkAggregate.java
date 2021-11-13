@@ -73,16 +73,16 @@ public class CarParkAggregate {
     @EventSourcingHandler
     public void on(CarParkAdded e) {
         log.debug("APPLYING {}", e);
-        this.createCarpark(e);
+        this.initCarparkEvent(e);
     }
 
     @EventSourcingHandler
     public void on(CarParkChanged e) {
         log.debug("APPLYING {}", e);
-        this.createCarpark(e);
+        this.initCarparkEvent(e);
     }
 
-    private void createCarpark(AbstractCarParkEvent e) {
+    private void initCarparkEvent(AbstractCarParkEvent e) {
         this.carParkId = e.getCarParkId();
         this.name = e.getName();
         this.description = e.getDescription();
