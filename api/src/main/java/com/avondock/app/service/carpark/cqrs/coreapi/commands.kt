@@ -4,8 +4,7 @@ import com.avondock.core.shared.gateway.contracts.Command
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.math.BigDecimal
 
-abstract class CarParkCommand(@TargetAggregateIdentifier open val carParkId: CarParkId):
-    Command<CarParkId>
+abstract class CarParkCommand(@TargetAggregateIdentifier open val carParkId: CarParkId): Command<CarParkId>
 
 abstract class AbstractCarParkCommand(
     override val carParkId: CarParkId,

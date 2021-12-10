@@ -4,14 +4,17 @@ import com.avondock.app.service.carpark.cqrs.coreapi.CarParkId;
 import com.avondock.app.service.carpark.cqrs.coreapi.CarParkStatus;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.cqrs.query.repository.CarParkViewRepository;
+import com.avondock.core.shared.infrastructure.service.BaseService;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarParkService {
+public class CarParkService extends BaseService<CarParkView> {
 
     private final CarParkViewRepository repository;
 
@@ -33,14 +36,13 @@ public class CarParkService {
     }
 
     public Iterable<CarParkView> carparksByState(CarParkStatus state) {
-        return repository.findByState(state.name());
+        return repository.findByCarParkStatus(state);
     }
 
-    public Iterable<CarParkView> carparks() {
-        return repository.findAll();
-    }
-
-    public Page<CarParkView> carparks(PageRequest request) {
+    public Page<CarParkView> carparks(Pageable request, String filter) {
+        if (!filter.equals("all")) {
+            return new PageImpl<>(this.filter(CarParkView.class, filter));
+        }
         return repository.findAll(request);
     }
 

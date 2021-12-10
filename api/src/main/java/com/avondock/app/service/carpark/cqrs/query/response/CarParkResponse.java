@@ -4,6 +4,7 @@ import com.avondock.app.service.carpark.cqrs.coreapi.CarParkAddress;
 import com.avondock.app.service.carpark.cqrs.coreapi.CarParkStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
@@ -28,6 +29,7 @@ public class CarParkResponse extends RepresentationModel<CarParkResponse> implem
     private String         supportEmail;
     private String         supportPhone;
     private BigDecimal     tax;
-    private CarParkStatus  state;
+    @JsonDeserialize
+    private CarParkStatus  carParkStatus;
     private CarParkAddress address;
 }

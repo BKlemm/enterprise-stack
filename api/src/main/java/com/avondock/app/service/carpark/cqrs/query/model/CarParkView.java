@@ -36,7 +36,7 @@ public class CarParkView implements Serializable {
     CarParkAddress address;
 
     @Enumerated(EnumType.STRING)
-    CarParkStatus state;
+    CarParkStatus carParkStatus;
     BigDecimal tax;
 
     public CarParkView(
@@ -52,7 +52,7 @@ public class CarParkView implements Serializable {
         this.supportEmail = supportEmail;
         this.supportPhone = supportPhone;
         this.tax = tax;
-        this.state = state;
+        this.carParkStatus = state;
     }
 
     @Override

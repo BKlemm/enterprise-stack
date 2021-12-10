@@ -37,32 +37,19 @@ public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarPar
         model.setSupportEmail(entity.getSupportEmail());
         model.setSupportPhone(entity.getSupportPhone());
         model.setTax(entity.getTax());
-        model.setState(entity.getState());
+        model.setCarParkStatus(entity.getCarParkStatus());
         model.add(selfLink);
         model.add(tariffLink);
 
         return model;
     }
 
-    @NotNull
-    public List<CarParkResponse> toListModel(@NotNull Iterable<? extends CarParkView> entities) {
-        List<CarParkResponse> models = new ArrayList<>();
-
-        for (CarParkView entity: entities) {
-            models.add(toModel(entity));
-        }
-
-        return models;
-    }
-
 
     @NotNull
     @Override
     public CollectionModel<CarParkResponse> toCollectionModel(@NotNull Iterable<? extends CarParkView> entities) {
-        CollectionModel<CarParkResponse> models = super.toCollectionModel(entities);
-
-        models.add(linkTo(methodOn(CarParkQueryEndpoint.class).listAllCarParks()).withSelfRel());
-
-        return models;
+        CollectionModel<CarParkResponse> response = super.toCollectionModel(entities);
+        response.add(linkTo(methodOn(CarParkQueryEndpoint.class).listCarParks("all", "asc", "", 0, 10)).withSelfRel());
+        return response;
     }
 }

@@ -12,7 +12,9 @@ import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -75,30 +77,17 @@ public class CarParkProjection {
         carpark.setDescription(e.getDescription());
         carpark.setIataCode(e.getIataCode());
         carpark.setTax(e.getTax());
-        carpark.setState(e.getState());
+        carpark.setCarParkStatus(e.getState());
 
         carParkService.addCarPark(carpark);
 
     }
 
     @QueryHandler
-    public List<CarParkResponse> handle(ListAllCarParks query) {
-
-        Iterable<CarParkView> carParks = carParkService.carparksByState(CarParkStatus.ACTIVE);
-        return assembler.toListModel(carParks);
-    }
-
-    @QueryHandler
-    public List<CarParkResponse> handle(ListCarParks query) {
-        Sort sort = query.getSort().equals("asc") ? Sort.by("name").ascending() : Sort.by("name").descending();
-        PageRequest request = PageRequest.of(query.getPage(), query.getSize(), sort);
-        Iterable<CarParkView> carParks = carParkService.carparks(request);
-        return assembler.toListModel(carParks);
-    }
-
-    @QueryHandler
-    public Iterable<CarParkView> handle(ListCarParksExtend query) {
-        return carParkService.carparks();
+    public CollectionModel<CarParkResponse> handle(ListCarParks query) {
+        Sort     sort    = query.getSort().equals("asc") ? Sort.by(query.getSortValue()).ascending() : Sort.by(query.getSortValue()).descending();
+        Pageable request = PageRequest.of(query.getPage(), query.getSize(), sort);
+        return assembler.toCollectionModel(carParkService.carparks(request, query.getFilter()));
     }
 
     @QueryHandler
