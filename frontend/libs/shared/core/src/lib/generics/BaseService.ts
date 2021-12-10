@@ -16,11 +16,12 @@ export class BaseService implements ServiceInterface {
         this.defaultError = 'Some Error occcured, Please contact Administrator for the Errors';
     }
 
-    listBy<T>(sortOrder: string = 'asc', filter: string = '', pageNumber: number = 0, pageSize: number = 10) {
-      return this.http.get<Responses & T>(this.endpoint(),{
+    listBy<T>(sortOrder: string = 'asc', activeSort: string = '', filter: string = '', pageNumber: number = 0, pageSize: number = 10, subroute: string = '') {
+      return this.http.get<Responses & T>(this.endpoint(subroute),{
         params: new HttpParams()
           .set('filter', filter)
           .set('sort', sortOrder)
+          .set('sortValue', activeSort)
           .set('page', pageNumber.toString())
           .set('size', pageSize.toString())
       })
@@ -58,6 +59,20 @@ export class BaseService implements ServiceInterface {
         return environment.endpoint + this.version + '/' + _resource + ( !this.resource.includes("{id}") ? idPath : '')
     }
 
+    private handleHateoas<T>(response: any): Observable<T> {
+      return new Observable((observer: Observer) => {
+        response.subscribe((response: any) => {
+          if (response.errors && response.errors.length > 0) {
+            observer.error(response.errors);
+          } else {
+            observer.next(response._embedded);
+          }
+          observer.complete();
+        }, (error: any) => {
+          observer.error([{ title: error.name, detail: this.defaultError, error }]);
+        });
+      });
+    }
 
     private handleResponse<T>(response: any): Observable<T> {
         return new Observable((observer: Observer) => {

@@ -1,23 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import {TABMENU} from "../tab.menu";
-import {CarparksFacade} from "@frontend/administration/carpark/data-access";
-import {BaseTableComponent} from "@frontend/shared/core";
+import {CarparkService, CarparksFacade} from "@frontend/administration/carpark/data-access";
+import {COLUMNS, TABLE_COLUMN_DEFINITION} from "../column.def";
 
 @Component({
   selector: 'feature-browse-carpark',
   templateUrl: './browse-carpark.component.html',
   styleUrls: ['./browse-carpark.component.scss'],
 })
-export class BrowseCarparkComponent extends BaseTableComponent implements OnInit {
+export class BrowseCarparkComponent implements OnInit {
 
   tabs = TABMENU
   title = `Carparks Übersicht`
 
-  constructor(private carparkFacade: CarparksFacade) {super()}
+  displayedColumns = COLUMNS
+  columns = TABLE_COLUMN_DEFINITION;
+
+  dataSource: CarparksFacade
+
+  activeSort: string = ""
+  sortDirection: string = 'asc'
+  totalSize: number = 100
+
+  constructor(private carparkService: CarparkService) {}
 
   ngOnInit(): void {
-    if (this.carparkFacade.counter === 0) {
-      this.carparkFacade.load()
+    this.dataSource = new CarparksFacade(this.carparkService)
+    if (this.dataSource.counter === 0) {
+      this.dataSource.load(this.activeSort, this.sortDirection)
     }
   }
 

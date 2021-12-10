@@ -25,21 +25,22 @@ export class CarparksFacade implements DataSource<Carpark>{
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-    //this.carParkSubject.complete()
+    this.carParkSubject.complete()
     this.loadingSubject.complete()
     this.counterSubject.complete()
   }
 
-  load(sortDirection: string = 'asc', filter: string = '', pageIndex: number = 0, pageSize: number = 10) {
+  load(activeSort: string = '', sortDirection: string = 'asc', filter: string = '', pageIndex: number = 0, pageSize: number = 10) {
     this.loadingSubject.next(true);
-    this.carParkService.listBy(sortDirection, filter, pageIndex, pageSize)
+    this.carParkService.listBy(sortDirection, activeSort, filter, pageIndex, pageSize)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe((carparks: Carpark[]) => {
-        this.carParkSubject.next(carparks)
-        this.counter = carparks.length
+      .subscribe((carparks: any) => {
+        console.log(carparks._embedded.carparks)
+        this.carParkSubject.next(carparks._embedded.carparks)
+        this.counter = carparks._embedded.length
       })
   }
 

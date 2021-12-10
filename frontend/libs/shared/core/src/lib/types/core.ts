@@ -32,11 +32,17 @@ export interface Link {
   href: string
 }
 
-export interface DataResponse<T> {
-  content: T
+export interface Pageable {
   totalElements: number
-  links: Link[]
+  totalPages: number
 }
+
+export interface DataResponse<T> {
+  _embedded: T
+  pages?: Pageable
+  links?: Link[]
+}
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface EntityInterface {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -46,4 +52,13 @@ export interface DataTransferObject {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface DataResponseObject {
 
+}
+
+export interface Column {
+  columnDef: string,
+  dep?: string,
+  header: string,
+  link?: string,
+  linkRef?: string,
+  primaryState?: string
 }

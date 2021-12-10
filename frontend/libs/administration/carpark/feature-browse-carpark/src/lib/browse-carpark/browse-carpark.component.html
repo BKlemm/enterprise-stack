@@ -1,5 +1,13 @@
 <adm-default-layout>
-  <ui-navtabs [title]="title" [tabs]="tabs">
-    <adm-carpark-table></adm-carpark-table>
+  <ui-navtabs [tabs]="tabs" [createLink]="'/carpark/create'" [title]="title">
+    <adm-ui-table
+      [displayedColumns]="displayedColumns"
+      [dataSource]="dataSource"
+      [activeSort]="activeSort"
+      [sortDirection]="sortDirection"
+      [totalSize]="totalSize"
+      [filterPlaceholder]="'Suche Carpark'"
+      [columns]="columns"
+    ></adm-ui-table>
   </ui-navtabs>
 </adm-default-layout>

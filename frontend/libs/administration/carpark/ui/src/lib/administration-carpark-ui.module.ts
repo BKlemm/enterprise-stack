@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarparkTableComponent } from './carpark-table/carpark-table.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
@@ -26,10 +25,9 @@ import {CarparkService, CarparksFacade} from "@frontend/administration/carpark/d
     ReactiveFormsModule,
   ],
   declarations: [
-    CarparkTableComponent,
     CarparkFormComponent,
   ],
-  exports: [CarparkTableComponent, CarparkFormComponent],
+  exports: [CarparkFormComponent],
   providers: [CarparksFacade, CarparkService]
 })
 export class AdministrationCarparkUiModule {}
