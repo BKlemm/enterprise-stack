@@ -4,9 +4,11 @@ import com.avondock.core.shared.gateway.contracts.Query;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
@@ -21,7 +23,7 @@ public class QueryEndpoint {
         this.queryGateway = queryGateway;
     }
 
-    protected <T> CompletableFuture<ResponseEntity<List<T>>> list(Query query, Class<T> readModel) {
+    protected <T> CompletableFuture<CollectionModel<List<T>>> list(Query query, Class<T> readModel) {
         return queryGateway
                 .query(query, ResponseTypes.multipleInstancesOf(readModel))
                 .thenApply(this::wrapResultList);
@@ -37,12 +39,18 @@ public class QueryEndpoint {
     }
 
     @NotNull
-    protected <T> ResponseEntity<List<T>> wrapResultList(List<T> result) {
-        return wrapResult(resultList -> Objects.isNull(resultList) || resultList.isEmpty(), result);
+    protected <T> CollectionModel<T> wrapResultList(T result) {
+        return CollectionModel.of(toList(result));
     }
 
     @NotNull
     protected <T> ResponseEntity<T> wrapResult(Predicate<T> assertResult, T result) {
         return assertResult.test(result) ? ResponseEntity.notFound().build() : ResponseEntity.ok(result);
+    }
+
+    private <T> List<T> toList(T result) {
+        List<T> list = new ArrayList<>();
+        list.add(result);
+        return list;
     }
 }
