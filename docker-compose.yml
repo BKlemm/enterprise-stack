@@ -30,9 +30,26 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+    container_name: elastic-ex
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./axon/data/elastic:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+
   nginx:
     image: nginx:latest
-    container_name: nginx
+    container_name: nginx-ex
     restart: unless-stopped
     ports:
       - "80:80"
@@ -46,7 +63,7 @@ services:
     profiles:
       - "cli-only"
     image: avondock:0.0.1-SNAPSHOT
-    container_name: avondock
+    container_name: avondock-ex
     depends_on:
       - db
     ports:
@@ -70,6 +87,19 @@ services:
       - ./axon/data/cassandra:/var/lib/cassandra
     networks:
       - docknet
+
+  qodana:
+    profiles:
+      - cli-only
+    container_name: qoda-ex
+    image: jetbrains/qodana-jvm
+    ports:
+      - "8088:8080"
+    volumes:
+      - ./:/data/project/
+      - ./axon/data/test-results/:/data/results/
+    command:
+      - --show-report
 
 volumes:
   axonserver-data:
