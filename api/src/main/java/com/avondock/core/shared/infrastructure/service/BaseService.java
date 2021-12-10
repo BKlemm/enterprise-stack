@@ -29,7 +29,7 @@ public abstract class BaseService<T> {
         Root<T>          entity = query.from(clazz);
 
         query.select(entity);
-        query.where(cb.like(entity.get(apql).as(String.class), "%"+searchTerm+"%"));
+        query.where(cb.like(entity.get(parseFilter(apql)).as(String.class), "%"+searchTerm+"%"));
 
         return entityManager.createQuery(query).getResultList();
     }
