@@ -3,15 +3,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
-
-interface Column {
-  columnDef: string,
-  dep?: string,
-  header: string,
-  condition?: string,
-  link?: string,
-  linkRef?: string
-}
+import {Column} from "@frontend/shared/core";
 
 @Component({
   selector: 'adm-ui-table',
@@ -28,12 +20,14 @@ export class TableComponent implements AfterViewInit {
   @Input() totalSize: number
   @Input() currentPage: number
   @Input() filterPlaceholder: string
+  @Input() enableSpinner: boolean = false
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
   clickedRows = new Set<any>();
+  filter: string = ''
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort

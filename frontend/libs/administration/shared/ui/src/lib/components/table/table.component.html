@@ -3,12 +3,20 @@
   <div class="row">
     <div class="col-4">
       <mat-form-field>
-        <input matInput placeholder="{{filterPlaceholder}}" #input>
+        <input matInput placeholder="{{filterPlaceholder}}" value="{{filter}}" #input>
       </mat-form-field>
     </div>
+    <div class="col-8 py-3">
+      <div class="btn-group">
+        <button class="btn btn-link disabled">Suchkriterien: </button>
+        <button class="btn btn-instagram btn-sm" (click)="filter = searchTerm + '='"  *ngFor="let searchTerm of displayedColumns">{{searchTerm}}</button>
+      </div>
+    </div>
   </div>
-  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-    <mat-spinner></mat-spinner>
+  <div *ngIf="enableSpinner">
+    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+      <mat-spinner></mat-spinner>
+    </div>
   </div>
 
   <table mat-table class="table align-items-center mb-0" [dataSource]="dataSource" matSort matSortActive="{{activeSort}}" matSortDirection="{{sortDirection}}" matSortDisableClear>

@@ -6,6 +6,11 @@ import {catchError, finalize} from "rxjs/operators";
 import {Carpark} from "../domain";
 import {AddCarpark, ChangeCarpark} from "./dtos";
 
+interface CarparkCollection {
+  carparks: Carpark[]
+
+}
+
 @Injectable()
 export class CarparksFacade implements DataSource<Carpark>{
 
@@ -37,10 +42,10 @@ export class CarparksFacade implements DataSource<Carpark>{
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe((carparks: any) => {
-        console.log(carparks._embedded.carparks)
-        this.carParkSubject.next(carparks._embedded.carparks)
-        this.counter = carparks._embedded.length
+      .subscribe((carparks: CarparkCollection) => {
+        console.log(carparks.carparks)
+        this.carParkSubject.next(carparks.carparks)
+        this.counter = carparks.carparks.length
       })
   }
 

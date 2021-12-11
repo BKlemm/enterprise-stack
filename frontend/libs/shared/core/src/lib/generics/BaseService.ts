@@ -17,14 +17,14 @@ export class BaseService implements ServiceInterface {
     }
 
     listBy<T>(sortOrder: string = 'asc', activeSort: string = '', filter: string = '', pageNumber: number = 0, pageSize: number = 10, subroute: string = '') {
-      return this.http.get<Responses & T>(this.endpoint(subroute),{
+      return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(subroute),{
         params: new HttpParams()
           .set('filter', filter)
           .set('sort', sortOrder)
           .set('sortValue', activeSort)
           .set('page', pageNumber.toString())
           .set('size', pageSize.toString())
-      })
+      }))
     }
 
     list<T>(expand: string = "", options: unknown = {}): Observable<T> {
@@ -49,8 +49,8 @@ export class BaseService implements ServiceInterface {
         return this.http.put<Responses & T>(this.endpoint(id), data, options);
     }
 
-    delete(id: string, options: unknown = {}): Observable<Responses> {
-        return this.http.delete<Responses>(this.endpoint(id), options);
+    delete<T>(id: string, options: unknown = {}): Observable<T> {
+        return this.http.delete<Responses & T>(this.endpoint(id), options);
     }
 
     private endpoint(id: string = '') {
