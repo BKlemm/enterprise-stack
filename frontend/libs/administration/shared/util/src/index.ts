@@ -6,3 +6,6 @@ export const MENU_ROUTES = {
   CARPARK: 'carpark'
 };
 
+export const buildRoute = route => '/' + route
+export const t = $localize => $localize
+
