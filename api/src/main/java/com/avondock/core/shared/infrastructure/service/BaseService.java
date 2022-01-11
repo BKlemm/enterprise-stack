@@ -18,6 +18,8 @@ public abstract class BaseService<T> {
 
     private String searchTerm;
 
+    protected static final String FILTER_ALL = "all";
+
 
     public BaseService() {
         this.client = new WebClientAdapter();
@@ -35,7 +37,7 @@ public abstract class BaseService<T> {
     }
 
     /**
-     * customer:lastName=Klemm
+     * customer.lastName=Klemm
      *
      * @param apql
      */
