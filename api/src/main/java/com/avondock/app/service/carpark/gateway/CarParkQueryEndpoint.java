@@ -5,7 +5,6 @@ import com.avondock.app.service.carpark.cqrs.coreapi.ListCarParks;
 import com.avondock.core.shared.gateway.QueryEndpoint;
 import com.avondock.app.service.carpark.cqrs.coreapi.GetCarPark;
 import com.avondock.app.service.carpark.cqrs.query.response.CarParkResponse;
-import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.axonframework.queryhandling.QueryGateway;
@@ -31,7 +30,6 @@ public class CarParkQueryEndpoint extends QueryEndpoint {
         super(queryGateway);
     }
 
-
     @GetMapping
     @ApiOperation("Returns sorted,filtered and pagable list of carparks in the system")
     public CompletableFuture<CollectionModel<List<CarParkResponse>>> listCarParks(
@@ -46,7 +44,7 @@ public class CarParkQueryEndpoint extends QueryEndpoint {
 
     @GetMapping("/{id}")
     @ApiOperation("Return one carpark")
-    public CompletableFuture<ResponseEntity<CarParkView>> getCarPark(@PathVariable String id) throws ExecutionException, InterruptedException {
-        return get(new GetCarPark(id), CarParkView.class);
+    public CompletableFuture<ResponseEntity<CarParkResponse>> getCarPark(@PathVariable String id) throws ExecutionException, InterruptedException {
+        return get(new GetCarPark(id), CarParkResponse.class);
     }
 }
