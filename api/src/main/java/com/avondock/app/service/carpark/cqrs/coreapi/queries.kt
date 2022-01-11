@@ -4,7 +4,6 @@ import com.avondock.core.shared.gateway.contracts.Query
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView
 import lombok.Value
 import org.springframework.hateoas.RepresentationModel
-import java.util.*
 
 abstract class CarParkResultQuery:RepresentationModel<ListCarParksResult>()
 

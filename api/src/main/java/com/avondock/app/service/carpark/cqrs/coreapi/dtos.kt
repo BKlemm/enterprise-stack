@@ -1,5 +1,6 @@
 package com.avondock.app.service.carpark.cqrs.coreapi
 
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus
 import com.avondock.core.common.util.PatternUtil
 import com.avondock.core.common.util.validation.EnumNamePattern
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -29,9 +30,9 @@ abstract class AbstractCarParkDTO(
     @JsonProperty("tax", required = true)
     @field:Digits(fraction = 0, integer = 2)
     open val tax: BigDecimal,
-    @JsonProperty("state", required = true)
+    @JsonProperty("carParkStatus", required = true)
     @field:EnumNamePattern(regexp = "ACTIVE|INACTIVE|FULL")
-    open val state: CarParkStatus
+    open val carParkStatus: CarParkStatus
 ): RepresentationModel<AbstractCarParkDTO>()
 
 
@@ -43,8 +44,8 @@ data class AddCarParkDTO(
     override val supportEmail: String,
     override val supportPhone: String,
     override val tax: BigDecimal,
-    override val state: CarParkStatus
-): AbstractCarParkDTO(iataCode, name, description, address, supportEmail, supportPhone, tax, state)
+    override val carParkStatus: CarParkStatus,
+): AbstractCarParkDTO(iataCode, name, description, address, supportEmail, supportPhone, tax, carParkStatus)
 
 class ChangeCarParkDTO(
     @field:Pattern(regexp = PatternUtil.UUID, message = "UUID Format error")
@@ -57,8 +58,8 @@ class ChangeCarParkDTO(
     override val supportEmail: String,
     override val supportPhone: String,
     override val tax: BigDecimal,
-    override val state: CarParkStatus
-): AbstractCarParkDTO(iataCode, name, description, address, supportEmail, supportPhone, tax, state)
+    override val carParkStatus: CarParkStatus
+): AbstractCarParkDTO(iataCode, name, description, address, supportEmail, supportPhone, tax, carParkStatus)
 
 
 class CarParkAddressDTO (

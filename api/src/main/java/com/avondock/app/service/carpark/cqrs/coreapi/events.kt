@@ -1,5 +1,8 @@
 package com.avondock.app.service.carpark.cqrs.coreapi
 
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkAddress
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkId
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus
 import org.axonframework.serialization.Revision
 import java.math.BigDecimal
 
