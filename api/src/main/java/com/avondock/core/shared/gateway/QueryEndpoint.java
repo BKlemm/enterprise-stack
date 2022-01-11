@@ -29,6 +29,11 @@ public class QueryEndpoint {
                 .thenApply(this::wrapResultList);
     }
 
+    @NotNull
+    protected <T> CollectionModel<T> wrapResultList(T result) {
+        return CollectionModel.of(toList(result));
+    }
+
     protected <T> CompletableFuture<ResponseEntity<T>> get(Query query, Class<T> readModel) throws ExecutionException, InterruptedException {
         return queryGateway.query(query, ResponseTypes.instanceOf(readModel)).thenApply(this::wrapResult);
     }
@@ -39,16 +44,11 @@ public class QueryEndpoint {
     }
 
     @NotNull
-    protected <T> CollectionModel<T> wrapResultList(T result) {
-        return CollectionModel.of(toList(result));
-    }
-
-    @NotNull
     protected <T> ResponseEntity<T> wrapResult(Predicate<T> assertResult, T result) {
         return assertResult.test(result) ? ResponseEntity.notFound().build() : ResponseEntity.ok(result);
     }
 
-    private <T> List<T> toList(T result) {
+    protected <T> List<T> toList(T result) {
         List<T> list = new ArrayList<>();
         list.add(result);
         return list;
