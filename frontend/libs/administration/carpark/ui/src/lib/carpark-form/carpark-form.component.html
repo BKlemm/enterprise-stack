@@ -1,79 +1,71 @@
-<form #carparkForm="ngForm">
-  <h5>Konfiguration:</h5>
-  <hr>
-  <div class="row">
-    <div class="col-md-9 mb-3">
-      <div class="form-check form-switch">
-        <input class="form-check-input" [(ngModel)]="carpark.state" (change)="onChange()" [checked]="carpark.state === 'ACTIVE'" name="state" type="checkbox" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault" i18n>Parkplatz als aktiv setzen</label>
-      </div>
-    </div>
-    <div class="col-md-3 align-items-end mb-3">
-      <div class="row">
-        <div class="col-3">
-          <label class="form-label mt-2">Mwst.</label>
-        </div>
-        <div class="col">
-          <input class="form-control" id="tax" [(ngModel)]="carpark.tax" placeholder="MwSt. 19.00" type="number" name="tax" required/>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 mb-3">
 
+<h5>Konfiguration:</h5>
+<hr>
+<div class="row">
+  <div class="col-md-9 mb-3">
+    <div class="form-check form-switch">
+      <input class="form-check-input" [(ngModel)]="carpark.carParkStatus" (change)="onChange()" [checked]="carpark.carParkStatus === 'ACTIVE'" name="carParkStatus" type="checkbox" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault" i18n>Parkplatz als aktiv setzen</label>
     </div>
   </div>
-  <h5>Parkplatzdaten:</h5>
-  <hr>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="form-floating mb-3">
-        <input class="form-control" id="name" [(ngModel)]="carpark.name" placeholder="name@example.de" type="text" name="name" #name="ngModel" required/>
-        <label for="name" i18n>Parkplatz Name<span class="text-danger">*</span></label>
-        <div *ngIf="name.invalid && (name.dirty || name.touched)">
-          <small class="text-danger px-3" i18n>Name is required</small>
-        </div>
+  <div class="col-md-3 align-items-end mb-3">
+    <div class="row">
+      <div class="col-3">
+        <label class="form-label mt-2">Mwst.</label>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-floating mb-3">
-        <input class="form-control" id="iata" [(ngModel)]="carpark.iataCode" placeholder="PAD" type="text" name="iata" required/>
-        <label for="iata" i18n>IATA Code<span class="text-danger">*</span></label>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-floating mb-3">
-        <input class="form-control" id="phone" [(ngModel)]="carpark.supportPhone" placeholder="PAD" type="text" name="phone" required/>
-        <label for="phone" i18n>Support Telefon<span class="text-danger">*</span></label>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-floating mb-3">
-        <input class="form-control" id="email" [(ngModel)]="carpark.supportEmail" placeholder="PAD" type="text" name="email" required/>
-        <label for="email" i18n>Support Email<span class="text-danger">*</span></label>
+      <div class="col">
+        <input class="form-control" id="tax" [(ngModel)]="carpark.tax" placeholder="MwSt. 19.00" type="number" name="tax" required/>
       </div>
     </div>
   </div>
-  <div class="form-floating mb-3">
-      <textarea class="form-control" rows="5" id="description" [(ngModel)]="carpark.description" name="description"></textarea>
-      <label for="description" i18n>Parkplatz Beschreibung</label>
+</div>
+<h5>Parkplatzdaten:</h5>
+<hr>
+<div class="row">
+  <div class="col-md-8">
+    <div class="form-floating mb-3">
+      <input class="form-control" id="name" [(ngModel)]="carpark.name" placeholder="name@example.de" type="text" name="name" required/>
+      <label for="name" i18n>Parkplatz Name<span class="text-danger">*</span></label>
+    </div>
   </div>
+  <div class="col-md-4">
+    <div class="form-floating mb-3">
+      <input class="form-control" id="iata" [(ngModel)]="carpark.iataCode" placeholder="PAD" type="text" name="iata" required/>
+      <label for="iata" i18n>IATA Code<span class="text-danger">*</span></label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-floating mb-3">
+      <input class="form-control" id="phone" [(ngModel)]="carpark.supportPhone" placeholder="PAD" type="text" name="phone" required/>
+      <label for="phone" i18n>Support Telefon<span class="text-danger">*</span></label>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-floating mb-3">
+      <input class="form-control" id="email" [(ngModel)]="carpark.supportEmail" placeholder="PAD" type="text" name="email" required/>
+      <label for="email" i18n>Support Email<span class="text-danger">*</span></label>
+    </div>
+  </div>
+</div>
+<div class="form-floating mb-3">
+  <textarea class="form-control" rows="5" id="description" [(ngModel)]="carpark.description" name="description"></textarea>
+  <label for="description" i18n>Parkplatz Beschreibung</label>
+</div>
 
-  <h5>Anschrift:</h5>
-  <hr>
-  <ui-address-form [address]="carpark.address"></ui-address-form>
+<h5>Anschrift:</h5>
+<hr>
+<ui-address-form [address]="carpark.address"></ui-address-form>
 
-  <div class="row">
-    <div class="col-md-6 mb-3">
-      <input type="text" class="form-control" [(ngModel)]="carpark.address.latitude" id="latitude" i18n-placeholder placeholder="Latitude" name="latitude" required>
-    </div>
-    <div class="col-md-6 mb-3">
-      <input type="text" class="form-control" [(ngModel)]="carpark.address.longitude" id="longitude" i18n-placeholder placeholder="Longitude" name="longitude" required>
-    </div>
+<div class="row">
+  <div class="col-md-6 mb-3">
+    <input type="text" class="form-control" [(ngModel)]="carpark.address.latitude" id="latitude" i18n-placeholder placeholder="Latitude" name="latitude" required>
   </div>
+  <div class="col-md-6 mb-3">
+    <input type="text" class="form-control" [(ngModel)]="carpark.address.longitude" id="longitude" i18n-placeholder placeholder="Longitude" name="longitude" required>
+  </div>
+</div>
 
-  <button class="btn {{buttonColor}}" [disabled]="carparkForm.form.invalid" (click)="onSubmit()" type="button" name="{{buttonName}}">{{buttonLabel}}</button>
-</form>
+<button class="btn {{buttonColor}}" (click)="onSubmit()" type="button" name="{{buttonName}}">{{buttonLabel}}</button>
+

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Carpark} from "@frontend/administration/carpark/data-access";
+import {CarParkInterface} from "@frontend/administration/carpark/data-access";
 import {BaseFormComponent} from "@frontend/shared/core";
 
 @Component({
@@ -9,11 +9,11 @@ import {BaseFormComponent} from "@frontend/shared/core";
 })
 export class CarparkFormComponent extends BaseFormComponent {
 
-  @Input() carpark: Carpark
+  @Input() carpark: CarParkInterface
 
   constructor() { super() }
 
   onChange() {
-    this.carpark.state = this.carpark.state === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
+    this.carpark.carParkStatus = this.carpark.carParkStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'
   }
 }
