@@ -3,6 +3,7 @@ package com.avondock.app.service.carpark.gateway;
 
 import com.avondock.app.service.carpark.cqrs.command.factory.CarParkCommandFactory;
 import com.avondock.app.service.carpark.cqrs.coreapi.*;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkId;
 import com.avondock.core.shared.gateway.CommandEndpoint;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
