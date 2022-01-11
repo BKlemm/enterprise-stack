@@ -1,15 +1,18 @@
 <div class="mat-elevation-z1">
 
-  <div class="row">
+  <div class="row p-2">
     <div class="col-4">
-      <mat-form-field>
-        <input matInput placeholder="{{filterPlaceholder}}" value="{{filter}}" #input>
-      </mat-form-field>
+      <div class="input-group">
+        <span class="input-group-text text-body">
+          <i aria-hidden="true" class="fas fa-search"></i>
+        </span>
+        <input type="text" placeholder="{{filterPlaceholder}}" class="form-control" value="{{filter}}" #input>
+      </div>
     </div>
     <div class="col-8 py-3">
-      <div class="btn-group">
+      <div class="btn-group btn-group-sm flex-wrap">
         <button class="btn btn-link disabled">Suchkriterien: </button>
-        <button class="btn btn-instagram btn-sm" (click)="filter = searchTerm + '='"  *ngFor="let searchTerm of displayedColumns">{{searchTerm}}</button>
+        <button class="btn btn-instagram" (click)="filter = searchTerm + '='"  *ngFor="let searchTerm of displayedColumns">{{searchTerm}}</button>
       </div>
     </div>
   </div>
@@ -30,13 +33,16 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header="{{column.columnDef}}"> {{column.header}} </th>
       </ng-template>
       <td mat-cell class="ps-4 text-xs font-weight-bold" *matCellDef="let row">
-        <a routerLink="{{column.link}}/{{row[column.linkRef]}}">
-          <span *ngIf="column.dep;else nrow">{{row[column.dep][column.columnDef]}} <span *ngIf="column.columnDef === 'amount'" class="text-success">€</span></span>
-          <ng-template #nrow>
-            <span *ngIf="column.columnDef.includes('Status');else mrow" [ngClass]="row[column.columnDef] === column.primaryState ? 'bg-gradient-success' : 'bg-gradient-danger' " class="badge badge-sm"> {{row[column.columnDef]}}</span>
-            <ng-template #mrow>{{row[column.columnDef]}}</ng-template>
-          </ng-template>
-        </a>
+        <a *ngIf="column.columnDef === 'phone';else alink" href="tel:{{row[column.columnDef]}}">{{row[column.columnDef]}} <i class="fa fa-phone"></i></a>
+        <ng-template #alink>
+          <a routerLink="{{column.link}}/{{row[column.linkRef]}}">
+            <span *ngIf="column.dep;else nrow">{{row[column.dep][column.columnDef]}} <span *ngIf="column.columnDef === 'amount'" class="text-success">€</span></span>
+            <ng-template #nrow>
+              <span *ngIf="column.columnDef.includes('Status');else mrow" [ngClass]="row[column.columnDef] === column.primaryState ? 'bg-gradient-success' : 'bg-gradient-danger' " class="badge badge-sm"> {{row[column.columnDef]}}</span>
+              <ng-template #mrow>{{row[column.columnDef]}}</ng-template>
+            </ng-template>
+          </a>
+        </ng-template>
       </td>
     </ng-container>
 
