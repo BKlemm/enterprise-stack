@@ -4,6 +4,8 @@ import * as moment from "moment";
 import {DataTransferObject} from "../types";
 import {Route} from "../decorators";
 import {BaseService} from "../generics";
+import decode from "jwt-decode";
+import {map} from "rxjs/operators";
 
 interface Credentials extends DataTransferObject{
   email: string,
@@ -20,16 +22,17 @@ export class AuthService extends BaseService {
     super(http)
   }
 
-  login(email: string, password: string) {
-    return this.create({email, password})
-      .subscribe(res => AuthService.setSession)
+  private static setSession(authResult) {
+    const token = decode(authResult.body.token)
+    const expiresAt = moment().add(token['exp']);
+
+    localStorage.setItem('id_token', authResult.body.token);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
   }
 
-  private static setSession(authResult) {
-    const expiresAt = moment().add(authResult.expiresIn);
-
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+  login(userName: string, password: string) {
+    return this.create({userName, password})
+      .pipe(map(res => AuthService.setSession(res)))
   }
 
   logout() {

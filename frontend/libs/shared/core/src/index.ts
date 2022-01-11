@@ -8,3 +8,4 @@ export * from './lib/data'
 export * from './lib/plugins'
 
 export * from './lib/services'
+export * from './lib/base'
