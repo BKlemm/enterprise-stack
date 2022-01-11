@@ -1,9 +1,9 @@
 <adm-default-layout>
-  <ui-navtabs [title]="title" [createLink]="false" [tabs]="tabs">
+  <ui-navtabs [navData]="navigation.carpark" [tabs]="tabs" [title]="title">
     <form>
       <div class="row">
         <div class="col-md-8">
-          <adm-carpark-form (submit)="create()" [carpark]="carpark" [buttonLabel]="'Standort anlegen'"></adm-carpark-form>
+          <adm-carpark-form (submit)="create()" [carpark]="carpark" [buttonLabel]="title"></adm-carpark-form>
         </div>
         <div class="col-md-4">
 

@@ -7,7 +7,7 @@ import { CreateCarparkComponent } from './create-carpark/create-carpark.componen
 import { EditCarparkComponent } from './edit-carpark/edit-carpark.component';
 import {AdministrationSharedUiModule} from "@frontend/administration/shared/ui";
 import {SharedUiModule} from "@frontend/shared/ui";
-import {CarparkService, CarparksFacade} from "@frontend/administration/carpark/data-access";
+import {CarparkConfiguration, CarparkService, CarparksFacade} from "@frontend/administration/carpark/data-access";
 import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
@@ -30,6 +30,6 @@ const routes: Routes = [
     CreateCarparkComponent,
     EditCarparkComponent
   ],
-  providers: [CarparksFacade, CarparkService]
+  providers: [CarparksFacade, CarparkService, CarparkConfiguration]
 })
 export class ADMFeatureBrowseCarparkModule {}

@@ -1,6 +1,11 @@
-import {Component,OnInit} from '@angular/core';
-import {TABMENU} from "../tab.menu";
-import {Carpark, CarparksFacade, ChangeCarpark} from "@frontend/administration/carpark/data-access";
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {
+  Carpark,
+  CarparksFacade,
+  ChangeCarpark,
+  CarparkConfiguration,
+  CarParkResponse, CarparkService
+} from "@frontend/administration/carpark/data-access";
 import {ActivatedRoute} from "@angular/router";
 import {BaseComponent, ObjectMapper} from "@frontend/shared/core";
 import {ToastComponent} from "../../../../../../shared/ui/src/lib/material/toast.component";
@@ -13,34 +18,33 @@ import {ToastComponent} from "../../../../../../shared/ui/src/lib/material/toast
 })
 export class EditCarparkComponent extends BaseComponent implements OnInit {
 
-  tabs = TABMENU
-  //TODO: localize
-  title = 'Parkplatz bearbeiten'
-
-  carpark: Carpark
+  carpark: CarParkResponse
   routedId: string
 
   constructor(
     private carParkFacade: CarparksFacade,
+    private carParkService: CarparkService,
     private route: ActivatedRoute,
-    private toast: ToastComponent
-  ) {super()}
+    private toast: ToastComponent,
+    configuration: CarparkConfiguration
+  ) {
+    super(configuration)
+  }
 
   ngOnInit(): void {
     // GET allready loaded carpark from the subject observable
     const id = this.route.snapshot.paramMap.get('id')
-    this.carParkFacade.carparks$.forEach((carparks: Carpark[]) => {
-      carparks.forEach((carpark:Carpark) => {
-        if (carpark.carParkId === id) {
-          this.carpark = carpark
-        }
+    this.carParkFacade.carparks$.forEach((carparks: CarParkResponse[]) => {
+      carparks.filter((carpark:CarParkResponse) => {
+        carpark.carParkId === id ? this.carpark = carpark : null
       })
     })
     //Browser page reload
     if (!this.carpark) {
-      this.carParkFacade.loadById(id)
+      this.carParkService.get(id).subscribe((carpark: CarParkResponse) => {
+        this.carpark = carpark
+      })
     }
-
   }
 
   submit() {
@@ -48,6 +52,10 @@ export class EditCarparkComponent extends BaseComponent implements OnInit {
     this.carParkFacade.changeCarpark(dto).subscribe((carpark:Carpark) => {
       this.toast.show("Carpark bearbeitet")
     })
+  }
+
+  get title() {
+    return this.navigation.carpark.edit.title
   }
 
 }
