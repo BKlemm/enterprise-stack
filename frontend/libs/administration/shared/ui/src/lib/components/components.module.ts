@@ -13,6 +13,10 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatInputModule} from "@angular/material/input";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MessageSidebarComponent} from "./message-sidebar/message-sidebar.component";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 
@@ -22,6 +26,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     NavHeaderLoginComponent,
     SidebarMenuComponent,
     SidebarLeftComponent,
+    MessageSidebarComponent,
     FooterComponent,
     TableComponent,
   ],
@@ -33,15 +38,20 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatSortModule,
     MatProgressSpinnerModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatAutocompleteModule,
+    FormsModule,
+    NgSelectModule,
+    ReactiveFormsModule
   ],
   exports: [
     NavHeaderComponent,
     NavHeaderLoginComponent,
     SidebarMenuComponent,
+    MessageSidebarComponent,
     SidebarLeftComponent,
     FooterComponent,
-    TableComponent
+    TableComponent,
   ]
 })
 export class ComponentsModule { }
