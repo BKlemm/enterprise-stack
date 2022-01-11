@@ -7,85 +7,97 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BaseService implements ServiceInterface {
 
-    protected version!: string;
-    protected resource!: string;
-    protected subresource!: string;
-    private defaultError;
+  protected version!: string
+  protected resource!: string
+  protected gateway!: string
+  protected subresource!: string
+  private defaultError
 
-    constructor(protected http: HttpClient) {
-        this.defaultError = 'Some Error occcured, Please contact Administrator for the Errors';
-    }
+  constructor(protected http: HttpClient) {
+    this.defaultError = 'Some Error occcured, Please contact Administrator for the Errors';
+  }
 
-    listBy<T>(sortOrder: string = 'asc', activeSort: string = '', filter: string = '', pageNumber: number = 0, pageSize: number = 10, subroute: string = '') {
-      return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(subroute),{
-        params: new HttpParams()
-          .set('filter', filter)
-          .set('sort', sortOrder)
-          .set('sortValue', activeSort)
-          .set('page', pageNumber.toString())
-          .set('size', pageSize.toString())
-      }))
-    }
+  listBy<T>(sortOrder: string = 'asc', filter: string = '', pageNumber: number = 0, pageSize: number = 10, subroute: string = '') {
+    return this.http.get<Responses & T>(this.endpoint(subroute),{
+      params: new HttpParams()
+        .set('filter', filter)
+        .set('sort', sortOrder)
+        .set('page', pageNumber.toString())
+        .set('size', pageSize.toString())
+    })
+  }
 
-    list<T>(expand: string = "", options: unknown = {}): Observable<T> {
-        return this.http.get<Responses & T>(this.endpoint(expand), options);
-    }
+  listByPageable<T>(sortOrder: string = 'asc', activeSort: string = '', filter: string = '', pageNumber: number = 0, pageSize: number = 10, subroute: string = '') {
+    return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(subroute),{
+      params: new HttpParams()
+        .set('filter', filter)
+        .set('sort', sortOrder)
+        .set('sortValue', activeSort)
+        .set('page', pageNumber.toString())
+        .set('size', pageSize.toString())
+    }))
+  }
 
-    get<T>(id: string, options: unknown = {}): Observable<T> {
-        return this.http.get<Responses & T>(this.endpoint(id), options);
-    }
+  list<T>(expand: string = "", options: unknown = {}): Observable<T> {
+    return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(expand), options));
+  }
 
-    create<T>(data: DataTransferObject, options: unknown = {}): Observable<T> {
-        Object.assign(options, {observe: 'response'})
-        return this.http.post<Responses & T>(this.endpoint(), data, options)
-    }
+  get<T>(id: string, options: unknown = {}): Observable<T> {
+    return this.http.get<Responses & T>(this.endpoint(id), options);
+  }
 
-    createSingle<T>(data: DataTransferObject, options: unknown = {}): Observable<T> {
-        return this.http.post<Responses & T>(this.endpoint(), data, options)
-    }
+  create<T>(data: DataTransferObject, options: unknown = {}): Observable<T> {
+    Object.assign(options, {observe: 'response'})
+    return this.http.post<Responses & T>(this.endpoint(), data, options)
+  }
 
-    update<T>(id: string, data: DataTransferObject, options: unknown = {}): Observable<T> {
-        Object.assign(options, {observe: 'response'})
-        return this.http.put<Responses & T>(this.endpoint(id), data, options);
-    }
+  createSingle<T>(data: DataTransferObject, options: unknown = {}): Observable<T> {
+    return this.http.post<Responses & T>(this.endpoint(), data, options)
+  }
 
-    delete<T>(id: string, options: unknown = {}): Observable<T> {
-        return this.http.delete<Responses & T>(this.endpoint(id), options);
-    }
+  update<T>(id: string, data: DataTransferObject, options: unknown = {}): Observable<T> {
+    Object.assign(options, {observe: 'response'})
+    return this.http.put<Responses & T>(this.endpoint(id), data, options);
+  }
 
-    private endpoint(id: string = '') {
-        const idPath = id === '' ? '' : '/' + id;
-        const _resource = this.resource.replace("{id}", id)
-        return environment.endpoint + this.version + '/' + _resource + ( !this.resource.includes("{id}") ? idPath : '')
-    }
+  delete(id: string, options: unknown = {}): Observable<Responses> {
+    return this.http.delete<Responses>(this.endpoint(id), options);
+  }
 
-    private handleHateoas<T>(response: any): Observable<T> {
-      return new Observable((observer: Observer) => {
-        response.subscribe((response: any) => {
-          if (response.errors && response.errors.length > 0) {
-            observer.error(response.errors);
-          } else {
-            observer.next(response._embedded);
-          }
-          observer.complete();
-        }, (error: any) => {
-          observer.error([{ title: error.name, detail: this.defaultError, error }]);
-        });
+  private endpoint(id: string = '') {
+    const idPath = id !== '' ? '/' + id : '';
+    const _resource = this.resource.replace("{id}", id)
+    return environment.endpoint + this.gateway + '/' + this.version + '/' + _resource + ( !this.resource.includes("{id}") ? idPath : '')
+  }
+
+  private handleHateoas<T>(response: any): Observable<T> {
+    return new Observable((observer: Observer) => {
+      response.subscribe((response: any) => {
+        if (response.errors && response.errors.length > 0) {
+          observer.error(response.errors);
+        } else {
+          observer.next(response._embedded);
+        }
+        observer.complete();
+      }, (error: any) => {
+        observer.error([{ title: error.name, detail: this.defaultError, error }]);
       });
-    }
+    });
+  }
 
-    private handleResponse<T>(response: any): Observable<T> {
-        return new Observable((observer: Observer) => {
-            response.subscribe((response: any) => {
-                if (response.errors && response.errors.length > 0) {
-                    observer.error(response.errors);
-                } else {
-                    observer.next(response.success);
-                }
-                observer.complete();
-            }, (error: any) => {
-              observer.error([{ title: error.name, detail: this.defaultError, error }]);
-            });
-        });
-    }
+
+  private handleResponse<T>(response: any): Observable<T> {
+    return new Observable((observer: Observer) => {
+      response.subscribe((response: any) => {
+        if (response.errors && response.errors.length > 0) {
+          observer.error(response.errors);
+        } else {
+          observer.next(response.success);
+        }
+        observer.complete();
+      }, (error: any) => {
+        observer.error([{ title: error.name, detail: this.defaultError, error }]);
+      });
+    });
+  }
 }
