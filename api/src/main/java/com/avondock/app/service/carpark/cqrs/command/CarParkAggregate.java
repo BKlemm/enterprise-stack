@@ -1,6 +1,9 @@
 package com.avondock.app.service.carpark.cqrs.command;
 
 import com.avondock.app.service.carpark.cqrs.coreapi.*;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkAddress;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkId;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
@@ -33,7 +36,7 @@ public class CarParkAggregate {
     String supportPhone;
 
     CarParkAddress address;
-    CarParkStatus state;
+    CarParkStatus  state;
 
     BigDecimal tax;
 

@@ -1,7 +1,7 @@
 package com.avondock.app.service.carpark.cqrs.query.response;
 
-import com.avondock.app.service.carpark.cqrs.coreapi.CarParkAddress;
-import com.avondock.app.service.carpark.cqrs.coreapi.CarParkStatus;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkAddress;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

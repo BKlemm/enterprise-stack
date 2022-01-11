@@ -1,8 +1,8 @@
 package com.avondock.app.service.carpark.cqrs.query.model;
 
-import com.avondock.app.service.carpark.cqrs.coreapi.CarParkAddress;
-import com.avondock.app.service.carpark.cqrs.coreapi.CarParkId;
-import com.avondock.app.service.carpark.cqrs.coreapi.CarParkStatus;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkAddress;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkId;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.envers.Audited;

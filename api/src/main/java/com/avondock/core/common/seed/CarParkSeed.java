@@ -1,9 +1,9 @@
 package com.avondock.core.common.seed;
 
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkAddress;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkId;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus;
 import com.github.javafaker.Faker;
-import com.avondock.app.service.carpark.cqrs.coreapi.CarParkAddress;
-import com.avondock.app.service.carpark.cqrs.coreapi.CarParkId;
-import com.avondock.app.service.carpark.cqrs.coreapi.CarParkStatus;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.cqrs.query.repository.CarParkViewRepository;
 import lombok.extern.slf4j.Slf4j;

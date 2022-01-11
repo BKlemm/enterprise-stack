@@ -2,6 +2,7 @@ package com.avondock.app.service.carpark.cqrs.query;
 
 
 import com.avondock.app.service.carpark.cqrs.coreapi.*;
+import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkAddress;
 import com.avondock.app.service.carpark.infrastucture.assembler.CarParkAssembler;
 import com.avondock.app.service.carpark.cqrs.query.response.CarParkResponse;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
@@ -16,8 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Slf4j
 @Service
@@ -62,7 +61,7 @@ public class CarParkProjection {
                 e.getState()
         );
 
-        carParkService.addCarPark(carpark);
+        carParkService.addCarpark(carpark);
     }
 
     @EventHandler
@@ -79,7 +78,7 @@ public class CarParkProjection {
         carpark.setTax(e.getTax());
         carpark.setCarParkStatus(e.getState());
 
-        carParkService.addCarPark(carpark);
+        carParkService.addCarpark(carpark);
 
     }
 
@@ -91,7 +90,7 @@ public class CarParkProjection {
     }
 
     @QueryHandler
-    public CarParkView handle(GetCarPark query) {
-        return carParkService.carparkById(query.getId());
+    public CarParkResponse handle(GetCarPark query) {
+        return assembler.toModel(carParkService.carparkById(query.getId()));
     }
 }
