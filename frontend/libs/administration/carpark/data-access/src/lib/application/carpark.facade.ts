@@ -2,30 +2,25 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 import {CarparkService} from "../infrastructure";
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
-import {catchError, finalize} from "rxjs/operators";
+import {catchError, finalize, map} from "rxjs/operators";
 import {Carpark} from "../domain";
-import {AddCarpark, ChangeCarpark} from "./dtos";
+import {AddCarpark, CarParkResponse, ChangeCarpark} from "../api";
+import {BaseFacade} from "@frontend/shared/core";
 
 interface CarparkCollection {
-  carparks: Carpark[]
-
+  carparks: CarParkResponse[]
 }
 
 @Injectable()
-export class CarparksFacade implements DataSource<Carpark>{
+export class CarparksFacade extends BaseFacade implements DataSource<CarParkResponse>{
 
-  private carParkSubject = new BehaviorSubject<Carpark[]>([])
-  private loadingSubject = new BehaviorSubject<boolean>(false)
-  private counterSubject = new BehaviorSubject<number>(0)
+  private carParkSubject = new BehaviorSubject<CarParkResponse[]>([])
 
   public readonly carparks$ = this.carParkSubject.asObservable()
-  public readonly loading$ = this.loadingSubject.asObservable()
-  public readonly counter$ = this.counterSubject.asObservable()
-  public counter = 0;
 
-  constructor(private carParkService: CarparkService) {}
+  constructor(private carParkService: CarparkService) {super()}
 
-  connect(collectionViewer: CollectionViewer): Observable<Carpark[]> {
+  connect(collectionViewer: CollectionViewer): Observable<CarParkResponse[]> {
     return this.carParkSubject.asObservable()
   }
 
@@ -37,26 +32,32 @@ export class CarparksFacade implements DataSource<Carpark>{
 
   load(activeSort: string = '', sortDirection: string = 'asc', filter: string = '', pageIndex: number = 0, pageSize: number = 10) {
     this.loadingSubject.next(true);
-    this.carParkService.listBy(sortDirection, activeSort, filter, pageIndex, pageSize)
+    this.carParkService.listByPageable(sortDirection, activeSort, filter, pageIndex, pageSize)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((carparks: CarparkCollection) => {
-        console.log(carparks.carparks)
         this.carParkSubject.next(carparks.carparks)
         this.counter = carparks.carparks.length
       })
   }
 
   loadById(id: string) {
-    this.carParkService.get(id).subscribe((carpark:Carpark) => {
-      this.carParkSubject.next([carpark])
+    let response
+    this.carParkService.get(id).subscribe((carpark:CarParkResponse) => {
+      console.log(carpark)
+      response = carpark
     })
+    console.log(response)
+    return response
   }
 
   loadActiveCarparks() {
-    return this.carParkService.list()
+    this.carParkService.list().subscribe((carparks:CarparkCollection) => {
+      this.carParkSubject.next(carparks.carparks)
+      this.counter = carparks.carparks.length
+    })
   }
 
   addCarpark(carpark: AddCarpark): Observable<Carpark> {
@@ -65,6 +66,22 @@ export class CarparksFacade implements DataSource<Carpark>{
 
   changeCarpark(carpark: ChangeCarpark): Observable<Carpark> {
     return this.carParkService.update(carpark.carParkId, carpark)
+  }
+
+  filteredCarpark(name: string) {
+    this.carparks$
+      .pipe(map(carparks => carparks.filter((carpark: CarParkResponse) => carpark.name.includes(name))))
+      .subscribe()
+  }
+
+  getRoutedCarpark(id: string): CarParkResponse {
+    let response: CarParkResponse
+    this.carparks$
+      .pipe(map(carparks => carparks.filter((carpark: CarParkResponse) => carpark.carParkId === id)))
+      .subscribe(carpark => {
+        response = carpark.pop()
+      })
+    return response
   }
 }
 

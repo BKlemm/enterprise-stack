@@ -20,4 +20,7 @@ export enum CarParkStatus {
   ACTIVE = "ACTIVE",
 }
 
-
+export interface CarparkListResponse {
+  content: Carpark[],
+  totalElements: number
+}
