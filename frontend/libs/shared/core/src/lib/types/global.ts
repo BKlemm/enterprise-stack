@@ -20,3 +20,30 @@ export class CurrencyImpl implements Currency {
     public code: string = "EUR"
   ) {}
 }
+
+export interface Nav {
+  [key: string]: NavRoutes
+}
+
+export interface NavData {
+  title: string,
+  link?: string
+}
+
+export interface NavRoutes {
+  browse: NavData
+  create?: NavData
+  edit?: NavData
+}
+
+export class TableFilter {
+  constructor(
+    public activeSort: string = '',
+    public filterPlaceholder: string = '',
+    public sortDirection: string = 'asc',
+    public filter: string = '',
+    public pageIndex: number = 0,
+    public pageSize: number = 10,
+    public totalSize: number = 100
+  ) {}
+}
