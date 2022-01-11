@@ -8,6 +8,7 @@ import { FECheckboxComponent } from './checkbox/f-e-checkbox.component';
 import {OverlayComponent} from "./overlay/overlay.component";
 import { CardComponent } from './card/card.component';
 import { AddressFormComponent } from './address-form/address-form.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputComponent} from "./form/input/input.component";
 import {ButtonComponent} from "./form/button/button.component";
@@ -26,13 +27,15 @@ import {SharedCoreModule} from "@frontend/shared/core";
 import { AddressFormPartialComponent } from './partials/address-form-partial/address-form-partial.component';
 import {ToastComponent} from "./material/toast.component";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-
+import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
+    NgSelectModule,
     ReactiveFormsModule,
     MatTableModule,
     MatSortModule,
@@ -40,44 +43,47 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatFormFieldModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    SharedCoreModule
+    SharedCoreModule,
+    MatExpansionModule
   ],
-    declarations: [
-      BreadcrumbComponent,
-      SidebarRightComponent,
-      NavtabsComponent,
-      FECheckboxComponent,
-      OverlayComponent,
-      CardComponent,
-      AddressFormComponent,
-      InputComponent,
-      ButtonComponent,
-      SelectComponent,
-      SwitchComponent,
-      DynamicFieldDirective,
-      DynamicFormComponent,
-      DashCardComponent,
-      TableComponent,
-      AddressFormPartialComponent,
-      ToastComponent
-    ],
-    exports: [
-      BreadcrumbComponent,
-      SidebarRightComponent,
-      NavtabsComponent,
-      FECheckboxComponent,
-      OverlayComponent,
-      CardComponent,
-      AddressFormComponent,
-      SwitchComponent,
-      InputComponent,
-      ButtonComponent,
-      SelectComponent,
-      DynamicFormComponent,
-      DashCardComponent,
-      TableComponent,
-      AddressFormPartialComponent,
-      ToastComponent
-    ]
+  declarations: [
+    BreadcrumbComponent,
+    SidebarRightComponent,
+    NavtabsComponent,
+    FECheckboxComponent,
+    OverlayComponent,
+    CardComponent,
+    AddressFormComponent,
+    InputComponent,
+    ButtonComponent,
+    SelectComponent,
+    SwitchComponent,
+    DynamicFieldDirective,
+    DynamicFormComponent,
+    DashCardComponent,
+    TableComponent,
+    AddressFormPartialComponent,
+    ToastComponent,
+    ExpansionPanelComponent,
+  ],
+  exports: [
+    BreadcrumbComponent,
+    SidebarRightComponent,
+    NavtabsComponent,
+    FECheckboxComponent,
+    OverlayComponent,
+    CardComponent,
+    AddressFormComponent,
+    SwitchComponent,
+    InputComponent,
+    ButtonComponent,
+    SelectComponent,
+    DynamicFormComponent,
+    DashCardComponent,
+    TableComponent,
+    AddressFormPartialComponent,
+    ToastComponent,
+    ExpansionPanelComponent,
+  ]
 })
 export class SharedUiModule {}

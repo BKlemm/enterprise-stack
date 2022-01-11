@@ -5,7 +5,9 @@
 </ul>
 <div class="card">
   <div class="card-header d-flex flex-row">
-    <i class="fa fa-2x fa-plus-circle text-primary me-2" *ngIf="createLink" routerLink="{{createLink}}"></i>
+    <span class="icon">
+      <i class="fa fa-2x fa-plus-circle text-primary me-2" *ngIf="navData.create" title="{{navData.create.title}}" routerLink="{{navData.create.link}}"></i>
+    </span>
     <h5 class="card-title d-flex flex-column">{{title}}</h5>
   </div>
   <div class="card-body">
