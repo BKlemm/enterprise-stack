@@ -21,8 +21,7 @@ export class LoginOverlayComponent {
 
   @Input() isLogin: boolean
   @Output()  isLoginOpen = new EventEmitter<boolean>()
-
-  constructor() { }
+  @Output() isAuthenticated = new EventEmitter<boolean>()
 
   closeLogin() {
     this.isLoginOpen.emit(false)
