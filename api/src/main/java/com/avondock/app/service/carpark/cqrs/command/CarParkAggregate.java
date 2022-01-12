@@ -36,7 +36,7 @@ public class CarParkAggregate {
     String supportPhone;
 
     CarParkAddress address;
-    CarParkStatus  state;
+    CarParkStatus  carParkStatus;
 
     BigDecimal tax;
 
@@ -94,7 +94,7 @@ public class CarParkAggregate {
         this.supportEmail = e.getSupportEmail();
         this.supportPhone = e.getSupportPhone();
         this.tax = e.getTax();
-        this.state = e.getState();
+        this.carParkStatus = e.getState();
     }
 
 }
