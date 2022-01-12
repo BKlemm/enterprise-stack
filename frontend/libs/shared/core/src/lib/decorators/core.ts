@@ -33,7 +33,7 @@ export function Route(params: Parameters|any ) {
     return class extends constructor {
       version = params.version ? params.version : 'v1'
       resource = params.resource ? params.resource : params
-      gateway = params.gateway ? params.gateway : 'parking'
+      gateway = params.gateway ? params.gateway : 'api'
     }
   }
 }
