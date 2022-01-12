@@ -58,6 +58,12 @@ td, th {
   width: 25%;
 }
 
+.fixed-plugin {
+  .card {
+    right: -1px;
+  }
+}
+
 .ng-valid[required], .ng-valid.required  {
   border-left: 2px solid #42A948; /* green */
 }
