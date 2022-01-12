@@ -17,3 +17,7 @@ export class BaseAddressImpl implements BaseAddress {
     public zip: string = '73833'
   ) {}
 }
+
+export interface CarparkCollection {
+  carparks: []
+}
