@@ -1,11 +1,18 @@
 package com.avondock.core.shared.infrastructure.factory;
 
+import org.modelmapper.ModelMapper;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 abstract public class CommandFactoryImpl {
 
     Constructor<?> ctor;
+    protected ModelMapper mapper;
+
+    public CommandFactoryImpl() {
+        this.mapper = new ModelMapper();
+    }
 
     public Constructor<?> construct(Class<?> command, Class<?> ...args) {
         try {
