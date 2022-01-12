@@ -18,7 +18,6 @@ public class CarParkCommandFactoryImpl extends CommandFactoryImpl implements Car
             CarParkAddress.class, String.class, String.class, BigDecimal.class, CarParkStatus.class
         );
 
-        ModelMapper mapper = new ModelMapper();
         CarParkAddress address = mapper.map(request.getAddress(), CarParkAddress.class);
 
         return (CarParkCommand) this.createInstance(
