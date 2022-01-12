@@ -2,6 +2,9 @@
 
 This is a full stack development skeleton to build modern professional enterprise applications. In this state all configurations are for develop mode (local).
 **Don't use that configurations on production mode!**
+Primly I created this skeleton to use it by my self, to create further applications.
+Time to time I will update this repo with the improvements from my other developments.
+You are free to use it by your self or to contribute improvements.
 
 ## Getting Started
 
@@ -120,7 +123,11 @@ what's happened?...angular without a store and one single request.
 
 ## Trouble Shooting
 
-If one of the steps in .mvnw package failed, you can execute this steps separately
+* If one of the steps in .mvnw package failed, you can execute this steps separately
+* If there are some changes at the database, you have to drop the table by your self
+* Editing seeded carparks is not possible, because the seeding doesn't use the command gateway, so
+updating one of this seeds will throw an error, that the aggregate was not found in the event store, but you can create your own carparks, they will exist at the event store
+
 
 ### Install Api dependencies
 ```
