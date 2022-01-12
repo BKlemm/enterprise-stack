@@ -1,3 +1,9 @@
 .mat-cell > a {
   color: #67748e !important;
 }
+
+.btn-sm, .btn-group-sm > .btn {
+  padding: 0.1rem .3rem;
+  font-size: x-small;
+}
+
