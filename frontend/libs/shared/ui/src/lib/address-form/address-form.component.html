@@ -16,9 +16,19 @@
 </div>
 <div class="row">
   <div class="col-md-6 mb-3">
-
+    <ng-select
+      [items]="countries"
+      bindLabel="label"
+      bindValue="label"
+      [(ngModel)]="address.country">
+    </ng-select>
   </div>
   <div class="col-md-6 mb-3">
-
+    <ng-select
+      [items]="regions"
+      bindLabel="label"
+      bindValue="label"
+      [(ngModel)]="address.region">
+    </ng-select>
   </div>
 </div>

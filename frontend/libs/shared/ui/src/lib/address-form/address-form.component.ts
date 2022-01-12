@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {COUNTRIES, REGIONS} from "../../../../core/src/lib/data/country.data";
 import {Address} from "@frontend/website/shared/data-access";
 
 @Component({
@@ -8,6 +9,8 @@ import {Address} from "@frontend/website/shared/data-access";
 })
 export class AddressFormComponent {
 
+  countries = COUNTRIES
+  regions = REGIONS
   @Input() address: Address
 
 }
