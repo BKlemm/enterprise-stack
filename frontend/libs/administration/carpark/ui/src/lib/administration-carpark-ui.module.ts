@@ -10,20 +10,22 @@ import {CarparkFormComponent} from "./carpark-form/carpark-form.component";
 import {SharedUiModule} from "@frontend/shared/ui";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CarparkService, CarparksFacade} from "@frontend/administration/carpark/data-access";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
-    MatInputModule,
-    RouterModule,
-    SharedUiModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        CommonModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatProgressSpinnerModule,
+        MatInputModule,
+        RouterModule,
+        SharedUiModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatExpansionModule,
+    ],
   declarations: [
     CarparkFormComponent,
   ],
