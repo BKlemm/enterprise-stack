@@ -23,7 +23,6 @@ class AddCarPark(
     val supportPhone: String,
     val tax: BigDecimal,
     val state: CarParkStatus,
-    val lotAmount: Int
 ) : CarParkCommand(carParkId)
 
 class ChangeCarPark(
