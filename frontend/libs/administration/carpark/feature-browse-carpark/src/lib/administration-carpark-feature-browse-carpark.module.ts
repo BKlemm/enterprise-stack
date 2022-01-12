@@ -9,6 +9,7 @@ import {AdministrationSharedUiModule} from "@frontend/administration/shared/ui";
 import {SharedUiModule} from "@frontend/shared/ui";
 import {CarparkConfiguration, CarparkService, CarparksFacade} from "@frontend/administration/carpark/data-access";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: BrowseCarparkComponent},
@@ -17,14 +18,15 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AdministrationCarparkUiModule,
-    AdministrationSharedUiModule,
-    SharedUiModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        AdministrationCarparkUiModule,
+        AdministrationSharedUiModule,
+        SharedUiModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        MatExpansionModule
+    ],
   declarations: [
     BrowseCarparkComponent,
     CreateCarparkComponent,

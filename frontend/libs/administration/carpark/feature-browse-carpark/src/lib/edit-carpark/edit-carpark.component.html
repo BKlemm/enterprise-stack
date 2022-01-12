@@ -5,7 +5,11 @@
         <adm-carpark-form (submit)="submit()" [carpark]="carpark" [buttonLabel]="title"></adm-carpark-form>
       </div>
       <div class="col-md-4">
-
+        <mat-accordion>
+          <ui-expansion-panel title="Parkplatzvergabe">
+            Shows the reserved lot with further informations
+          </ui-expansion-panel>
+        </mat-accordion>
       </div>
     </div>
   </ui-navtabs>
