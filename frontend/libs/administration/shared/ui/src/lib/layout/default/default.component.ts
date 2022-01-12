@@ -8,6 +8,6 @@ import { Component} from '@angular/core';
 export class DefaultComponent {
 
   isSidebarOpen = false;
-
+  isMessagebarOpen = false
 
 }

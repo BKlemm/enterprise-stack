@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col">
+    <div class="col-md-2">
       <adm-sidebar-menu></adm-sidebar-menu>
     </div>
-    <div class="col-10">
-      <main class="main-content mt-1 border-radius-lg">
+    <div class="col-md-10">
+      <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <adm-nav-header [isSidebarOpen]="isSidebarOpen"></adm-nav-header>
         <div class="container-fluid py-4 mx-3">
           <ng-content></ng-content>
@@ -14,3 +14,4 @@
   </div>
 </div>
 <adm-sidebar-left [isSidebarOpen]="isSidebarOpen"></adm-sidebar-left>
+<adm-messagebar-left [isMessagebarOpen]="isMessagebarOpen"></adm-messagebar-left>
