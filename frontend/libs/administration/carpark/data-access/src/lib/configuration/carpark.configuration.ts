@@ -19,9 +19,6 @@ export class CarparkConfiguration extends Configuration {
         create: {title: t`Neuen Carpark anlegen`, link: route + '/create'},
         edit: {title: t`Carpark bearbeiten`}
       },
-      capacity: {
-        browse: {title: t`Auslastung`, link: route + '/capacity'}
-      },
     }
   }
 
