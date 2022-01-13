@@ -1,5 +1,6 @@
 package com.avondock.core.shared.gateway;
 
+import com.avondock.core.common.util.UUIDConverter;
 import com.avondock.core.shared.gateway.contracts.Query;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -9,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -47,8 +47,8 @@ public class QueryEndpoint {
     @NotNull
     protected <T> ResponseEntity<T> wrapResult(Predicate<T> assertResult, T result) {
         MultiValueMap<String, String> header = new HttpHeaders();
-        header.add("Request-Id", UUID.randomUUID().toString());
-        return assertResult.test(result) ? ResponseEntity.notFound().build() : new ResponseEntity<T>(
+        header.add("Request-Id", UUIDConverter.toBase64());
+        return assertResult.test(result) ? ResponseEntity.notFound().build() : new ResponseEntity<>(
                 result, header, HttpStatus.OK
         );
     }
