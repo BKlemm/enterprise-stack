@@ -5,12 +5,13 @@ import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Predicate;
@@ -31,7 +32,7 @@ public class QueryEndpoint {
 
     @NotNull
     protected <T> CollectionModel<T> wrapResultList(T result) {
-        return CollectionModel.of(toList(result));
+        return CollectionModel.of(List.of(result));
     }
 
     protected <T> CompletableFuture<ResponseEntity<T>> get(Query query, Class<T> readModel) throws ExecutionException, InterruptedException {
@@ -45,12 +46,10 @@ public class QueryEndpoint {
 
     @NotNull
     protected <T> ResponseEntity<T> wrapResult(Predicate<T> assertResult, T result) {
-        return assertResult.test(result) ? ResponseEntity.notFound().build() : ResponseEntity.ok(result);
-    }
-
-    protected <T> List<T> toList(T result) {
-        List<T> list = new ArrayList<>();
-        list.add(result);
-        return list;
+        MultiValueMap<String, String> header = new HttpHeaders();
+        header.add("Request-Id", UUID.randomUUID().toString());
+        return assertResult.test(result) ? ResponseEntity.notFound().build() : new ResponseEntity<T>(
+                result, header, HttpStatus.OK
+        );
     }
 }
