@@ -100,6 +100,7 @@ What the hell goes on here :-)
 ### Tipps and Tricks
 
 * Don't use Mapping files for your models, first of all spring boot, will per default not read such files and it's in java not recommended, because of the jpa and its abstraction. If you want somehow else a persistence mapping file, you have to override this behaviour by your self...or you can also switch to php :-) 
+* To revalidate easily entries to elastic you can use elasticvue (as browser extension or standalone)
 
 ## How to use
 
