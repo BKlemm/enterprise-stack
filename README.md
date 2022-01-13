@@ -125,8 +125,7 @@ what's happened?...angular without a store and one single request.
 
 * If one of the steps in .mvnw package failed, you can execute this steps separately
 * If there are some changes at the database, you have to drop the table by your self
-* Editing seeded carparks is not possible, because the seeding doesn't use the command gateway, so
-updating one of this seeds will throw an error, that the aggregate was not found in the event store, but you can create your own carparks, they will exist at the event store
+* If you get, somehow the error AXONIQ-2000 Sequence number you have to reset the event store at the Axon Dashboard
 
 
 ### Install Api dependencies
