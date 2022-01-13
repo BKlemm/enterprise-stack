@@ -1,4 +1,4 @@
-import {Configuration, TableFilter} from "@frontend/shared/core";
+import {AbstractConfiguration, TableFilter} from "@frontend/shared/core";
 import {buildRoute, MENU_ROUTES, t} from "@frontend/administration/shared/util";
 import {Injectable} from "@angular/core";
 
@@ -6,7 +6,7 @@ const ACTIVE_SORT = 'name'
 const route = buildRoute(MENU_ROUTES.CARPARK)
 
 @Injectable()
-export class CarparkConfiguration extends Configuration {
+export class CarparkConfiguration extends AbstractConfiguration {
 
   createFilter() {
     this.filter = new TableFilter(ACTIVE_SORT, t`Suche Carpark`)

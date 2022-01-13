@@ -7,9 +7,10 @@ import {
   CarParkResponse, CarparkService
 } from "@frontend/administration/carpark/data-access";
 import {ActivatedRoute} from "@angular/router";
-import {BaseComponent, ObjectMapper} from "@frontend/shared/core";
+import {Configuration, BaseComponent, ObjectMapper} from "@frontend/shared/core";
 import {ToastComponent} from "../../../../../../shared/ui/src/lib/material/toast.component";
 
+@Configuration(CarparkConfiguration)
 @Component({
   selector: 'frontend-edit-carpark',
   templateUrl: './edit-carpark.component.html',
@@ -26,10 +27,7 @@ export class EditCarparkComponent extends BaseComponent implements OnInit {
     private carParkService: CarparkService,
     private route: ActivatedRoute,
     private toast: ToastComponent,
-    configuration: CarparkConfiguration
-  ) {
-    super(configuration)
-  }
+  ) {super()}
 
   ngOnInit(): void {
     // GET allready loaded carpark from the subject observable

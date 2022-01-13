@@ -5,9 +5,10 @@ import {
   CarparksFacade,
   CarparkConfiguration
 } from "@frontend/administration/carpark/data-access";
-import {BaseComponent, OnCreate} from "@frontend/shared/core";
+import {Configuration, BaseComponent, OnCreate} from "@frontend/shared/core";
 import {ToastComponent} from "../../../../../../shared/ui/src/lib/material/toast.component";
 
+@Configuration(CarparkConfiguration)
 @Component({
   selector: 'frontend-create-carpark',
   templateUrl: './create-carpark.component.html',
@@ -18,8 +19,8 @@ export class CreateCarparkComponent extends BaseComponent implements OnCreate {
 
   carpark: AddCarpark = new AddCarpark()
 
-  constructor(private carparkFacade: CarparksFacade, private toast: ToastComponent, configuration: CarparkConfiguration) {
-    super(configuration);
+  constructor(private carparkFacade: CarparksFacade, private toast: ToastComponent) {
+    super();
   }
 
   create() {

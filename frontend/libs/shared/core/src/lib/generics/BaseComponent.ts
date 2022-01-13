@@ -1,14 +1,13 @@
 import {Subscription} from "rxjs";
 import {Component, OnDestroy} from "@angular/core";
-import {Configuration} from "../types";
+import {AbstractConfiguration} from "../types";
 
 @Component({template:''})
 export abstract class BaseComponent implements OnDestroy {
 
   protected subscription: Subscription;
   protected routedId: string
-
-  protected constructor(private configuration?: Configuration) {}
+  protected configuration: AbstractConfiguration
 
   public trackBy(index: any, item: any) {
     return index

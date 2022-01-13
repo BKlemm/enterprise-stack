@@ -104,7 +104,7 @@ export class Navigation {
   }
 }
 
-export abstract class Configuration {
+export abstract class AbstractConfiguration {
   navigation: Record<string, NavRoutes>
   tabs: NavData[] = []
   filter: TableFilter

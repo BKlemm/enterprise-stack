@@ -54,6 +54,13 @@ export function route(resource: string) {
   }
 }
 
+export function Configuration(clazz: any) {
+  return function <T extends Constructor>(constructor: T){
+    return class extends constructor {
+      configuration = new clazz
+    }
+  }
+}
 export function Min(limit: number) {
   return function(target: unknown, propertyKey: string) {
     let value : string;
