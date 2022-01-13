@@ -42,8 +42,9 @@ export class BaseService implements ServiceInterface {
     return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(expand), options));
   }
 
-  get<T>(id: string, options: unknown = {}): Observable<T> {
-    return this.http.get<Responses & T>(this.endpoint(id), options);
+  get<T>(id: string, options: unknown = {}, expand: Array<string> = []): Observable<T> {
+    Object.assign(options, {params: {expand: expand.join(',')}})
+    return this.http.get<Responses & T>(this.endpoint(id),options)
   }
 
   create<T>(data: DataTransferObject, options: unknown = {}): Observable<T> {
