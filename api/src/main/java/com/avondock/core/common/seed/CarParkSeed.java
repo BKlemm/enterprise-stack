@@ -1,12 +1,14 @@
 package com.avondock.core.common.seed;
 
+import com.avondock.app.service.carpark.cqrs.coreapi.AddCarPark;
+import com.avondock.app.service.carpark.cqrs.coreapi.CarParkCommand;
 import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkAddress;
 import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkId;
 import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus;
 import com.github.javafaker.Faker;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
-import com.avondock.app.service.carpark.cqrs.query.repository.CarParkViewRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -18,19 +20,19 @@ import java.util.List;
 @Component
 public class CarParkSeed {
 
-    public static final String P1_UUID = "1a333866-79d9-4689-8d03-53dbe4f91b81";
-    public static final String P2_UUID = "104fece5-1c80-41cb-a083-95ac638ab705";
-    public static final String P3_UUID = "b2abb642-dab1-4b07-a460-d0deac519cac";
+    public static final String P1_UUID = "1a333866-79d9-4689-8d03-53dbe4f91b86";
+    public static final String P2_UUID = "104fece5-1c80-41cb-a083-95ac638ab708";
+    public static final String P3_UUID = "b2abb642-dab1-4b07-a460-d0deac519ca9";
     public static final String L1 = "Munchen";
     public static final String L2 = "Frankfurt";
     public static final String L3 = "Hamburg";
 
-    private final CarParkViewRepository carParkViewRepository;
+    private final CommandGateway commandGateway;
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public CarParkSeed(CarParkViewRepository carParkViewRepository, JdbcTemplate jdbcTemplate) {
-        this.carParkViewRepository = carParkViewRepository;
+    public CarParkSeed(CommandGateway commandGateway, JdbcTemplate jdbcTemplate) {
+        this.commandGateway = commandGateway;
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -44,15 +46,15 @@ public class CarParkSeed {
         String            sql = "SELECT * FROM car_park WHERE car_park_id = '" + uuid + "'";
         List<CarParkView> rs  = jdbcTemplate.query(sql, (resultSet, rowNum) -> null);
         if (rs.size() <= 0) {
-            carParkViewRepository.save(createCarPark(uuid, location));
+            commandGateway.send(createCarPark(uuid, location));
             log.info("CarPark seeded with uuid: " + uuid);
         }
     }
 
-    private CarParkView createCarPark(String uuid, String location) {
+    private CarParkCommand createCarPark(String uuid, String location) {
         Faker faker = new Faker();
 
-        return new CarParkView(
+        return new AddCarPark(
                 new CarParkId(uuid),
                 uc(location),
                 location,
