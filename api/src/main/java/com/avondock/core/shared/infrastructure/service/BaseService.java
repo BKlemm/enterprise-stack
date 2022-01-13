@@ -59,13 +59,13 @@ public abstract class BaseService<T extends Entity, ID, R extends CrudRepository
 
     public T save(T  entity) {
         T _entity = repository.save(entity);
-        elastic.post(this.getClass().getName() + "/_doc/" + entity.getIdentity(), entity);
+        elastic.post(this.getClass().getSimpleName().toLowerCase() + "/_doc/" + entity.getIdentity(), entity);
         return _entity;
     }
 
     public T update(T  entity) {
         T _entity = repository.save(entity);
-        elastic.put(this.getClass().getName() + "/_doc/" + entity.getIdentity(), entity);
+        elastic.put(this.getClass().getSimpleName().toLowerCase() + "/_doc/" + entity.getIdentity(), entity);
         return _entity;
     }
 }
