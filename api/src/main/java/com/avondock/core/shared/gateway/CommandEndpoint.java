@@ -3,9 +3,12 @@ package com.avondock.core.shared.gateway;
 import com.avondock.core.shared.gateway.contracts.Command;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -43,6 +46,10 @@ abstract public class CommandEndpoint {
     }
 
     protected <T> ResponseEntity<?> response(RepresentationModel<?> model, HttpStatus status) {
-        return model == null  ? ResponseEntity.notFound().build() : new ResponseEntity<>(model, status);
+        MultiValueMap<String, String> header = new HttpHeaders();
+        header.add("Request-Id", UUID.randomUUID().toString());
+        return model == null  ? ResponseEntity.notFound().build() : new ResponseEntity<>(
+                model, header, status
+        );
     }
 }
