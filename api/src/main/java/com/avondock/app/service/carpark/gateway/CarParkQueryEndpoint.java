@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -44,7 +45,7 @@ public class CarParkQueryEndpoint extends QueryEndpoint {
 
     @GetMapping("/{id}")
     @ApiOperation("Return one carpark")
-    public CompletableFuture<ResponseEntity<CarParkResponse>> getCarPark(@PathVariable String id) throws ExecutionException, InterruptedException {
-        return get(new GetCarPark(id), CarParkResponse.class);
+    public CompletableFuture<ResponseEntity<CarParkResponse>> getCarPark(@PathVariable String id, @RequestParam(name = "expand") Optional<String> expand) throws ExecutionException, InterruptedException {
+        return get(new GetCarPark(id, expand), CarParkResponse.class);
     }
 }

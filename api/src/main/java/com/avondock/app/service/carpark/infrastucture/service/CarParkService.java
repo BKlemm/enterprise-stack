@@ -4,7 +4,6 @@ import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkId;
 import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.cqrs.query.repository.CarParkViewRepository;
-import com.avondock.core.common.http.ElasticRestClient;
 import com.avondock.core.shared.infrastructure.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,26 +12,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarParkService extends BaseService<CarParkView> {
-
-    private final        CarParkViewRepository repository;
-    private final        ElasticRestClient     elastic;
-    private static final String                PATH = "/carparks/_doc/";
+public class CarParkService extends BaseService<CarParkView, CarParkId, CarParkViewRepository> {
 
     @Autowired
-    public CarParkService(CarParkViewRepository repository, ElasticRestClient elastic) {
-        this.repository = repository;
-        this.elastic = elastic;
+    public CarParkService(CarParkViewRepository repository) {
+        super(repository);
     }
 
     public void addCarpark(CarParkView carParkView) {
-        repository.save(carParkView);
-
-        elastic.post(PATH + carParkView.getCarParkId().getIdentity(), carParkView);
+        this.save(carParkView);
     }
 
     public void changeCarpark(CarParkView carParkView) {
-        repository.save(carParkView);
+        this.update(carParkView);
     }
 
     public CarParkView carparkById(CarParkId id) {

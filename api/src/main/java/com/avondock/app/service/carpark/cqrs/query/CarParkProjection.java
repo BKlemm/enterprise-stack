@@ -91,6 +91,6 @@ public class CarParkProjection {
 
     @QueryHandler
     public CarParkResponse handle(GetCarPark query) {
-        return assembler.toModel(carParkService.carparkById(query.getId()));
+        return assembler.setExpand(query.getExpand()).toModel(carParkService.carparkById(query.getId()));
     }
 }

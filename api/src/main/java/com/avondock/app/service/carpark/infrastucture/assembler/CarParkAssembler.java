@@ -10,10 +10,16 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
 public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarParkView, CarParkResponse> {
+
+    private List<String> expand;
 
     public CarParkAssembler() {
         super(CarParkQueryEndpoint.class, CarParkResponse.class);
@@ -36,6 +42,11 @@ public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarPar
         model.setSupportPhone(entity.getSupportPhone());
         model.setTax(entity.getTax());
         model.setCarParkStatus(entity.getCarParkStatus());
+
+        if (expand.contains("lots")){
+            //set lazy loaded lots here
+        }
+
         model.add(selfLink);
         model.add(tariffLink);
 
@@ -49,5 +60,10 @@ public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarPar
         CollectionModel<CarParkResponse> response = super.toCollectionModel(entities);
         response.add(linkTo(methodOn(CarParkQueryEndpoint.class).listCarParks("all", "asc", "", 0, 10)).withSelfRel());
         return response;
+    }
+
+    public CarParkAssembler setExpand(Optional<String> expand) {
+        this.expand = expand.map(s -> Arrays.asList(s.split(",", -1))).orElse(null);
+        return this;
     }
 }

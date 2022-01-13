@@ -19,7 +19,7 @@ import java.util.Objects;
 @ToString
 @Audited
 @NoArgsConstructor
-public class CarParkView implements Serializable {
+public class CarParkView implements Serializable, com.avondock.core.shared.domain.contracts.Entity {
 
     @EmbeddedId
     CarParkId carParkId;
@@ -66,5 +66,10 @@ public class CarParkView implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(carParkId);
+    }
+
+    @Override
+    public String getIdentity() {
+        return carParkId.getIdentity();
     }
 }
