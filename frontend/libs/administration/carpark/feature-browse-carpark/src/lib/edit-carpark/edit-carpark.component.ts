@@ -41,7 +41,7 @@ export class EditCarparkComponent extends BaseComponent implements OnInit {
     })
     //Browser page reload
     if (!this.carpark) {
-      this.carParkService.get(id).subscribe((carpark: CarParkResponse) => {
+      this.carParkService.get(id,{}, ['lots','tariff.pricelist']).subscribe((carpark: CarParkResponse) => {
         this.carpark = carpark
       })
     }
