@@ -10,6 +10,8 @@ import {HttpClientModule, HttpClientXsrfModule} from "@angular/common/http";
 import {SharedUiModule} from "@frontend/shared/ui";
 import {CarparksModule} from "./carparks/carparks.module";
 import { DashboardModule } from './dashboard/dashboard.module';
+import {ENV, getEnvs} from "@frontend/shared/core";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
     CarparksModule,
     DashboardModule,
   ],
-  providers: [],
+  providers: [
+    {provide: ENV, useFactory: getEnvs, deps: [environment]}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
