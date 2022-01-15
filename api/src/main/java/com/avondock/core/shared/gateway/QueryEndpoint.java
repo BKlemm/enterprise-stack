@@ -15,7 +15,6 @@ import org.springframework.util.MultiValueMap;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Predicate;
 
 public class QueryEndpoint {
@@ -39,7 +38,7 @@ public class QueryEndpoint {
         return CollectionModel.of(List.of(result));
     }
 
-    protected <T> CompletableFuture<ResponseEntity<T>> get(Query query, Class<T> readModel) throws ExecutionException, InterruptedException {
+    protected <T> CompletableFuture<ResponseEntity<T>> get(Query query, Class<T> readModel) {
         return queryGateway.query(query, ResponseTypes.instanceOf(readModel)).thenApply(this::wrapResult);
     }
 
