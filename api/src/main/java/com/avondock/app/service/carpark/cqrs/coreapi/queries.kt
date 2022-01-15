@@ -11,8 +11,7 @@ abstract class CarParkResultQuery:RepresentationModel<ListCarParksResult>()
 
 @Value class GetCarPark(val id: String, val expand: Optional<String>) : Query
 
-@Value class ListCarParks(val filter: HttpFilter) : Query
-@Value class ListCarParksExtend() : Query
+@Value class ListCarParks(val filter: HttpFilter, val expand: Optional<String>) : Query
 @Value class ListCarParksResult(val carParks: List<CarParkView>): CarParkResultQuery()
 
 
