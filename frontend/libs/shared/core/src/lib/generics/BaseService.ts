@@ -1,8 +1,9 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 import {Observer, Responses, DataTransferObject, TableFilter} from '../types';
 import {Injectable} from '@angular/core';
 import {environment} from "../../../../../../apps/administration/src/environments/environment";
+import {Response} from "../types";
 
 @Injectable()
 export class BaseService {
@@ -53,7 +54,7 @@ export class BaseService {
 
   private handleHateoas<T>(response: any): Observable<T> {
     return new Observable((observer: Observer) => {
-      response.subscribe((response: any) => {
+      response.subscribe((response: Response<T>) => {
         if (response.errors && response.errors.length > 0) {
           observer.error(response.errors);
         } else {

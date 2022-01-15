@@ -23,6 +23,13 @@ export class SingleResponse {
   public body!: unknown;
 }
 
+export interface Response<T> {
+  _embedded: {
+    content: T
+  }
+  errors: any
+}
+
 export class Responses {
   public errors: SingleResponse[] = [];
   public success: SingleResponse[] = [];
