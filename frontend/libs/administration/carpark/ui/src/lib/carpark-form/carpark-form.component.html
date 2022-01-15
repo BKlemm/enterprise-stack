@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-9 mb-3">
         <div class="form-check form-switch">
-          <input class="form-check-input" [(ngModel)]="carpark.carParkStatus" (change)="onChange()" [checked]="carpark.carParkStatus === 'ACTIVE'" name="carParkStatus" type="checkbox" id="flexSwitchCheckDefault">
+          <input class="form-check-input" [(ngModel)]="carpark.carParkStatus" (change)="onChange()" [checked]="isActive" name="carParkStatus" type="checkbox" id="flexSwitchCheckDefault">
           <label class="form-check-label" for="flexSwitchCheckDefault" i18n>Parkplatz als aktiv setzen</label>
         </div>
       </div>
