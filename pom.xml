@@ -38,13 +38,13 @@
     <build>
         <plugins>
             <!-- needed to execute mvn commands from the root path -->
-    <!--<plugin>
+    <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
             <skip>true</skip>
         </configuration>
-    </plugin>-->
+    </plugin>
 </plugins>
 </build>
 
