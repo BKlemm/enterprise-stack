@@ -2,7 +2,10 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
+import {Environment} from "@frontend/shared/core";
+
+export const environment: Environment = {
+  endpoint: 'http://localhost:8098/',
   production: false,
 };
 
