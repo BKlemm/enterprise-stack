@@ -9,3 +9,4 @@ export * from './lib/plugins'
 
 export * from './lib/services'
 export * from './lib/base'
+export * from './lib/providers'
