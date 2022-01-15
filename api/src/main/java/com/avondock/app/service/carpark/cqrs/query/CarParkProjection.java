@@ -83,7 +83,7 @@ public class CarParkProjection {
 
     @QueryHandler
     public CollectionModel<CarParkResponse> handle(ListCarParks query) {
-        Pageable request = Pagination.create(query.getFilter());
+        Pageable request = Pagination.of(query.getFilter());
         return assembler.toCollectionModel(carParkService.carparks(request, query.getFilter().getFilter()));
     }
 

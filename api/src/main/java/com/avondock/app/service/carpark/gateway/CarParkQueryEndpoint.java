@@ -37,7 +37,7 @@ public class CarParkQueryEndpoint extends QueryEndpoint {
     public CompletableFuture<CollectionModel<List<CarParkResponse>>> listCarParks(
             @RequestParam(name = "filter") String filterParam
     ) {
-        HttpFilter filter = this.map(filterParam, HttpFilter.class);
+        HttpFilter filter = map(filterParam, HttpFilter.class);
         return list(new ListCarParks(filter), CarParkResponse.class);
     }
 
