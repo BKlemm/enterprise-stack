@@ -1,45 +1,29 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { environment } from "../../../../../../apps/website/src/environments/environment";
 import { Observable } from 'rxjs';
-import {Observer, Responses, ServiceInterface, DataTransferObject} from '../types';
-import { Injectable } from '@angular/core';
+import {Observer, Responses, DataTransferObject, TableFilter} from '../types';
+import {Injectable} from '@angular/core';
+import {environment} from "../../../../../../apps/administration/src/environments/environment";
 
 @Injectable()
-export class BaseService implements ServiceInterface {
+export class BaseService {
 
   protected version!: string
   protected resource!: string
   protected gateway!: string
   protected subresource!: string
-  private defaultError
+  private readonly defaultError
 
   constructor(protected http: HttpClient) {
     this.defaultError = 'Some Error occcured, Please contact Administrator for the Errors';
   }
 
-  listBy<T>(sortOrder: string = 'asc', filter: string = '', pageNumber: number = 0, pageSize: number = 10, subroute: string = '') {
-    return this.http.get<Responses & T>(this.endpoint(subroute),{
+  list<T>(filter: TableFilter, expand: Array<string> = [], options: unknown = {}, subroute: string = '') {
+    Object.assign(options, {
       params: new HttpParams()
-        .set('filter', filter)
-        .set('sort', sortOrder)
-        .set('page', pageNumber.toString())
-        .set('size', pageSize.toString())
+        .set('filter', JSON.stringify(filter.httpParams()))
+        .set('expand', expand.join(','))
     })
-  }
-
-  listByPageable<T>(sortOrder: string = 'asc', activeSort: string = '', filter: string = '', pageNumber: number = 0, pageSize: number = 10, subroute: string = '') {
-    return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(subroute),{
-      params: new HttpParams()
-        .set('filter', filter)
-        .set('sort', sortOrder)
-        .set('sortValue', activeSort)
-        .set('page', pageNumber.toString())
-        .set('size', pageSize.toString())
-    }))
-  }
-
-  list<T>(expand: string = "", options: unknown = {}): Observable<T> {
-    return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(expand), options));
+    return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(subroute), options))
   }
 
   get<T>(id: string, options: unknown = {}, expand: Array<string> = []): Observable<T> {
@@ -49,10 +33,6 @@ export class BaseService implements ServiceInterface {
 
   create<T>(data: DataTransferObject, options: unknown = {}): Observable<T> {
     Object.assign(options, {observe: 'response'})
-    return this.http.post<Responses & T>(this.endpoint(), data, options)
-  }
-
-  createSingle<T>(data: DataTransferObject, options: unknown = {}): Observable<T> {
     return this.http.post<Responses & T>(this.endpoint(), data, options)
   }
 
@@ -78,22 +58,6 @@ export class BaseService implements ServiceInterface {
           observer.error(response.errors);
         } else {
           observer.next(response._embedded);
-        }
-        observer.complete();
-      }, (error: any) => {
-        observer.error([{ title: error.name, detail: this.defaultError, error }]);
-      });
-    });
-  }
-
-
-  private handleResponse<T>(response: any): Observable<T> {
-    return new Observable((observer: Observer) => {
-      response.subscribe((response: any) => {
-        if (response.errors && response.errors.length > 0) {
-          observer.error(response.errors);
-        } else {
-          observer.next(response.success);
         }
         observer.complete();
       }, (error: any) => {

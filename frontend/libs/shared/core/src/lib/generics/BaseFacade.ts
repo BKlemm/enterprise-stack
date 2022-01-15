@@ -10,9 +10,5 @@ export abstract class BaseFacade {
   public readonly counter$ = this.counterSubject.asObservable()
   public counter = 0;
 
-  loadByFilter(filter: TableFilter, subroute: string = '') {
-    this.load(filter.activeSort, filter.sortDirection, filter.filter, filter.pageIndex, filter.pageSize, subroute);
-  }
-
-  abstract load(activeSort: string, sortDirection: string, filter: string, pageIndex: number, pageLength: number, subroute: string)
+  abstract load(filter: TableFilter, expand: Array<string>, subroute: string)
 }
