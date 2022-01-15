@@ -35,15 +35,19 @@ public class CarParkQueryEndpoint extends QueryEndpoint {
     @GetMapping
     @ApiOperation("Returns sorted,filtered and pagable list of carparks in the system")
     public CompletableFuture<CollectionModel<List<CarParkResponse>>> listCarParks(
-            @RequestParam(name = "filter") String filterParam
+            @RequestParam(name = "filter") String filterParam,
+            @RequestParam(name = "expand") Optional<String> expand
     ) {
         HttpFilter filter = map(filterParam, HttpFilter.class);
-        return list(new ListCarParks(filter), CarParkResponse.class);
+        return list(new ListCarParks(filter, expand), CarParkResponse.class);
     }
 
     @GetMapping("/{id}")
     @ApiOperation("Return one carpark")
-    public CompletableFuture<ResponseEntity<CarParkResponse>> getCarPark(@PathVariable String id, @RequestParam(name = "expand") Optional<String> expand) throws ExecutionException, InterruptedException {
+    public CompletableFuture<ResponseEntity<CarParkResponse>> getCarPark(
+            @PathVariable String id,
+            @RequestParam(name = "expand") Optional<String> expand) throws ExecutionException, InterruptedException
+    {
         return get(new GetCarPark(id, expand), CarParkResponse.class);
     }
 }
