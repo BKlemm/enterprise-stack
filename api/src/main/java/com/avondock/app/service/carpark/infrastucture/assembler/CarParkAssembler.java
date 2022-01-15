@@ -3,24 +3,18 @@ package com.avondock.app.service.carpark.infrastucture.assembler;
 import com.avondock.app.service.carpark.cqrs.query.response.CarParkResponse;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.gateway.CarParkQueryEndpoint;
+import com.avondock.core.shared.infrastructure.assembler.BaseAssembler;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @Component
-public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarParkView, CarParkResponse> {
-
-    private List<String> expand = new ArrayList<>();
+public class CarParkAssembler extends BaseAssembler<CarParkView, CarParkResponse> {
 
     public CarParkAssembler() {
         super(CarParkQueryEndpoint.class, CarParkResponse.class);
@@ -61,10 +55,5 @@ public class CarParkAssembler extends RepresentationModelAssemblerSupport<CarPar
         CollectionModel<CarParkResponse> response = super.toCollectionModel(entities);
         response.add(linkTo(methodOn(CarParkQueryEndpoint.class).listCarParks("", Optional.empty())).withSelfRel());
         return response;
-    }
-
-    public CarParkAssembler setExpand(Optional<String> expand) {
-        this.expand = expand.map(s -> Arrays.asList(s.split(",", -1))).orElse(null);
-        return this;
     }
 }
