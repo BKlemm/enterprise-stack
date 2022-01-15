@@ -17,7 +17,7 @@ export class BrowseCarparkComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new CarparksFacade(this.carparkService)
     if (this.dataSource.counter === 0) {
-      this.dataSource.load(this.filter.activeSort, this.filter.sortDirection)
+      this.dataSource.load(this.filter)
     }
   }
 

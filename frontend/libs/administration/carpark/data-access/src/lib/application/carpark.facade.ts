@@ -5,7 +5,7 @@ import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {catchError, finalize, map} from "rxjs/operators";
 import {Carpark} from "../domain";
 import {AddCarpark, CarParkResponse, ChangeCarpark} from "../api";
-import {BaseFacade} from "@frontend/shared/core";
+import {BaseFacade, TableFilter} from "@frontend/shared/core";
 
 interface CarparkCollection {
   carparks: CarParkResponse[]
@@ -30,9 +30,9 @@ export class CarparksFacade extends BaseFacade implements DataSource<CarParkResp
     this.counterSubject.complete()
   }
 
-  load(activeSort: string = '', sortDirection: string = 'asc', filter: string = '', pageIndex: number = 0, pageSize: number = 10) {
+  load(filter: TableFilter, expand: Array<string> = [], subroute: string = '') {
     this.loadingSubject.next(true);
-    this.carParkService.listByPageable(sortDirection, activeSort, filter, pageIndex, pageSize)
+    this.carParkService.list(filter, expand, {}, subroute)
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
@@ -43,25 +43,8 @@ export class CarparksFacade extends BaseFacade implements DataSource<CarParkResp
       })
   }
 
-  loadById(id: string) {
-    let response
-    this.carParkService.get(id).subscribe((carpark:CarParkResponse) => {
-      console.log(carpark)
-      response = carpark
-    })
-    console.log(response)
-    return response
-  }
-
-  loadActiveCarparks() {
-    this.carParkService.list().subscribe((carparks:CarparkCollection) => {
-      this.carParkSubject.next(carparks.carparks)
-      this.counter = carparks.carparks.length
-    })
-  }
-
   addCarpark(carpark: AddCarpark): Observable<Carpark> {
-    return this.carParkService.createSingle(carpark);
+    return this.carParkService.create(carpark);
   }
 
   changeCarpark(carpark: ChangeCarpark): Observable<Carpark> {
@@ -72,16 +55,6 @@ export class CarparksFacade extends BaseFacade implements DataSource<CarParkResp
     this.carparks$
       .pipe(map(carparks => carparks.filter((carpark: CarParkResponse) => carpark.name.includes(name))))
       .subscribe()
-  }
-
-  getRoutedCarpark(id: string): CarParkResponse {
-    let response: CarParkResponse
-    this.carparks$
-      .pipe(map(carparks => carparks.filter((carpark: CarParkResponse) => carpark.carParkId === id)))
-      .subscribe(carpark => {
-        response = carpark.pop()
-      })
-    return response
   }
 }
 
