@@ -2,6 +2,8 @@ package com.avondock.core.shared.gateway;
 
 import com.avondock.core.common.util.UUIDConverter;
 import com.avondock.core.shared.gateway.contracts.Query;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
 import org.jetbrains.annotations.NotNull;
@@ -18,10 +20,12 @@ import java.util.function.Predicate;
 
 public class QueryEndpoint {
 
-    protected final QueryGateway   queryGateway;
+    protected final QueryGateway queryGateway;
+    protected final ObjectMapper mapper;
 
     public QueryEndpoint(QueryGateway queryGateway) {
         this.queryGateway = queryGateway;
+        this.mapper = new ObjectMapper();
     }
 
     protected <T> CompletableFuture<CollectionModel<List<T>>> list(Query query, Class<T> readModel) {
@@ -51,5 +55,14 @@ public class QueryEndpoint {
         return assertResult.test(result) ? ResponseEntity.notFound().build() : new ResponseEntity<>(
                 result, header, HttpStatus.OK
         );
+    }
+
+    protected <T> T map(String content, Class<T> valueType) {
+        try {
+            return mapper.readValue(content, valueType);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
