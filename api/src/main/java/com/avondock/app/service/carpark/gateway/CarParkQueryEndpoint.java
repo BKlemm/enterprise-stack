@@ -2,6 +2,7 @@ package com.avondock.app.service.carpark.gateway;
 
 
 import com.avondock.app.service.carpark.cqrs.coreapi.ListCarParks;
+import com.avondock.core.common.http.HttpFilter;
 import com.avondock.core.shared.gateway.QueryEndpoint;
 import com.avondock.app.service.carpark.cqrs.coreapi.GetCarPark;
 import com.avondock.app.service.carpark.cqrs.query.response.CarParkResponse;
@@ -34,13 +35,10 @@ public class CarParkQueryEndpoint extends QueryEndpoint {
     @GetMapping
     @ApiOperation("Returns sorted,filtered and pagable list of carparks in the system")
     public CompletableFuture<CollectionModel<List<CarParkResponse>>> listCarParks(
-            @RequestParam(name = "filter", defaultValue = "all") String filter,
-            @RequestParam(name = "sort", defaultValue = "asc") String sort,
-            @RequestParam(name = "sortValue", defaultValue = "name") String sortValue,
-            @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size
+            @RequestParam(name = "filter") String filterParam
     ) {
-        return list(new ListCarParks(filter, sort, sortValue, page, size), CarParkResponse.class);
+        HttpFilter filter = this.map(filterParam, HttpFilter.class);
+        return list(new ListCarParks(filter), CarParkResponse.class);
     }
 
     @GetMapping("/{id}")

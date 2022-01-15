@@ -7,14 +7,13 @@ import com.avondock.app.service.carpark.infrastucture.assembler.CarParkAssembler
 import com.avondock.app.service.carpark.cqrs.query.response.CarParkResponse;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.infrastucture.service.CarParkService;
+import com.avondock.core.common.http.Pagination;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.stereotype.Service;
 
@@ -84,9 +83,8 @@ public class CarParkProjection {
 
     @QueryHandler
     public CollectionModel<CarParkResponse> handle(ListCarParks query) {
-        Sort     sort    = query.getSort().equals("asc") ? Sort.by(query.getSortValue()).ascending() : Sort.by(query.getSortValue()).descending();
-        Pageable request = PageRequest.of(query.getPage(), query.getSize(), sort);
-        return assembler.toCollectionModel(carParkService.carparks(request, query.getFilter()));
+        Pageable request = Pagination.create(query.getFilter());
+        return assembler.toCollectionModel(carParkService.carparks(request, query.getFilter().getFilter()));
     }
 
     @QueryHandler
