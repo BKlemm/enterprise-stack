@@ -57,7 +57,7 @@ export class BaseService {
         if (response.errors && response.errors.length > 0) {
           observer.error(response.errors);
         } else {
-          observer.next(response._embedded);
+          observer.next(response._embedded.content);
         }
         observer.complete();
       }, (error: any) => {

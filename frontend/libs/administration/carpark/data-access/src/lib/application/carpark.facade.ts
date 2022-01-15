@@ -7,10 +7,6 @@ import {Carpark} from "../domain";
 import {AddCarpark, CarParkResponse, ChangeCarpark} from "../api";
 import {BaseFacade, TableFilter} from "@frontend/shared/core";
 
-interface CarparkCollection {
-  carparks: CarParkResponse[]
-}
-
 @Injectable()
 export class CarparksFacade extends BaseFacade implements DataSource<CarParkResponse>{
 
@@ -37,9 +33,9 @@ export class CarparksFacade extends BaseFacade implements DataSource<CarParkResp
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
-      .subscribe((carparks: CarparkCollection) => {
-        this.carParkSubject.next(carparks.carparks)
-        this.counter = carparks.carparks.length
+      .subscribe((carparks: CarParkResponse[]) => {
+        this.carParkSubject.next(carparks)
+        this.counter = carparks.length
       })
   }
 
