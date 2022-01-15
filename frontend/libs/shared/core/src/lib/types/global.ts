@@ -41,9 +41,19 @@ export class TableFilter {
     public activeSort: string = '',
     public filterPlaceholder: string = '',
     public sortDirection: string = 'asc',
-    public filter: string = '',
+    public filter: string = 'all',
     public pageIndex: number = 0,
     public pageSize: number = 10,
     public totalSize: number = 100
   ) {}
+
+  httpParams() {
+    return {
+      'activeSort':this.activeSort,
+      'sortDirection': this.sortDirection,
+      'filter': this.filter,
+      'pageIndex': this.pageIndex,
+      'pageSize': this.pageSize
+    }
+  }
 }
