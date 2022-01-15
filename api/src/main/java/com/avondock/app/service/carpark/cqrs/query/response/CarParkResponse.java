@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @JsonRootName(value = "carpark")
-@Relation(collectionRelation = "carparks")
+@Relation(collectionRelation = "content")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarParkResponse extends RepresentationModel<CarParkResponse> implements Serializable {
 

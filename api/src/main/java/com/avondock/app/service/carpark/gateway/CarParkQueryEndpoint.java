@@ -46,8 +46,8 @@ public class CarParkQueryEndpoint extends QueryEndpoint {
     @ApiOperation("Return one carpark")
     public CompletableFuture<ResponseEntity<CarParkResponse>> getCarPark(
             @PathVariable String id,
-            @RequestParam(name = "expand") Optional<String> expand)
-    {
+            @RequestParam(name = "expand") Optional<String> expand
+    ) {
         return get(new GetCarPark(id, expand), CarParkResponse.class);
     }
 }
