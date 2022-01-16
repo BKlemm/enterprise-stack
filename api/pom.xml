@@ -204,6 +204,25 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<!-- Database migration and update -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>4.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-maven-plugin</artifactId>
+			<version>4.4.3</version>
+			<exclusions>
+				<!-- has to be excluded, because of dependency problem with the axon framework if you remove optional -->
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- Database dependencies for maria and mysql -->
 		<dependency>
 			<groupId>org.mariadb.jdbc</groupId>
@@ -437,6 +456,15 @@
 			<plugin>
 				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
+			</plugin>
+
+			<!-- Spring Boot will on restart automaticly migrate or update the database -->
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<configuration>
+					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
+				</configuration>
 			</plugin>
 
 			<!-- Helper to find dependencies conflicts
