@@ -125,7 +125,8 @@ what's happened?...angular without a store and one single request.
 ## Trouble Shooting
 
 * If one of the steps in .mvnw package failed, you can execute this steps separately
-* If there are some changes at the database, you have to drop the table by your self, with the last commit, changes will be in future auto updated the database structure
+* If there are some changes at the database, you have to drop the table by your self, with the last commit, changes will be in future auto updated the database structure<br>
+  **Hint**: Using hibernate auto generate and updating is a fast and easily way at developing, but not usable for production. A better and safer solution is to use liquidbase or flyway.
 * If you get, somehow the error AXONIQ-2000 Sequence number you have to reset the event store at the Axon Dashboard
 
 
