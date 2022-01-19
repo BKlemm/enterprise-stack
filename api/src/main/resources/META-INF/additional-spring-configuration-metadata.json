@@ -69,6 +69,16 @@
       "name": "spring.boot.admin.client.metadata.user.password",
       "type": "java.lang.String",
       "description": "Description for spring.boot.admin.client.metadata.user.password."
+    },
+    {
+      "name": "avondock.endpoint.protocol",
+      "type": "java.lang.String",
+      "description": "Description for avondock.endpoint.protocol."
+    },
+    {
+      "name": "avondock.endpoint.main",
+      "type": "java.lang.String",
+      "description": "Description for avondock.endpoint.main."
     }
   ]
 }
