@@ -23,7 +23,7 @@ public class WebClientAdapter {
     Integer port;
 
     String PROTOCOL = "http";
-    String APP = "parking";
+    String APP = "api";
     String VERSION = "v1";
 
     private final WebClient client;
