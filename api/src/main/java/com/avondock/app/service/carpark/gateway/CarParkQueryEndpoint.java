@@ -35,10 +35,9 @@ public class CarParkQueryEndpoint extends QueryEndpoint {
     @GetMapping
     @ApiOperation("Returns sorted,filtered and pagable list of carparks in the system")
     public CompletableFuture<CollectionModel<List<CarParkResponse>>> listCarParks(
-            @RequestParam(name = "filter") String filterParam,
+            @RequestParam(name = "filter") Optional<String> filter,
             @RequestParam(name = "expand") Optional<String> expand
     ) {
-        HttpFilter filter = map(filterParam, HttpFilter.class);
         return list(new ListCarParks(filter, expand), CarParkResponse.class);
     }
 

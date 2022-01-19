@@ -4,12 +4,14 @@ import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkId;
 import com.avondock.app.service.carpark.cqrs.coreapi.valueobjects.CarParkStatus;
 import com.avondock.app.service.carpark.cqrs.query.model.CarParkView;
 import com.avondock.app.service.carpark.cqrs.query.repository.CarParkViewRepository;
+import com.avondock.core.common.http.HttpFilter;
 import com.avondock.core.shared.infrastructure.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class CarParkService extends BaseService<CarParkView, CarParkId, CarParkViewRepository> {
@@ -43,9 +45,9 @@ public class CarParkService extends BaseService<CarParkView, CarParkId, CarParkV
         return repository.findByCarParkStatus(state);
     }
 
-    public Page<CarParkView> carparks(Pageable request, String filter) {
-        if (!filter.equals(FILTER_ALL)) {
-            return new PageImpl<>(this.filter(CarParkView.class, filter));
+    public Page<CarParkView> carparks(Pageable request, HttpFilter filter) {
+        if (filter.isFilterable()) {
+            return new PageImpl<>(this.filter(CarParkView.class, filter.getFilter()));
         }
         return repository.findAll(request);
     }
