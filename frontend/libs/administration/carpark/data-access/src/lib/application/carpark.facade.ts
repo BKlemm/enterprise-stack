@@ -26,7 +26,7 @@ export class CarparksFacade extends BaseFacade implements DataSource<CarParkResp
     this.counterSubject.complete()
   }
 
-  load(filter: TableFilter, expand: Array<string> = [], subroute: string = '') {
+  load(filter?: TableFilter, expand: Array<string> = [], subroute: string = '') {
     this.loadingSubject.next(true);
     this.carParkService.list(filter, expand, {}, subroute)
       .pipe(
