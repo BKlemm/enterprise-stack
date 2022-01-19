@@ -22,7 +22,7 @@ export class BrowseCarparksFacade implements DataSource<Carpark>{
   }
 
   load() {
-    this.carParkService.list("all")
+    this.carParkService.list()
       .subscribe((carparks: Carpark[]) => {
         this.carParkSubject.next(carparks)
       })
