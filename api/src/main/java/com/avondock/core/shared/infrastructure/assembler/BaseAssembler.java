@@ -17,7 +17,9 @@ public abstract class BaseAssembler<T, D extends RepresentationModel<?>> extends
     }
 
     public BaseAssembler<T, D> setExpand(Optional<String> expand) {
-        this.expand = expand.map(s -> Arrays.asList(s.split(",", -1))).orElse(null);
+        if (expand.isPresent() && !expand.get().trim().isEmpty()) {
+            this.expand = expand.map(s -> Arrays.asList(s.split(",", -1))).orElse(null);
+        }
         return this;
     }
 }
