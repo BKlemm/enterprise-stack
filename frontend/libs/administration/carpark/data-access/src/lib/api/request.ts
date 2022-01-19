@@ -1,6 +1,6 @@
 import {AddressImpl} from "@frontend/website/shared/data-access";
-import {BaseCarpark} from "./base";
 import {CarParkStatus} from "../domain";
+import {BaseCarpark} from "../core";
 
 class GenerateLots {
   constructor(
