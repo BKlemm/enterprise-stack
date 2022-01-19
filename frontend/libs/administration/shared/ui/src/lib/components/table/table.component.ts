@@ -3,7 +3,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {fromEvent, merge} from "rxjs";
 import {debounceTime, distinctUntilChanged, tap} from "rxjs/operators";
-import {Column} from "@frontend/shared/core";
+import {Column, TableFilter} from "@frontend/shared/core";
 
 @Component({
   selector: 'adm-ui-table',
@@ -15,19 +15,15 @@ export class TableComponent implements AfterViewInit {
   @Input() displayedColumns: string[]
   @Input() dataSource: any
   @Input() columns: Column[]
-  @Input() activeSort: string
-  @Input() sortDirection: string
-  @Input() totalSize: number
-  @Input() currentPage: number
-  @Input() filterPlaceholder: string
   @Input() enableSpinner: boolean = false
+  @Input() filter: TableFilter
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
   clickedRows = new Set<any>();
-  filter: string = ''
+  search: string = ''
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort
@@ -50,20 +46,23 @@ export class TableComponent implements AfterViewInit {
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
         tap(() => {
-          this.activeSort = this.sort.active
-          this.sortDirection = this.sort.direction
-          console.log("UI-Table Sorting..." + this.activeSort)
+          this.filter.activeSort = this.sort.active
+          this.filter.sortDirection = this.sort.direction
+          console.log("UI-Table Sorting..." + this.filter.activeSort)
           this.loadPage()
         })
       ).subscribe();
   }
   loadPage() {
     this.dataSource.load(
-      this.sort.active,
-      this.sort.direction,
-      this.input.nativeElement.value,
-      this.paginator.pageIndex,
-      this.paginator.pageSize
+      new TableFilter(
+        this.sort.active,
+        this.filter.filterPlaceholder,
+        this.sort.direction,
+        this.input.nativeElement.value,
+        this.paginator.pageIndex,
+        this.paginator.pageSize
+      )
     )
   }
   handlePage(event) {

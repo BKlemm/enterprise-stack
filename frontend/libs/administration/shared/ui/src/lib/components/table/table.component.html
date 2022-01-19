@@ -6,13 +6,13 @@
         <span class="input-group-text text-body">
           <i aria-hidden="true" class="fas fa-search"></i>
         </span>
-        <input type="text" placeholder="{{filterPlaceholder}}" class="form-control" value="{{filter}}" #input>
+        <input type="text" placeholder="{{filter.filterPlaceholder}}" class="form-control" value="{{search}}" #input>
       </div>
     </div>
     <div class="col-8 py-3">
       <div class="btn-group btn-group-sm flex-wrap">
         <button class="btn btn-link disabled">Suchkriterien: </button>
-        <button class="btn btn-instagram" (click)="filter = searchTerm + '='"  *ngFor="let searchTerm of displayedColumns">{{searchTerm}}</button>
+        <button class="btn btn-instagram" (click)="search = searchTerm + '='"  *ngFor="let searchTerm of displayedColumns">{{searchTerm}}</button>
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <table mat-table class="table align-items-center mb-0" [dataSource]="dataSource" matSort matSortActive="{{activeSort}}" matSortDirection="{{sortDirection}}" matSortDisableClear>
+  <table mat-table class="table align-items-center mb-0" [dataSource]="dataSource" matSort matSortActive="{{filter.activeSort}}" matSortDirection="{{filter.sortDirection}}" matSortDisableClear>
 
     <!-- ID Column -->
     <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
@@ -54,6 +54,6 @@
       <td class="mat-cell" colspan="4">Keine Daten verfügbar...</td>
     </tr>
   </table>
-  <mat-paginator class="mt-2" (page)="handlePage($event)" [length]="totalSize" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator class="mt-2" (page)="handlePage($event)" [length]="filter.totalSize" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
 
