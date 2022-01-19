@@ -18,11 +18,9 @@ export class BaseService {
     this.defaultError = 'Some Error occcured, Please contact Administrator for the Errors';
   }
 
-  list<T>(filter: TableFilter, expand: Array<string> = [], options: unknown = {}, subroute: string = '') {
+  list<T>(filter?: TableFilter, expand: Array<string> = [], options: unknown = {}, subroute: string = '') {
     Object.assign(options, {
-      params: new HttpParams()
-        .set('filter', JSON.stringify(filter.httpParams()))
-        .set('expand', expand.join(','))
+      params: this.createHttpParams(filter, expand)
     })
     return this.handleHateoas(this.http.get<Responses & T>(this.endpoint(subroute), options))
   }
@@ -65,5 +63,16 @@ export class BaseService {
         observer.error([{ title: error.name, detail: this.defaultError, error }]);
       });
     });
+  }
+
+  private createHttpParams(filter?: TableFilter, expand: Array<string> = []): HttpParams {
+    let params = new HttpParams()
+    if (filter) {
+      params = params.append('filter', JSON.stringify(filter.httpParams()))
+    }
+    if (expand.length > 0) {
+      params = params.append('expand', expand.join(','))
+    }
+    return params
   }
 }
