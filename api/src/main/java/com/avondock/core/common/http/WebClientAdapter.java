@@ -1,5 +1,6 @@
 package com.avondock.core.common.http;
 
+import com.avondock.core.common.http.contracts.AbstractWebClient;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,11 +23,19 @@ public class WebClientAdapter {
     @Value("${server.port}")
     Integer port;
 
-    String PROTOCOL = "http";
-    String APP = "api";
-    String VERSION = "v1";
+    @Value("${avondock.endpoint.protocol}")
+    String PROTOCOL;
+
+    @Value("${avondock.endpoint.main}")
+    String APP;
+
+    String VERSION;
 
     private final WebClient client;
+
+    public static WebClientAdapter.Builder builder() {
+        return new WebClientAdapter.Builder();
+    }
 
     public WebClientAdapter() {
         this.client = WebClient.create(buildUrl());
@@ -54,6 +63,7 @@ public class WebClientAdapter {
     }
 
     public UriComponentsBuilder uriBuilder(String resource) {
+        assert VERSION != null;
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
         builder.host(address).port(port).scheme(PROTOCOL);
         builder.path(APP+"/"+VERSION+"/"+resource);
@@ -62,6 +72,15 @@ public class WebClientAdapter {
     }
 
     public String buildUrl() {
+        assert VERSION != null;
         return PROTOCOL + "://" + address + ":" + port + "/" + APP + "/" + VERSION + "/";
+    }
+
+    public static class Builder extends AbstractWebClient.Builder {
+        public Builder() {}
+        public WebClientAdapter.Builder client(WebClientAdapter client) {
+            super.client(client);
+            return this;
+        }
     }
 }
