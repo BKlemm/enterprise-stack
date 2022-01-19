@@ -39,7 +39,16 @@ public class CarParkAssembler extends BaseAssembler<CarParkView, CarParkResponse
         model.setCarParkStatus(entity.getCarParkStatus());
 
         if (expand.contains("lots")){
-            //set lazy loaded lots here
+            /** set lazy loaded lots from this bounded context here
+             *  model.setLots(entity.getLots())
+             */
+        }
+
+        if (expand.contains("reservations")) {
+            /** get all active reservations for this carpark from the reservation domain
+             *  client.reservations(expand, entity.getCarParkId()) //expand = reservations.active
+             *  Note: client is a WebClientAdapter implement see-> com.avondock.core.common.http
+             */
         }
 
         model.add(selfLink);
