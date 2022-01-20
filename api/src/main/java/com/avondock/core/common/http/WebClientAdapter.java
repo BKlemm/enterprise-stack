@@ -29,7 +29,7 @@ public class WebClientAdapter {
     @Value("${avondock.endpoint.main}")
     String APP;
 
-    String VERSION;
+    String VERSION = "v1";
 
     private final WebClient client;
 
