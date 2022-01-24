@@ -1,9 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "defaultProject": "website",
   "schematics": {
     "@nrwl/angular": {
       "application": {
@@ -32,142 +28,6 @@
     }
   },
   "projects": {
-    "website": {
-      "projectType": "application",
-      "root": "apps/website",
-      "sourceRoot": "apps/website/src",
-      "prefix": "frontend",
-      "i18n": {
-        "locales": {
-          "de": {
-            "translation": "apps/website/resources/translate/messages.de.xlf",
-            "baseHref": "/de"
-          },
-          "en": "apps/website/resources/translate/messages.en.xlf"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "i18nMissingTranslation": "ignore",
-            "localize": ["de", "en"],
-            "outputPath": "../api/src/main/resources/public/apps/website",
-            "index": "apps/website/src/index.html",
-            "main": "apps/website/src/main.ts",
-            "polyfills": "apps/website/src/polyfills.ts",
-            "tsConfig": "apps/website/tsconfig.app.json",
-            "aot": true,
-            "allowedCommonJsDependencies": ["qrcode"],
-            "assets": [
-              "apps/website/src/favicon.ico",
-              {
-                "glob": "**/*",
-                "input": "libs/theme/src/lib/assets/",
-                "output": "./resources/assets"
-              }
-            ],
-            "styles": ["apps/website/src/styles.scss"],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/website/src/environments/environment.ts",
-                  "with": "apps/website/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            },
-            "de": {
-              "localize": ["de"]
-            },
-            "en": {
-              "localize": ["en"]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "website:build:de"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "website:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "website:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/website/src/**/*.ts",
-              "apps/website/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/website"],
-          "options": {
-            "jestConfig": "apps/website/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "website-e2e": {
-      "root": "cypress/website-e2e",
-      "sourceRoot": "cypress/website-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "cypress/website-e2e/cypress.json",
-            "tsConfig": "cypress/website-e2e/tsconfig.e2e.json",
-            "devServerTarget": "website:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "website:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["cypress/website-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
     "administration": {
       "projectType": "application",
       "root": "apps/administration",
@@ -274,6 +134,135 @@
         }
       }
     },
+    "administration-carpark-data-access": {
+      "projectType": "library",
+      "root": "libs/administration/carpark/data-access",
+      "sourceRoot": "libs/administration/carpark/data-access/src",
+      "prefix": "frontend",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/administration/carpark/data-access/src/**/*.ts",
+              "libs/administration/carpark/data-access/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/administration/carpark/data-access"],
+          "options": {
+            "jestConfig": "libs/administration/carpark/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "administration-carpark-feature-browse-carpark": {
+      "projectType": "library",
+      "root": "libs/administration/carpark/feature-browse-carpark",
+      "sourceRoot": "libs/administration/carpark/feature-browse-carpark/src",
+      "prefix": "frontend",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/administration/carpark/feature-browse-carpark/src/**/*.ts",
+              "libs/administration/carpark/feature-browse-carpark/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/administration/carpark/feature-browse-carpark"
+          ],
+          "options": {
+            "jestConfig": "libs/administration/carpark/feature-browse-carpark/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "administration-carpark-feature-create-carpark": {
+      "projectType": "library",
+      "root": "libs/administration/carpark/feature-create-carpark",
+      "sourceRoot": "libs/administration/carpark/feature-create-carpark/src",
+      "prefix": "frontend",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/administration/carpark/feature-create-carpark/src/**/*.ts",
+              "libs/administration/carpark/feature-create-carpark/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/administration/carpark/feature-create-carpark"
+          ],
+          "options": {
+            "jestConfig": "libs/administration/carpark/feature-create-carpark/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "administration-carpark-feature-shell": {
+      "projectType": "library",
+      "root": "libs/administration/carpark/feature-shell",
+      "sourceRoot": "libs/administration/carpark/feature-shell/src",
+      "prefix": "frontend",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/administration/carpark/feature-shell/src/**/*.ts",
+              "libs/administration/carpark/feature-shell/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/administration/carpark/feature-shell"],
+          "options": {
+            "jestConfig": "libs/administration/carpark/feature-shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "administration-carpark-ui": {
+      "projectType": "library",
+      "root": "libs/administration/carpark/ui",
+      "sourceRoot": "libs/administration/carpark/ui/src",
+      "prefix": "frontend",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/administration/carpark/ui/src/**/*.ts",
+              "libs/administration/carpark/ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/administration/carpark/ui"],
+          "options": {
+            "jestConfig": "libs/administration/carpark/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "administration-e2e": {
       "root": "cypress/administration-e2e",
       "sourceRoot": "cypress/administration-e2e/src",
@@ -300,26 +289,51 @@
         }
       }
     },
-    "shared-theme": {
+    "administration-shared-ui": {
       "projectType": "library",
-      "root": "libs/shared/theme",
-      "sourceRoot": "libs/shared/theme/src",
+      "root": "libs/administration/shared/ui",
+      "sourceRoot": "libs/administration/shared/ui/src",
       "prefix": "frontend",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/theme/src/**/*.ts",
-              "libs/shared/theme/src/**/*.html"
+              "libs/administration/shared/ui/src/**/*.ts",
+              "libs/administration/shared/ui/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/theme"],
+          "outputs": ["coverage/libs/administration/shared/ui"],
           "options": {
-            "jestConfig": "libs/shared/theme/jest.config.js",
+            "jestConfig": "libs/administration/shared/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "administration-shared-util": {
+      "projectType": "library",
+      "root": "libs/administration/shared/util",
+      "sourceRoot": "libs/administration/shared/util/src",
+      "prefix": "frontend",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/administration/shared/util/src/**/*.ts",
+              "libs/administration/shared/util/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/administration/shared/util"],
+          "options": {
+            "jestConfig": "libs/administration/shared/util/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -436,31 +450,6 @@
         }
       }
     },
-    "website-shared-services": {
-      "projectType": "library",
-      "root": "libs/website/shared/services",
-      "sourceRoot": "libs/website/shared/services/src",
-      "prefix": "frontend",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/website/shared/services/src/**/*.ts",
-              "libs/website/shared/services/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/website/shared/services"],
-          "options": {
-            "jestConfig": "libs/website/shared/services/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "shared-core": {
       "projectType": "library",
       "root": "libs/shared/core",
@@ -481,6 +470,56 @@
           "outputs": ["coverage/libs/shared/core"],
           "options": {
             "jestConfig": "libs/shared/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-data-access": {
+      "projectType": "library",
+      "root": "libs/shared/data-access",
+      "sourceRoot": "libs/shared/data-access/src",
+      "prefix": "frontend",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/data-access/src/**/*.ts",
+              "libs/shared/data-access/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/data-access"],
+          "options": {
+            "jestConfig": "libs/shared/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "shared-theme": {
+      "projectType": "library",
+      "root": "libs/shared/theme",
+      "sourceRoot": "libs/shared/theme/src",
+      "prefix": "frontend",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/theme/src/**/*.ts",
+              "libs/shared/theme/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/theme"],
+          "options": {
+            "jestConfig": "libs/shared/theme/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -511,76 +550,136 @@
         }
       }
     },
-    "website-shared-ui": {
-      "projectType": "library",
-      "root": "libs/website/shared/ui",
-      "sourceRoot": "libs/website/shared/ui/src",
+    "website": {
+      "projectType": "application",
+      "root": "apps/website",
+      "sourceRoot": "apps/website/src",
       "prefix": "frontend",
+      "i18n": {
+        "locales": {
+          "de": {
+            "translation": "apps/website/resources/translate/messages.de.xlf",
+            "baseHref": "/de"
+          },
+          "en": "apps/website/resources/translate/messages.en.xlf"
+        }
+      },
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "i18nMissingTranslation": "ignore",
+            "localize": ["de", "en"],
+            "outputPath": "../api/src/main/resources/public/apps/website",
+            "index": "apps/website/src/index.html",
+            "main": "apps/website/src/main.ts",
+            "polyfills": "apps/website/src/polyfills.ts",
+            "tsConfig": "apps/website/tsconfig.app.json",
+            "aot": true,
+            "allowedCommonJsDependencies": ["qrcode"],
+            "assets": [
+              "apps/website/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "libs/theme/src/lib/assets/",
+                "output": "./resources/assets"
+              }
+            ],
+            "styles": ["apps/website/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/website/src/environments/environment.ts",
+                  "with": "apps/website/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "de": {
+              "localize": ["de"]
+            },
+            "en": {
+              "localize": ["en"]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "website:build:de"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "website:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "website:build"
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/website/shared/ui/src/**/*.ts",
-              "libs/website/shared/ui/src/**/*.html"
+              "apps/website/src/**/*.ts",
+              "apps/website/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/website/shared/ui"],
+          "outputs": ["coverage/apps/website"],
           "options": {
-            "jestConfig": "libs/website/shared/ui/jest.config.js",
+            "jestConfig": "apps/website/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "administration-shared-ui": {
+    "website-authenticate-data-access": {
       "projectType": "library",
-      "root": "libs/administration/shared/ui",
-      "sourceRoot": "libs/administration/shared/ui/src",
+      "root": "libs/website/authenticate/data-access",
+      "sourceRoot": "libs/website/authenticate/data-access/src",
       "prefix": "frontend",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/administration/shared/ui/src/**/*.ts",
-              "libs/administration/shared/ui/src/**/*.html"
+              "libs/website/authenticate/data-access/src/**/*.ts",
+              "libs/website/authenticate/data-access/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/administration/shared/ui"],
+          "outputs": ["coverage/libs/website/authenticate/data-access"],
           "options": {
-            "jestConfig": "libs/administration/shared/ui/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "administration-shared-util": {
-      "projectType": "library",
-      "root": "libs/administration/shared/util",
-      "sourceRoot": "libs/administration/shared/util/src",
-      "prefix": "frontend",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/administration/shared/util/src/**/*.ts",
-              "libs/administration/shared/util/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/administration/shared/util"],
-          "options": {
-            "jestConfig": "libs/administration/shared/util/jest.config.js",
+            "jestConfig": "libs/website/authenticate/data-access/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -636,131 +735,53 @@
         }
       }
     },
-    "administration-carpark-feature-create-carpark": {
+    "website-authenticate-feature-shell": {
       "projectType": "library",
-      "root": "libs/administration/carpark/feature-create-carpark",
-      "sourceRoot": "libs/administration/carpark/feature-create-carpark/src",
+      "root": "libs/website/authenticate/feature-shell",
+      "sourceRoot": "libs/website/authenticate/feature-shell/src",
       "prefix": "frontend",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/administration/carpark/feature-create-carpark/src/**/*.ts",
-              "libs/administration/carpark/feature-create-carpark/src/**/*.html"
+              "libs/website/authenticate/feature-shell/src/**/*.ts",
+              "libs/website/authenticate/feature-shell/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/administration/carpark/feature-create-carpark"
-          ],
+          "outputs": ["coverage/libs/website/authenticate/feature-shell"],
           "options": {
-            "jestConfig": "libs/administration/carpark/feature-create-carpark/jest.config.js",
+            "jestConfig": "libs/website/authenticate/feature-shell/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "administration-carpark-data-access": {
-      "projectType": "library",
-      "root": "libs/administration/carpark/data-access",
-      "sourceRoot": "libs/administration/carpark/data-access/src",
-      "prefix": "frontend",
+    "website-e2e": {
+      "root": "cypress/website-e2e",
+      "sourceRoot": "cypress/website-e2e/src",
+      "projectType": "application",
       "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "cypress/website-e2e/cypress.json",
+            "tsConfig": "cypress/website-e2e/tsconfig.e2e.json",
+            "devServerTarget": "website:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "website:serve:production"
+            }
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/administration/carpark/data-access/src/**/*.ts",
-              "libs/administration/carpark/data-access/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/administration/carpark/data-access"],
-          "options": {
-            "jestConfig": "libs/administration/carpark/data-access/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "administration-carpark-ui": {
-      "projectType": "library",
-      "root": "libs/administration/carpark/ui",
-      "sourceRoot": "libs/administration/carpark/ui/src",
-      "prefix": "frontend",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/administration/carpark/ui/src/**/*.ts",
-              "libs/administration/carpark/ui/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/administration/carpark/ui"],
-          "options": {
-            "jestConfig": "libs/administration/carpark/ui/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "administration-carpark-feature-browse-carpark": {
-      "projectType": "library",
-      "root": "libs/administration/carpark/feature-browse-carpark",
-      "sourceRoot": "libs/administration/carpark/feature-browse-carpark/src",
-      "prefix": "frontend",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/administration/carpark/feature-browse-carpark/src/**/*.ts",
-              "libs/administration/carpark/feature-browse-carpark/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/administration/carpark/feature-browse-carpark"
-          ],
-          "options": {
-            "jestConfig": "libs/administration/carpark/feature-browse-carpark/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "administration-carpark-feature-shell": {
-      "projectType": "library",
-      "root": "libs/administration/carpark/feature-shell",
-      "sourceRoot": "libs/administration/carpark/feature-shell/src",
-      "prefix": "frontend",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/administration/carpark/feature-shell/src/**/*.ts",
-              "libs/administration/carpark/feature-shell/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/administration/carpark/feature-shell"],
-          "options": {
-            "jestConfig": "libs/administration/carpark/feature-shell/jest.config.js",
-            "passWithNoTests": true
+            "lintFilePatterns": ["cypress/website-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -790,76 +811,51 @@
         }
       }
     },
-    "website-authenticate-data-access": {
+    "website-shared-services": {
       "projectType": "library",
-      "root": "libs/website/authenticate/data-access",
-      "sourceRoot": "libs/website/authenticate/data-access/src",
+      "root": "libs/website/shared/services",
+      "sourceRoot": "libs/website/shared/services/src",
       "prefix": "frontend",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/website/authenticate/data-access/src/**/*.ts",
-              "libs/website/authenticate/data-access/src/**/*.html"
+              "libs/website/shared/services/src/**/*.ts",
+              "libs/website/shared/services/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/website/authenticate/data-access"],
+          "outputs": ["coverage/libs/website/shared/services"],
           "options": {
-            "jestConfig": "libs/website/authenticate/data-access/jest.config.js",
+            "jestConfig": "libs/website/shared/services/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "website-authenticate-feature-shell": {
+    "website-shared-ui": {
       "projectType": "library",
-      "root": "libs/website/authenticate/feature-shell",
-      "sourceRoot": "libs/website/authenticate/feature-shell/src",
+      "root": "libs/website/shared/ui",
+      "sourceRoot": "libs/website/shared/ui/src",
       "prefix": "frontend",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/website/authenticate/feature-shell/src/**/*.ts",
-              "libs/website/authenticate/feature-shell/src/**/*.html"
+              "libs/website/shared/ui/src/**/*.ts",
+              "libs/website/shared/ui/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/website/authenticate/feature-shell"],
+          "outputs": ["coverage/libs/website/shared/ui"],
           "options": {
-            "jestConfig": "libs/website/authenticate/feature-shell/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "shared-data-access": {
-      "projectType": "library",
-      "root": "libs/shared/data-access",
-      "sourceRoot": "libs/shared/data-access/src",
-      "prefix": "frontend",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/data-access/src/**/*.ts",
-              "libs/shared/data-access/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/data-access"],
-          "options": {
-            "jestConfig": "libs/shared/data-access/jest.config.js",
+            "jestConfig": "libs/website/shared/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
