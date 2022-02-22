@@ -47,7 +47,7 @@ public class CarParkService extends BaseService<CarParkView, CarParkId, CarParkV
 
     public Page<CarParkView> carparks(Pageable request, HttpFilter filter) {
         if (filter.isFilterable()) {
-            return new PageImpl<>(this.filter(CarParkView.class, filter.getFilter()));
+            return new PageImpl<>(this.filter(filter.getFilter()));
         }
         return repository.findAll(request);
     }

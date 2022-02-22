@@ -2,30 +2,26 @@ package com.avondock.core.shared.infrastructure.service;
 
 import com.avondock.core.common.http.WebClientAdapter;
 import com.avondock.core.common.http.ElasticRestClient;
+import com.avondock.core.common.util.search.SearchOperation;
+import com.avondock.core.common.util.search.SpecificationBuilder;
 import com.avondock.core.shared.domain.contracts.Entity;
+import com.google.common.base.Joiner;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public abstract class BaseService<T extends Entity, ID, R extends CrudRepository<T, ID>> {
+public abstract class BaseService<T extends Entity, ID, R extends CrudRepository<T, ID> & JpaSpecificationExecutor<T>> {
 
     protected final WebClientAdapter client;
     protected final ElasticRestClient elastic;
 
-    @PersistenceContext
-    EntityManager entityManager;
-
     protected R repository;
-
-    private String searchTerm;
-
-    protected static final String FILTER_ALL = "all";
-
 
     public BaseService(R repository) {
         this.client = new WebClientAdapter();
@@ -33,28 +29,23 @@ public abstract class BaseService<T extends Entity, ID, R extends CrudRepository
         this.elastic = new ElasticRestClient();
     }
 
-    protected List<T> filter(Class<T> clazz, String apql) {
-        CriteriaBuilder  cb     = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> query  = cb.createQuery(clazz);
-        Root<T>          entity = query.from(clazz);
+    protected List<T> filter(String apql) {
+        SpecificationBuilder<T> builder           = new SpecificationBuilder<>();
+        String                  operationSetExper = Joiner.on("|").join(SearchOperation.SIMPLE_OPERATION_SET);
+        Pattern                 pattern           = Pattern.compile("(\\w+?)(" + operationSetExper + ")(\\p{Punct}?)(\\w+?)(\\p{Punct}?),");
+        Matcher                 matcher           = pattern.matcher(apql + ",");
+        while (matcher.find()) {
+            builder.with(
+                    matcher.group(1),
+                    matcher.group(2),
+                    matcher.group(4),
+                    matcher.group(3),
+                    matcher.group(5));
+        }
 
-        query.select(entity);
-        query.where(cb.like(entity.get(parseFilter(apql)).as(String.class), "%"+searchTerm+"%"));
+        Specification<T> spec = builder.build();
+        return repository.findAll(spec);
 
-        return entityManager.createQuery(query).getResultList();
-    }
-
-    /**
-     * customer.lastName=Klemm
-     *
-     * @param apql
-     */
-    private String parseFilter(String apql) {
-        String[] parts = apql.split("=");
-        String criteria = parts[0];
-        searchTerm = parts[1];
-
-        return criteria;
     }
 
     public T save(T  entity) {
